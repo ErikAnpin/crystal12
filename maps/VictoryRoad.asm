@@ -5,6 +5,7 @@
 	const VICTORYROAD_POKE_BALL3
 	const VICTORYROAD_POKE_BALL4
 	const VICTORYROAD_POKE_BALL5
+	const VICTORYROAD_MOLTRES
 
 VictoryRoad_MapScripts:
 	def_scene_scripts
@@ -12,6 +13,41 @@ VictoryRoad_MapScripts:
 	scene_script VictoryRoadNoop2Scene, SCENE_VICTORYROAD_NOOP
 
 	def_callbacks
+	callback MAPCALLBACK_OBJECTS, VictoryRoadMoltresCallback
+	
+VictoryRoadMoltresCallback:
+	checkevent EVENT_FOUGHT_MOLTRES
+	iftrue .NoAppear
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .Appear
+	sjump .NoAppear
+	
+.Appear:
+	appear VICTORYROAD_MOLTRES
+	endcallback	
+	
+.NoAppear:
+	disappear VICTORYROAD_MOLTRES
+	endcallback	
+	
+VictoryRoadMoltres:
+	faceplayer
+	opentext
+	writetext MoltresText
+	cry MOLTRES
+	pause 15
+	closetext
+	setevent EVENT_FOUGHT_MOLTRES
+	loadvar VAR_BATTLETYPE, BATTLETYPE_ROAMING	
+	loadwildmon MOLTRES, 50
+	startbattle
+	disappear VICTORYROAD_MOLTRES
+	reloadmapafterbattle
+	end
+
+MoltresText:
+	text "Gyaoo!"
+	done			
 
 VictoryRoadNoop1Scene:
 	end
@@ -168,20 +204,14 @@ VictoryRoadRivalBeforeText:
 	line "take the #MON"
 	cont "LEAGUE challenge?"
 
-	para "…Don't make me"
-	line "laugh."
+	para "I'm beginning to"
+	line "understand what"
 
-	para "You're so much"
-	line "weaker than I am."
-
+	para "that dragon master"
+	line "said to me…"
+	
 	para "I'm not like I was"
 	line "before."
-
-	para "I now have the"
-	line "best and strongest"
-
-	para "#MON with me."
-	line "I'm invincible!"
 
 	para "<PLAYER>!"
 	line "I challenge you!"
@@ -192,15 +222,6 @@ VictoryRoadRivalDefeatText:
 
 	para "I gave it every-"
 	line "thing I had…"
-
-	para "What you possess,"
-	line "and what I lack…"
-
-	para "I'm beginning to"
-	line "understand what"
-
-	para "that dragon master"
-	line "said to me…"
 	done
 
 VictoryRoadRivalAfterText:
@@ -208,32 +229,19 @@ VictoryRoadRivalAfterText:
 	line "on becoming the"
 	cont "greatest trainer…"
 
-	para "I'm going to find"
-	line "out why I can't"
+	para "I'm going to learn"
+	line "more and we will"
 
-	para "win and become"
-	line "stronger…"
-
-	para "When I do, I will"
-	line "challenge you."
-
-	para "And I'll beat you"
-	line "down with all my"
-	cont "power."
-
-	para "…Humph! You keep"
-	line "at it until then."
+	para "become stronger"
+	line "together."
 	done
 
 VictoryRoadRivalVictoryText:
-	text "…Humph!"
+	text "…I did it!"
 
-	para "When it comes down"
-	line "to it, nothing can"
-	cont "beat power."
-
-	para "I don't need any-"
-	line "thing else."
+	para "No…"
+	line "We did it, my"
+	cont "#MON and I."
 	done
 
 VictoryRoad_MapEvents:
@@ -266,3 +274,4 @@ VictoryRoad_MapEvents:
 	object_event 18, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
 	object_event 15, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
 	object_event  7, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
+	object_event  5,  28, SPRITE_MOLTRES, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VictoryRoadMoltres, EVENT_VICTORYROAD_MOLTRES

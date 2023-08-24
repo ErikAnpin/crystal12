@@ -52,10 +52,17 @@ MahoganyGymPryceScript:
 
 PryceScript_Defeat:
 	writetext PryceText_CherishYourPokemon
-	waitbutton
+	yesorno
+	iftrue PryceRematch
 MahoganyGym_NoRoomForIcyWind:
 	closetext
 	end
+
+PryceRematch:
+	winlosstext Pryce_RematchDefeat, 0
+	loadtrainer PRYCE, 1
+	startbattle
+	reloadmapafterbattle
 
 MahoganyGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -199,13 +206,11 @@ Text_ReceivedGlacierBadge:
 
 PryceText_GlacierBadgeSpeech:
 	text "That BADGE will"
-	line "raise the SPECIAL"
-	cont "stats of #MON."
+	line "let your #MON"
+	cont "use WHIRLPOOL."
 
-	para "It also lets your"
-	line "#MON use WHIRL-"
-	cont "POOL to get across"
-	cont "real whirlpools."
+	para "to get across"
+	line "real whirlpools."
 
 	para "And this… This is"
 	line "a gift from me!"
@@ -236,6 +241,16 @@ PryceText_CherishYourPokemon:
 
 	para "Cherish your time"
 	line "together!"
+	
+	para "Shall we test"
+	line "your bond with"
+	
+	para "your #MON?"
+	done
+	
+Pryce_RematchDefeat:
+	text "Your bond seems"
+	line "strong."
 	done
 
 BoarderRonaldSeenText:

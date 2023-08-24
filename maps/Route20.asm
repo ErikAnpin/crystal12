@@ -2,16 +2,52 @@
 	const ROUTE20_SWIMMER_GIRL1
 	const ROUTE20_SWIMMER_GIRL2
 	const ROUTE20_SWIMMER_GUY
-
+	const ROUTE20_ARTICUNO
+	
 Route20_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, Route20ClearRocksCallback
+	callback MAPCALLBACK_OBJECTS, Route20ArticunoCallback		
 
 Route20ClearRocksCallback:
 	setevent EVENT_CINNABAR_ROCKS_CLEARED
 	endcallback
+
+Route20ArticunoCallback:
+	checkevent EVENT_FOUGHT_ARTICUNO
+	iftrue .NoAppear
+	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUIDE_ONCE
+	iftrue .Appear
+	sjump .NoAppear	
+	
+.Appear:
+	appear ROUTE20_ARTICUNO
+	endcallback	
+	
+.NoAppear:
+	disappear ROUTE20_ARTICUNO
+	endcallback	
+	
+Route20Articuno:
+	faceplayer
+	opentext
+	writetext ArticunoText
+	cry ARTICUNO
+	pause 15
+	closetext
+	setevent EVENT_FOUGHT_ARTICUNO
+	loadvar VAR_BATTLETYPE, BATTLETYPE_ROAMING	
+	loadwildmon ARTICUNO, 50
+	startbattle
+	disappear ROUTE20_ARTICUNO		
+	reloadmapafterbattle
+	end
+	
+ArticunoText:
+	text "Gyaoo!"
+	done
 
 TrainerSwimmerfNicole:
 	trainer SWIMMERF, NICOLE, EVENT_BEAT_SWIMMERF_NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, .Script
@@ -125,3 +161,4 @@ Route20_MapEvents:
 	object_event 52,  8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
 	object_event 45, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
 	object_event 12, 13, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1
+	object_event 30, 7,  SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route20Articuno, EVENT_ROUTE20_ARTICUNO

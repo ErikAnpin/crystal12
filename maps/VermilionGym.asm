@@ -38,8 +38,16 @@ VermilionGymSurgeScript:
 
 .FightDone:
 	writetext LtSurgeFightDoneText
-	waitbutton
+	yesorno
+	iftrue .SurgeRematch
 	closetext
+	end
+	
+.SurgeRematch:
+	winlosstext Surge_RematchDefeat, 0
+	loadtrainer LT_SURGE, 1
+	startbattle
+	reloadmapafterbattle
 	end
 
 TrainerGentlemanGregory:
@@ -140,11 +148,8 @@ ReceivedThunderBadgeText:
 
 LtSurgeThunderBadgeText:
 	text "SURGE: THUNDER-"
-	line "BADGE increases"
-	cont "#MON's speed. "
-
-	para "Consider it proof"
-	line "that you defeated"
+	line "BADGE is proof"
+	cont "that you defeated"
 
 	para "me. You wear it"
 	line "proudly, hear?"
@@ -157,6 +162,15 @@ LtSurgeFightDoneText:
 
 	para "My #MON and I"
 	line "are still at it!"
+	
+	para "How about yours,"
+	line "show me what you"
+	cont "got?"
+	done
+	
+Surge_RematchDefeat:
+	text "You're still"
+	line "holding up kid!"
 	done
 
 GentlemanGregorySeenText:

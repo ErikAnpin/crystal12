@@ -68,7 +68,7 @@ GoldenrodDeptStoreB1FAmuletCoin:
 	itemball AMULET_COIN
 
 GoldenrodDeptStoreB1FBurnHeal:
-	itemball BURN_HEAL
+	itemball UP_GRADE
 
 GoldenrodDeptStoreB1FUltraBall:
 	itemball ULTRA_BALL

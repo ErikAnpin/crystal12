@@ -17,7 +17,7 @@ BattleCommand_FuryCutter:
 	ld b, a
 	cp 6
 	jr c, .checkdouble
-	ld b, 5
+	ld b, 4
 
 .checkdouble
 	dec b

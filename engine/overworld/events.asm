@@ -551,14 +551,13 @@ TryObjectEvent:
 	ld a, [hl]
 	and MAPOBJECT_TYPE_MASK
 
-; BUG: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
 	push bc
 	ld de, 3
 	ld hl, ObjectEventTypeArray
 	call IsInArray
-	jr nc, .nope
 	pop bc
-
+	jr nc, .nope
+	
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -877,9 +876,6 @@ CountStep:
 	call DoRepelStep
 	jr c, .doscript
 
-	; Count the step for poison and total steps
-	ld hl, wPoisonStepCount
-	inc [hl]
 	ld hl, wStepCount
 	inc [hl]
 	; Every 256 steps, increase the happiness of all your Pokemon.
@@ -902,17 +898,6 @@ CountStep:
 	; Increase the EXP of (both) DayCare Pokemon by 1.
 	farcall DayCareStep
 
-	; Every 4 steps, deal damage to all poisoned Pokemon.
-	ld hl, wPoisonStepCount
-	ld a, [hl]
-	cp 4
-	jr c, .skip_poison
-	ld [hl], 0
-
-	farcall DoPoisonStep
-	jr c, .doscript
-
-.skip_poison
 	farcall DoBikeStep
 
 .done
@@ -943,8 +928,16 @@ DoRepelStep:
 	ld [wRepelEffect], a
 	ret nz
 
+	ld a, [wRepelType]
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
 	ld a, BANK(RepelWoreOffScript)
 	ld hl, RepelWoreOffScript
+	jr nc, .got_script
+	ld a, BANK(UseAnotherRepelScript)
+	ld hl, UseAnotherRepelScript
+.got_script
 	call CallScript
 	scf
 	ret

@@ -42,10 +42,17 @@ OlivineGymJasmineScript:
 
 .GotIronTail:
 	writetext Jasmine_GoodLuck
-	waitbutton
+	yesorno
+	iftrue JasmineRematch
 .NoRoomForIronTail:
 	closetext
 	end
+
+JasmineRematch:
+	winlosstext Jasmine_RematchDefeat, 0
+	loadtrainer JASMINE, 1
+	startbattle
+	reloadmapafterbattle
 
 OlivineGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -137,11 +144,7 @@ Text_ReceivedMineralBadge:
 	done
 
 Jasmine_BadgeSpeech:
-	text "MINERALBADGE"
-	line "raises #MON's"
-	cont "DEFENSE."
-
-	para "…Um… Please take"
+	text "…Um… Please take"
 	line "this too…"
 	done
 
@@ -160,6 +163,17 @@ Jasmine_GoodLuck:
 	text "Um… I don't know"
 	line "how to say this,"
 	cont "but good luck…"
+	
+	para "But still…"
+	line "I think want to"
+	
+	para "challenge you"
+	line "again!"
+	done
+	
+Jasmine_RematchDefeat:
+	text "I'm still not"
+	line "good enough…"
 	done
 
 OlivineGymGuideText:

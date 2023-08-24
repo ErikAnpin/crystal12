@@ -74,10 +74,17 @@ GoldenrodGymWhitneyScript:
 
 .GotAttract:
 	writetext WhitneyGoodCryText
-	waitbutton
+	yesorno
+	iftrue WhitneyRematch
 .NoRoomForAttract:
 	closetext
 	end
+
+WhitneyRematch:
+	winlosstext Whitney_RematchDefeat, 0
+	loadtrainer WHITNEY, 1
+	startbattle
+	reloadmapafterbattle
 
 GoldenrodGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -240,10 +247,6 @@ WhitneyPlainBadgeText:
 	para "STRENGTH outside"
 	line "of battle."
 
-	para "It also boosts"
-	line "your #MON's"
-	cont "SPEED."
-
 	para "Oh, you can have"
 	line "this too!"
 	done
@@ -266,6 +269,14 @@ WhitneyGoodCryText:
 
 	para "Come for a visit"
 	line "again! Bye-bye!"
+	
+	para "What? You want a"
+	line "rematch now?"
+	done
+
+Whitney_RematchDefeat:
+	text "Ah, I lost again"
+	line "sob…"
 	done
 
 LassCarrieSeenText:

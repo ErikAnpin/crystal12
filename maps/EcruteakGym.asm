@@ -63,10 +63,17 @@ EcruteakGymMortyScript:
 
 .GotShadowBall:
 	writetext MortyFightDoneText
-	waitbutton
+	yesorno
+	iftrue MortyRematch
 .NoRoomForShadowBall:
 	closetext
 	end
+
+MortyRematch:
+	winlosstext Morty_RematchDefeat, 0
+	loadtrainer MORTY, 1
+	startbattle
+	reloadmapafterbattle
 
 EcruteakGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -272,6 +279,17 @@ MortyFightDoneText:
 
 	para "I envy you for"
 	line "that…"
+	
+	para "Why don't you"
+	line "show me what you"
+	
+	para "learned from your"
+	line "travels?"
+	done
+	
+Morty_RematchDefeat:
+	text "Im not good"
+	line "enough yet…"
 	done
 
 SageJeffreySeenText:

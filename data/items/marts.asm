@@ -38,27 +38,30 @@ Marts:
 	assert_table_length NUM_MARTS
 
 MartCherrygrove:
-	db 4 ; # items
+	db 5 ; # items
 	db POTION
+	db REPEL	
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
 	db -1 ; end
 
 MartCherrygroveDex:
-	db 5 ; # items
+	db 6 ; # items
 	db POKE_BALL
 	db POTION
+	db REPEL	
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
 	db -1 ; end
 
 MartViolet:
-	db 10 ; # items
+	db 11 ; # items
 	db POKE_BALL
 	db POTION
 	db ESCAPE_ROPE
+	db REPEL
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -82,12 +85,14 @@ MartAzalea:
 	db -1 ; end
 
 MartCianwood:
-	db 5 ; # items
+	db 7 ; # items
 	db POTION
 	db SUPER_POTION
 	db HYPER_POTION
 	db FULL_HEAL
 	db REVIVE
+	db ELIXER
+	db ETHER	
 	db -1 ; end
 
 MartGoldenrod2F1:
@@ -179,7 +184,7 @@ MartOlivine:
 	db -1 ; end
 
 MartEcruteak:
-	db 10 ; # items
+	db 11 ; # items
 	db POKE_BALL
 	db GREAT_BALL
 	db POTION
@@ -189,6 +194,7 @@ MartEcruteak:
 	db AWAKENING
 	db BURN_HEAL
 	db ICE_HEAL
+	db SUPER_REPEL		
 	db REVIVE
 	db -1 ; end
 
@@ -201,13 +207,11 @@ MartMahogany1:
 	db -1 ; end
 
 MartMahogany2:
-	db 9 ; # items
+	db 7 ; # items
 	db RAGECANDYBAR
 	db GREAT_BALL
 	db SUPER_POTION
-	db HYPER_POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
+	db FULL_HEAL
 	db SUPER_REPEL
 	db REVIVE
 	db FLOWER_MAIL

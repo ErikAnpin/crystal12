@@ -1,6 +1,6 @@
 	db SENTRET ; 161
 
-	db  35,  46,  34,  20,  35,  45
+	db  35,  56,  34,  40,  45,  45
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

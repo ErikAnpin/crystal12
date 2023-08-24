@@ -79,8 +79,16 @@ CeruleanGymMistyScript:
 	setflag ENGINE_CASCADEBADGE
 .FightDone:
 	writetext MistyFightDoneText
-	waitbutton
+	yesorno
+	iftrue .MistyRematch
 	closetext
+	end
+
+.MistyRematch:
+	winlosstext Misty_RematchDefeat, 0
+	loadtrainer MISTY, 1
+	startbattle
+	reloadmapafterbattle
 	end
 
 TrainerSwimmerfDiana:
@@ -281,6 +289,19 @@ MistyFightDoneText:
 
 	para "I can battle some"
 	line "skilled trainers."
+
+	para "But I can always"
+	line "battle you."
+	
+	para "Wan't a rematch?"
+	done
+	
+Misty_RematchDefeat:
+	text "MISTY: You're still"
+	line "holding up."
+	
+	para "Don't get cocky"
+	line "though."
 	done
 
 SwimmerfDianaSeenText:

@@ -95,7 +95,7 @@ ItemEffects:
 	dw StatusHealingEffect ; BURNT_BERRY
 	dw StatusHealingEffect ; ICE_BERRY
 	dw NoEffect            ; POISON_BARB
-	dw NoEffect            ; KINGS_ROCK
+	dw EvoStoneEffect      ; KINGS_ROCK
 	dw BitterBerryEffect   ; BITTER_BERRY
 	dw StatusHealingEffect ; MINT_BERRY
 	dw NoEffect            ; RED_APRICORN
@@ -156,7 +156,7 @@ ItemEffects:
 	dw NoEffect            ; SCOPE_LENS
 	dw NoEffect            ; ITEM_8D
 	dw NoEffect            ; ITEM_8E
-	dw NoEffect            ; METAL_COAT
+	dw EvoStoneEffect      ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
 	dw NoEffect            ; ITEM_91
 	dw NoEffect            ; LEFTOVERS
@@ -164,7 +164,7 @@ ItemEffects:
 	dw NoEffect            ; ITEM_94
 	dw NoEffect            ; ITEM_95
 	dw RestorePPEffect     ; MYSTERYBERRY
-	dw NoEffect            ; DRAGON_SCALE
+	dw EvoStoneEffect      ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
 	dw NoEffect            ; ITEM_99
 	dw NoEffect            ; ITEM_9A
@@ -185,7 +185,7 @@ ItemEffects:
 	dw EvoStoneEffect      ; SUN_STONE
 	dw NoEffect            ; POLKADOT_BOW
 	dw NoEffect            ; ITEM_AB
-	dw NoEffect            ; UP_GRADE
+	dw EvoStoneEffect      ; UP_GRADE
 	dw RestoreHPEffect     ; BERRY
 	dw RestoreHPEffect     ; GOLD_BERRY
 	dw SquirtbottleEffect  ; SQUIRTBOTTLE
@@ -210,10 +210,13 @@ ItemEffects:
 ; NoEffect would be appropriate, with the table then being NUM_ITEMS long.
 
 PokeBallEffect:
-; BUG: The Dude's catching tutorial may crash if his Poké Ball can't be used (see docs/bugs_and_glitches.md)
 	ld a, [wBattleMode]
 	dec a
 	jp nz, UseBallInTrainerBattle
+	
+	ld a, [wBattleType]
+	cp BATTLETYPE_TUTORIAL
+	jr z, .room_in_party
 
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
@@ -227,11 +230,10 @@ PokeBallEffect:
 	jp z, Ball_BoxIsFullMessage
 
 .room_in_party
-; BUG: Using a Park Ball in non-Contest battles has a corrupt animation (see docs/bugs_and_glitches.md)
 	xor a
 	ld [wWildMon], a
-	ld a, [wCurItem]
-	cp PARK_BALL
+	ld a, [wBattleType]
+	cp BATTLETYPE_CONTEST
 	call nz, ReturnToBattle_UseBall
 
 	ld hl, wOptions
@@ -336,12 +338,12 @@ PokeBallEffect:
 	jr nz, .statuscheck
 	ld a, 1
 .statuscheck
-; BUG: BRN/PSN/PAR do not affect catch rate (see docs/bugs_and_glitches.md)
 	ld b, a
 	ld a, [wEnemyMonStatus]
 	and 1 << FRZ | SLP_MASK
-	ld c, 10
+	ld c, 5
 	jr nz, .addstatus
+	ld a, [wEnemyMonStatus]	
 	and a
 	ld c, 5
 	jr nz, .addstatus
@@ -353,10 +355,10 @@ PokeBallEffect:
 	ld a, $ff
 .max_1
 
-; BUG: HELD_CATCH_CHANCE has no effect (see docs/bugs_and_glitches.md)
 	ld d, a
 	push de
 	ld a, [wBattleMonItem]
+	ld b, a
 	farcall GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
@@ -440,18 +442,10 @@ PokeBallEffect:
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
 
-; BUG: Catching a Transformed Pokémon always catches a Ditto (see docs/bugs_and_glitches.md)
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .ditto
-	jr .not_ditto
+	jr nz, .load_data
 
-.ditto
-	ld a, DITTO
-	ld [wTempEnemyMonSpecies], a
-	jr .load_data
 
-.not_ditto
-	set SUBSTATUS_TRANSFORMED, [hl]
 	ld hl, wEnemyBackupDVs
 	ld a, [wEnemyMonDVs]
 	ld [hli], a
@@ -506,8 +500,21 @@ PokeBallEffect:
 
 	ld hl, Text_GotchaMonWasCaught
 	call PrintText
-
+	
 	call ClearSprites
+	
+	ld a, [wTempSpecies]
+	ld l, a
+	ld a, [wCurPartyLevel]
+	ld h, a
+	push hl
+	farcall ApplyExperienceAfterEnemyCaught
+	pop hl
+	ld a, l
+	ld [wCurPartySpecies], a
+	ld [wTempSpecies], a
+	ld a, h
+	ld [wCurPartyLevel], a
 
 	ld a, [wTempSpecies]
 	dec a
@@ -753,10 +760,10 @@ ParkBallMultiplier:
 	ret
 
 HeavyBall_GetDexEntryBank:
-; BUG: Heavy Ball uses wrong weight value for three Pokémon (see docs/bugs_and_glitches.md)
 	push hl
 	push de
 	ld a, [wEnemyMonSpecies]
+	dec a
 	rlca
 	rlca
 	maskbits NUM_DEX_ENTRY_BANKS
@@ -917,11 +924,10 @@ MoonBallMultiplier:
 	inc hl
 	inc hl
 
-; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
 	push bc
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
-	cp MOON_STONE_RED ; BURN_HEAL
+	cp MOON_STONE
 	pop bc
 	ret nz
 
@@ -973,12 +979,11 @@ LoveBallMultiplier:
 	inc d   ; female
 .got_wild_gender
 
-; BUG: Love Ball boosts catch rate for the wrong gender (see docs/bugs_and_glitches.md)
 	ld a, d
 	pop de
 	cp d
 	pop bc
-	ret nz
+	ret z
 
 	sla b
 	jr c, .max
@@ -1004,7 +1009,6 @@ FastBallMultiplier:
 	ld d, 3
 
 .loop
-; BUG: Fast Ball only boosts catch rate for three Pokémon (see docs/bugs_and_glitches.md)
 	ld a, BANK(FleeMons)
 	call GetFarByte
 
@@ -1012,7 +1016,7 @@ FastBallMultiplier:
 	cp -1
 	jr z, .next
 	cp c
-	jr nz, .next
+	jr nz, .loop
 	sla b
 	jr c, .max
 
@@ -2079,6 +2083,8 @@ UseRepel:
 
 	ld a, b
 	ld [wRepelEffect], a
+	ld a, [wCurItem]
+	ld [wRepelType], a
 	jp UseItemText
 
 RepelUsedEarlierIsStillInEffectText:

@@ -123,7 +123,7 @@ JohtoWaterWildMons:
 
 	def_water_wildmons OLIVINE_PORT
 	db 2 percent ; encounter rate
-	db 20, TENTACOOL
+	db 20, CHINCHOU
 	db 15, TENTACOOL
 	db 20, TENTACRUEL
 	end_water_wildmons
@@ -146,12 +146,12 @@ JohtoWaterWildMons:
 	db 6 percent ; encounter rate
 	db 15, TENTACOOL
 	db 20, QUAGSIRE
-	db 20, TENTACRUEL
+	db 20, STARYU
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_34
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
+	db 20, CORSOLA
 	db 15, TENTACOOL
 	db 20, TENTACRUEL
 	end_water_wildmons
@@ -165,22 +165,22 @@ JohtoWaterWildMons:
 
 	def_water_wildmons ROUTE_40
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
+	db 20, CHINCHOU
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, QWILFISH
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_41
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, REMORAID
 	db 20, MANTINE
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_42
 	db 4 percent ; encounter rate
 	db 20, GOLDEEN
-	db 15, GOLDEEN
+	db 15, CROCONAW
 	db 20, SEAKING
 	end_water_wildmons
 

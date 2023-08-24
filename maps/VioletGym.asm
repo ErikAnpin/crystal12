@@ -48,10 +48,17 @@ VioletGymFalknerScript:
 
 .SpeechAfterTM:
 	writetext FalknerFightDoneText
-	waitbutton
+	yesorno
+	iftrue .FalknerRematch
 .NoRoomForMudSlap:
 	closetext
 	end
+
+.FalknerRematch:
+	winlosstext Falkner_RematchDefeat, 0
+	loadtrainer FALKNER, 1
+	startbattle
+	reloadmapafterbattle
 
 VioletGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -153,14 +160,11 @@ ReceivedZephyrBadgeText:
 
 FalknerZephyrBadgeText:
 	text "ZEPHYRBADGE"
-	line "raises the attack"
-	cont "power of #MON."
+	line "enables #MON"
+	cont "to use FLASH"
 
-	para "It also enables"
-	line "#MON to use"
-
-	para "FLASH, if they"
-	line "have it, anytime."
+	para "if they have"
+	line "it, anytime."
 
 	para "Here--take this"
 	line "too."
@@ -173,9 +177,9 @@ FalknerTMMudSlapText:
 	para "instantly learn a"
 	line "new move."
 
-	para "Think before you"
-	line "act--a TM can be"
-	cont "used only once."
+	para "A TM can be used"
+	line "as many times as"
+	cont "you like."
 
 	para "TM31 contains"
 	line "MUD-SLAP."
@@ -205,6 +209,18 @@ FalknerFightDoneText:
 
 	para "the greatest bird"
 	line "master!"
+	
+	para "On the other hand,"
+	line "we can have a test"
+	
+	para "of skill right"
+	line "now?"
+	done
+
+Falkner_RematchDefeat:
+	text "Darn! I'm still"
+	line "not good"
+	cont "enough…"
 	done
 
 BirdKeeperRodSeenText:

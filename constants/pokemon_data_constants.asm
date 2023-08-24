@@ -176,7 +176,7 @@ DEF GRASS_WILDDATA_LENGTH EQU 2 + 3 + NUM_GRASSMON * 2 * 3
 DEF WATER_WILDDATA_LENGTH EQU 2 + 1 + NUM_WATERMON * 2
 DEF FISHGROUP_DATA_LENGTH EQU 1 + 2 * 3
 
-DEF NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
+DEF NUM_ROAMMON_MAPS EQU 4 ; RoamMaps table size (see data/wild/roammon_maps.asm)
 
 ; treemon sets
 ; TreeMons indexes (see data/wild/treemons.asm)
@@ -221,9 +221,9 @@ DEF NUM_TREEMON_SETS EQU const_value
 DEF NUM_HAPPINESS_CHANGES EQU const_value - 1
 
 ; significant happiness values
-DEF BASE_HAPPINESS        EQU 70
+DEF BASE_HAPPINESS        EQU 100
 DEF FRIEND_BALL_HAPPINESS EQU 200
-DEF HAPPINESS_TO_EVOLVE   EQU 220
+DEF HAPPINESS_TO_EVOLVE   EQU 200
 DEF HAPPINESS_THRESHOLD_1 EQU 100
 DEF HAPPINESS_THRESHOLD_2 EQU 200
 

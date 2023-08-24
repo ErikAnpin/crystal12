@@ -189,20 +189,9 @@ _WouldYouLikeToSaveTheGameText::
 	line "save the game?"
 	done
 
-_SavingDontTurnOffThePowerText::
-	text "SAVING… DON'T TURN"
-	line "OFF THE POWER."
-	done
-
 _SavedTheGameText::
 	text "<PLAYER> saved"
 	line "the game."
-	done
-
-_AlreadyASaveFileText::
-	text "There is already a"
-	line "save file. Is it"
-	cont "OK to overwrite?"
 	done
 
 _AnotherSaveFileText::
@@ -910,22 +899,12 @@ _SpaceSpaceColonText:: ; unreferenced
 	done
 
 _PasswordAskResetText::
-	text "Password OK."
-	line "Select CONTINUE &"
-	cont "reset settings."
-	prompt
-
-_PasswordWrongText::
-	text "Wrong password!"
+	text "Select CONTINUE &"
+	line "reset settings."
 	prompt
 
 _PasswordAskResetClockText::
 	text "Reset the clock?"
-	done
-
-_PasswordAskEnterText::
-	text "Please enter the"
-	line "password."
 	done
 
 _ClearAllSaveDataText::
@@ -1524,3 +1503,90 @@ _MomLostGearBookletText::
 	para "Come back again in"
 	line "a while."
 	prompt
+
+_MoveReminderIntro::
+    text "Hi, I'm the Move"
+    line "Reminder!"
+
+    para "I can teach your"
+    line "#mon a move it"
+
+    para "has learned pre-"
+    line "viously."
+
+	para "Are you"
+    line "interested?"
+    done
+
+_MoveReminderWhichMon::
+    text "Which #mon"
+    next "would you like"
+
+    para "to make remember"
+    line "a move?"
+    done
+
+_MoveReminderWhichMove::
+    text "Which move would"
+    next "you like to"
+    cont "remember?"
+    done
+
+_MoveReminderCancel::
+    text "Come back anytime."
+    done
+
+_MoveReminderEgg::
+    text "Hey! What am I"
+    line "supposed to teach"
+    cont "an Egg?"
+    done
+
+_MoveReminderNoMon::
+    text "You don't have a"
+    line "#mon that can"
+    cont "remember a move."
+    done
+
+_MoveReminderNoMoves::
+    text "There are no moves"
+    line "for this #mon"
+    cont "to learn."
+    done
+	
+_HiddenPowerGuyQuestion::
+	text "Shall I divine"
+	line "the HIDDEN POWER"
+	cont "of your #mon?"
+	done
+
+_HiddenPowerGuyWhichMon::
+	text "Which #mon's"
+	line "HIDDEN POWER"
+	cont "should I find?"
+	done
+
+_HiddenPowerGuyEgg::
+	text "An Egg has not yet"
+	line "developed a HIDDEN"
+	cont "POWER…"
+	done
+
+_HiddenPowerGuyCancel::
+	text "…Very well…"
+	done
+
+_HiddenPowerGuyNoMon::
+    text "You don't have a"
+    line "#mon to find"
+    cont "its HIDDEN POWER…"
+    done
+
+_HiddenPowerGuyAnswer::
+	text "I can sense it…"
+
+	para "Its HIDDEN POWER"
+	line "is @"
+	text_ram wStringBuffer1
+	text "-type!"
+	done	

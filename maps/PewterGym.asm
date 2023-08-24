@@ -34,8 +34,16 @@ PewterGymBrockScript:
 
 .FightDone:
 	writetext BrockFightDoneText
-	waitbutton
+	yesorno
+	iftrue .BrockRematch
 	closetext
+	end
+
+.BrockRematch:
+	winlosstext Brock_RematchDefeat, 0
+	loadtrainer BROCK, 1
+	startbattle
+	reloadmapafterbattle
 	end
 
 TrainerCamperJerry:
@@ -142,6 +150,15 @@ BrockFightDoneText:
 	line "I'm going to be-"
 	cont "come a lot strong-"
 	cont "er too."
+	
+	para "Shall I prove it"
+	line "to you now?"
+	done
+	
+Brock_RematchDefeat:
+	text "BROCK: You're"
+	line "stronger than I"
+	cont "expected…"
 	done
 
 CamperJerrySeenText:

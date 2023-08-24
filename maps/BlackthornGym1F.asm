@@ -86,8 +86,16 @@ BlackthornGymClairScript:
 
 .GotTM24:
 	writetext BlackthornGymClairText_League
-	waitbutton
+	yesorno
+	iftrue .ClairRematch
 	closetext
+	end
+
+.ClairRematch:
+	winlosstext Clair_RematchDefeat, 0
+	loadtrainer CLAIR, 1
+	startbattle
+	reloadmapafterbattle
 	end
 
 TrainerCooltrainermPaul:
@@ -231,7 +239,7 @@ BlackthornGymClairText_YouKeptMeWaiting:
 
 BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24."
+	line "TM24 DRAGONBREATH."
 	done
 
 BlackthornGymClairText_DescribeTM24:
@@ -281,6 +289,17 @@ BlackthornGymClairText_League:
 
 	para "Give it every-"
 	line "thing you've got."
+	done
+
+	para "Or you can prove"
+	line "your worth to me"
+	
+	para "once again."
+	done
+	
+Clair_RematchDefeat:
+	text "I lost again?!"
+	line "This can't be!"
 	done
 
 CooltrainermPaulSeenText:
