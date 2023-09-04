@@ -29,20 +29,20 @@ FishGroups:
 	db  40 percent,     SHELLDER,   10
 	db  60 percent,     STARYU,     10
 	db  80 percent,     CORSOLA,    10
-	db 100 percent,     KRABBY,     10
+	db 100 percent,     STARYU,     10
 .Shore_Good:
 	db  35 percent,     MAGIKARP,   20
-	db  70 percent,     KRABBY,     20
+	db  70 percent,     STARYU,     20
 	db  90 percent + 1, CORSOLA,    20
 	db 100 percent,     time_group 0
 .Shore_Super:
-	db  40 percent,     KRABBY,     40
+	db  40 percent,     MAGIKARP,   40
 	db  70 percent,     time_group 1
-	db  90 percent + 1, KINGLER,    40
+	db  90 percent + 1, STARMIE,    40
 	db 100 percent,     CORSOLA,    40
 
 .Ocean_Old:
-	db  20 percent,     MANTINE,    10
+	db  20 percent,     MAGIKARP,   10
 	db  40 percent,     QWILFISH,   10
 	db  60 percent,     CHINCHOU,   10
 	db  80 percent,     TENTACOOL,  10

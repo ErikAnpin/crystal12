@@ -861,11 +861,12 @@ PoliwrathEvosAttacks:
 	db 1, BUBBLEBEAM
 	db 1, MIST
 	db 1, SUBMISSION
-	db 30, SUBMISSION		
-	db 33, BODY_SLAM
-	db 37, MIND_READER
-	db 40, HYDRO_PUMP
-	db 44, BELLY_DRUM
+	db 28, SUBMISSION		
+	db 31, BODY_SLAM
+	db 35, MIND_READER
+	db 38, HYDRO_PUMP
+	db 42, CROSS_CHOP
+	db 45, BELLY_DRUM	
 	db 0 ; no more level-up moves
 
 AbraEvosAttacks:
@@ -1662,6 +1663,12 @@ StarmieEvosAttacks:
 	db 1, CONFUSION
 	db 1, BUBBLEBEAM
 	db 1, RECOVER
+	db 10, WATER_GUN
+	db 18, RAPID_SPIN
+	db 23, BUBBLEBEAM
+	db 28, CONFUSION
+	db 31, RECOVER
+	db 35, MINIMIZE	
 	db 40, PSYBEAM
 	db 45, LIGHT_SCREEN
 	db 50, HYDRO_PUMP
@@ -1993,45 +2000,38 @@ SnorlaxEvosAttacks:
 
 ArticunoEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, GUST
-	db 1, WHIRLWIND		
-	db 1, POWDER_SNOW
+	db 1, WHIRLWIND
 	db 13, MIST
-	db 25, AGILITY
-	db 37, RAZOR_WIND
-	db 43, SLAM
-	db 49, ICE_BEAM
-	db 55, FUTURE_SIGHT
-	db 61, REFLECT
-	db 73, BLIZZARD
+	db 19, AGILITY
+	db 31, FUTURE_SIGHT
+	db 37, ICE_BEAM
+	db 49, RAZOR_WIND
+	db 55, REFLECT
+	db 67, BLIZZARD
 	db 0 ; no more level-up moves
 
 ZapdosEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, PECK
 	db 1, WHIRLWIND	
-	db 1, THUNDERSHOCK
 	db 13, THUNDER_WAVE
-	db 25, AGILITY
-	db 37, DETECT
+	db 19, AGILITY
+	db 31, DETECT
+	db 37, THUNDERBOLT
 	db 49, DRILL_PECK
-	db 61, LIGHT_SCREEN
-	db 73, THUNDER
+	db 55, LIGHT_SCREEN
+	db 67, THUNDER
 	db 0 ; no more level-up moves
 
 MoltresEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, WING_ATTACK
 	db 1, WHIRLWIND		
-	db 1, EMBER
 	db 13, FIRE_SPIN
-	db 25, AGILITY
-	db 37, PURSUIT
-	db 43, ENDURE
-	db 49, FLAMETHROWER
+	db 19, AGILITY
+	db 31, PURSUIT
+	db 37, FLAMETHROWER
+	db 49, SKY_ATTACK
 	db 55, MORNING_SUN
-	db 61, SAFEGUARD
-	db 73, SKY_ATTACK
+	db 67, FIRE_BLAST
 	db 0 ; no more level-up moves
 
 DratiniEvosAttacks:
@@ -2568,11 +2568,12 @@ PolitoedEvosAttacks:
 	db 1, BUBBLEBEAM
 	db 1, MIST
 	db 1, PERISH_SONG
-	db 30, PERISH_SONG	
-	db 33, BODY_SLAM
-	db 37, RAIN_DANCE
-	db 40, HYDRO_PUMP
-	db 44, BELLY_DRUM
+	db 28, PERISH_SONG	
+	db 31, BODY_SLAM
+	db 35, RAIN_DANCE
+	db 38, HYDRO_PUMP
+	db 42, TOXIC
+	db 45, BELLY_DRUM
 	db 0 ; no more level-up moves
 
 HoppipEvosAttacks:
@@ -2741,7 +2742,7 @@ UmbreonEvosAttacks:
 	db 23, QUICK_ATTACK
 	db 26, FAINT_ATTACK	
 	db 30, GROWTH
-	db 33, SMOG
+	db 33, TOXIC
 	db 36, CONFUSE_RAY
 	db 42, MEAN_LOOK
 	db 47, SCREECH
@@ -2972,12 +2973,13 @@ ShuckleEvosAttacks:
 	db 9, WRAP
 	db 12, ROCK_THROW
 	db 14, ENCORE
-	db 19, BUBBLEBEAM
-	db 23, SAFEGUARD
-	db 26, BIDE
+	db 18, BUBBLEBEAM
+	db 22, SAFEGUARD
+	db 25, BIDE
 	db 29, ROCK_SLIDE
 	db 34, SPIKES
 	db 37, REST
+	db 40, TOXIC
 	db 0 ; no more level-up moves
 
 HeracrossEvosAttacks:

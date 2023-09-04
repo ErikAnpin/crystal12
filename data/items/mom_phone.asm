@@ -9,7 +9,7 @@ MomItems_1:
 	momitem      0,   350, MOM_ITEM, SUPER_POTION
 	momitem      0,   300, MOM_ITEM, FULL_HEAL
 	momitem      0,   750, MOM_ITEM, ELIXER
-	momitem      0,   350, MOM_ITEM, MAX_REPEL
+	momitem      0,  2400, MOM_ITEM, PP_UP
 	momitem      0,  2400, MOM_ITEM, RARE_CANDY
 .End
 

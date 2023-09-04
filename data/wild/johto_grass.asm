@@ -1209,29 +1209,29 @@ JohtoGrassWildMons:
 	def_grass_wildmons DARK_CAVE_BLACKTHORN_ENTRANCE
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 30, GEODUDE
-	db 30, ZUBAT
+	db 30, GRAVELER
+	db 30, GOLBAT
 	db 32, GRAVELER
 	db 32, URSARING
 	db 27, TEDDIURSA
 	db 31, GOLBAT
 	db 30, GOLBAT
 	; day
-	db 30, GEODUDE
-	db 30, ZUBAT
+	db 30, GRAVELER
+	db 30, GOLBAT
 	db 32, GRAVELER
 	db 32, URSARING
 	db 30, URSARING
 	db 31, GOLBAT
 	db 30, GOLBAT
 	; nite
-	db 30, GEODUDE
-	db 30, ZUBAT
+	db 30, GRAVELER
+	db 30, GOLBAT
 	db 32, GRAVELER
 	db 37, WOBBUFFET
 	db 32, WOBBUFFET
 	db 31, GOLBAT
-	db 30, GOLBAT
+	db 30, URSARING
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_29

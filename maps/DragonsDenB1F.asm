@@ -53,9 +53,9 @@ DragonsDenB1F_ClairScene:
 	opentext
 	writetext ClairText_GiveDragonbreathDragonDen
 	promptbutton
-	giveitem TM_DRAGONBREATH
+	giveitem HM_WATERFALL
 	iffalse .BagFull
-	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
+	getitemname STRING_BUFFER_3, HM_WATERFALL
 	writetext Text_ReceivedTM24
 	playsound SFX_ITEM
 	waitsfx
@@ -216,16 +216,16 @@ ClairText_GiveDragonbreathDragonDen:
 
 Text_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24 DRAGONBREATH."
+	line "HM07 WATERFALL."
 	done
 
 ClairText_DescribeDragonbreathDragonDen:
 	text "That contains"
-	line "DRAGONBREATH."
+	line "WATERFALL."
 
-	para "No, it doesn't"
-	line "have anything to"
-	cont "do with my breath."
+;	para "No, it doesn't"
+;	line "have anything to"
+;	cont "do with my breath."
 
 	para "If you don't want"
 	line "it, you don't have"

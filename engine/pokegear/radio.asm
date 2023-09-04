@@ -1424,7 +1424,7 @@ EvolutionRadio:
 
 BuenasPassword1:
 ; Determine if we need to be here
-	call BuenasPasswordCheckTime
+;	call BuenasPasswordCheckTime
 	jp nc, .PlayPassword
 	ld a, [wNumRadioLinesPrinted]
 	and a
@@ -1452,14 +1452,14 @@ BuenasPassword2:
 	jp NextRadioLine
 
 BuenasPassword3:
-	call BuenasPasswordCheckTime
+;	call BuenasPasswordCheckTime
 	ld hl, BuenaRadioText3
 	jp c, BuenasPasswordAfterMidnight
 	ld a, BUENAS_PASSWORD_4
 	jp NextRadioLine
 
 BuenasPassword4:
-	call BuenasPasswordCheckTime
+;	call BuenasPasswordCheckTime
 	jp c, BuenasPassword8
 	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
@@ -1600,7 +1600,7 @@ BuenasPassword6:
 	jp NextRadioLine
 
 BuenasPassword7:
-	call BuenasPasswordCheckTime
+;	call BuenasPasswordCheckTime
 	ld hl, BuenaRadioText7
 	jr c, BuenasPasswordAfterMidnight
 	ld a, BUENAS_PASSWORD
@@ -1698,17 +1698,17 @@ BuenasPassword21:
 	ld [wCurRadioLine], a
 	xor a
 	ld [wNumRadioLinesPrinted], a
-	call BuenasPasswordCheckTime
+;	call BuenasPasswordCheckTime
 	jp nc, BuenasPassword1
 	ld hl, BuenaOffTheAirText
 	ld a, BUENAS_PASSWORD_21
 	jp NextRadioLine
 
-BuenasPasswordCheckTime:
-	call UpdateTime
-	ldh a, [hHours]
-	cp NITE_HOUR
-	ret
+;BuenasPasswordCheckTime:
+;	call UpdateTime
+;	ldh a, [hHours]
+;	cp NITE_HOUR
+;	ret
 
 BuenasPasswordChannelName:
 	db "BUENA'S PASSWORD@"

@@ -303,14 +303,14 @@ BattleAnimFunction_PokeBall:
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld a, BATTLEANIMFRAMESET_0B
+	ld a, BATTLEANIMFRAMESET_POKE_BALL_3
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
 .three
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_09
+	ld a, BATTLEANIMFRAMESET_POKE_BALL_1
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -340,13 +340,13 @@ BattleAnimFunction_PokeBall:
 	sub $4
 	ld [hl], a
 	ret nz
-	ld a, BATTLEANIMFRAMESET_0C
+	ld a, BATTLEANIMFRAMESET_POKE_BALL_4
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
 .six
-	ld a, BATTLEANIMFRAMESET_0D
+	ld a, BATTLEANIMFRAMESET_POKE_BALL_5
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
@@ -358,7 +358,7 @@ BattleAnimFunction_PokeBall:
 
 .seven
 	call GetBallAnimPal
-	ld a, BATTLEANIMFRAMESET_0A
+	ld a, BATTLEANIMFRAMESET_POKE_BALL_2
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR2
@@ -473,7 +473,7 @@ BattleAnimFunction_Ember:
 
 .three
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_0F
+	ld a, BATTLEANIMFRAMESET_FLAMETHROWER
 	call ReinitBattleAnimFrameset
 .four
 	ret
@@ -711,7 +711,7 @@ BattleAnimFunction_FireBlast:
 	ld [hl], a
 	cp $7
 	jr z, .seven
-	ld a, BATTLEANIMFRAMESET_11
+	ld a, BATTLEANIMFRAMESET_BURNED
 	call ReinitBattleAnimFrameset
 	ret
 
@@ -730,7 +730,7 @@ BattleAnimFunction_FireBlast:
 
 .set_up_eight
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_10
+	ld a, BATTLEANIMFRAMESET_EMBER
 	call ReinitBattleAnimFrameset
 .eight
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -819,7 +819,7 @@ BattleAnimFunction_RazorLeaf:
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
-	ld a, BATTLEANIMFRAMESET_17
+	ld a, BATTLEANIMFRAMESET_RAZOR_LEAF_2
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
@@ -915,7 +915,7 @@ BattleAnimFunction_RazorLeaf:
 	ret
 
 .three
-	ld a, BATTLEANIMFRAMESET_16
+	ld a, BATTLEANIMFRAMESET_RAZOR_LEAF_1
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_OAMFLAGS
 	add hl, bc
@@ -992,7 +992,7 @@ BattleAnimFunction_RockSmash:
 	and $40
 	rlca
 	rlca
-	add BATTLEANIMFRAMESET_19
+	add BATTLEANIMFRAMESET_BIG_ROCK
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
@@ -1071,7 +1071,7 @@ BattleAnimFunction_Bubble:
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $0
-	ld a, BATTLEANIMFRAMESET_22
+	ld a, BATTLEANIMFRAMESET_PULSING_BUBBLE
 	call ReinitBattleAnimFrameset
 .two
 	ld hl, BATTLEANIMSTRUCT_XCOORD
@@ -1221,8 +1221,8 @@ BattleAnimFunction_Sing:
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
-	ld a, BATTLEANIMFRAMESET_24
-	add [hl] ; BATTLEANIMFRAMESET_25 BATTLEANIMFRAMESET_26
+	ld a, BATTLEANIMFRAMESET_MUSIC_NOTE_1
+	add [hl] ; BATTLEANIMFRAMESET_MUSIC_NOTE_2 BATTLEANIMFRAMESET_MUSIC_NOTE_3
 	call ReinitBattleAnimFrameset
 
 .one
@@ -1279,7 +1279,7 @@ BattleAnimFunction_WaterGun:
 
 .run_down
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_28
+	ld a, BATTLEANIMFRAMESET_WATER_GUN_2
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -1303,7 +1303,7 @@ BattleAnimFunction_WaterGun:
 
 .splash
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_29
+	ld a, BATTLEANIMFRAMESET_WATER_GUN_3
 	call ReinitBattleAnimFrameset
 .three
 	ret
@@ -1421,7 +1421,7 @@ BattleAnimFunction_ThunderWave:
 
 .one
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_35
+	ld a, BATTLEANIMFRAMESET_THUNDER_WAVE_EXTRA
 	call ReinitBattleAnimFrameset
 .zero
 .two
@@ -1567,11 +1567,11 @@ BattleAnimFunction_Bite:
 	ld [hl], a
 	bit 7, a
 	jr nz, .flipped2
-	ld a, BATTLEANIMFRAMESET_3D
+	ld a, BATTLEANIMFRAMESET_BITE_2
 	jr .got_frameset
 
 .flipped2
-	ld a, BATTLEANIMFRAMESET_3C
+	ld a, BATTLEANIMFRAMESET_BITE_1
 .got_frameset
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -1822,8 +1822,8 @@ BattleAnimFunction_Wrap:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
-	inc a ; BATTLEANIMFRAMESET_53
-	      ; BATTLEANIMFRAMESET_55
+	inc a ; BATTLEANIMFRAMESET_BIND_2
+	      ; BATTLEANIMFRAMESET_BIND_4
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1 ; Unused?
@@ -1858,7 +1858,7 @@ BattleAnimFunction_LeechSeed:
 
 .sprout
 	ld [hl], $40
-	ld a, BATTLEANIMFRAMESET_57
+	ld a, BATTLEANIMFRAMESET_LEECH_SEED_2
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
@@ -1874,7 +1874,7 @@ BattleAnimFunction_LeechSeed:
 
 .flutter
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_58
+	ld a, BATTLEANIMFRAMESET_LEECH_SEED_3
 	call ReinitBattleAnimFrameset
 .three
 	ret
@@ -2175,7 +2175,7 @@ BattleAnimFunction_Egg:
 
 .seven
 	; Switches Softboiled frameset to egg wobbling
-	ld a, BATTLEANIMFRAMESET_4E ; Egg wobbling
+	ld a, BATTLEANIMFRAMESET_EGG_WOBBLE ; Egg wobbling
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
@@ -2196,7 +2196,7 @@ BattleAnimFunction_Egg:
 
 .nine
 	; First Softboiled ANIM_OBJ_EGG turns into the bottom half frameset
-	ld a, BATTLEANIMFRAMESET_50 ; Cracked egg bottom
+	ld a, BATTLEANIMFRAMESET_EGG_CRACKED_BOTTOM ; Cracked egg bottom
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -2206,7 +2206,7 @@ BattleAnimFunction_Egg:
 
 .eleven
 	; Second Softboiled ANIM_OBJ_EGG
-	ld a, BATTLEANIMFRAMESET_4F ; Cracked egg top
+	ld a, BATTLEANIMFRAMESET_EGG_CRACKED_TOP ; Cracked egg top
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -2297,7 +2297,7 @@ BattleAnimFunction_MoveUp:
 
 BattleAnimFunction_Sound:
 ; Moves object back and forth in one of three angles using a sine behavior and disappear after 8 frames. Used in Growl, Snore and Kinesis
-; Obj Param: Used to define object angle. How much to increase from base frameset, which is hardcoded as BATTLEANIMFRAMESET_59
+; Obj Param: Used to define object angle. How much to increase from base frameset, which is hardcoded as BATTLEANIMFRAMESET_SOUND_1
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -2321,8 +2321,8 @@ BattleAnimFunction_Sound:
 	ld [hl], $8 ; duration
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
-	ld a, BATTLEANIMFRAMESET_59
-	add [hl] ; BATTLEANIMFRAMESET_5A BATTLEANIMFRAMESET_5B
+	ld a, BATTLEANIMFRAMESET_SOUND_1
+	add [hl] ; BATTLEANIMFRAMESET_SOUND_2 BATTLEANIMFRAMESET_SOUND_3
 	call ReinitBattleAnimFrameset
 	ret
 
@@ -2398,7 +2398,7 @@ BattleAnimFunction_ConfuseRay:
 	and $80
 	rlca
 	ld [hl], a
-	add BATTLEANIMFRAMESET_5D ; BATTLEANIMFRAMESET_5E
+	add BATTLEANIMFRAMESET_CONFUSE_RAY_1 ; BATTLEANIMFRAMESET_CONFUSE_RAY_2
 	call ReinitBattleAnimFrameset
 	ret
 
@@ -2521,7 +2521,7 @@ BattleAnimFunction_Dizzy:
 
 BattleAnimFunction_Amnesia:
 ; Creates 3 objects based on Obj Param
-; Obj Param: How much to increase from base frameset, which is hardcoded as BATTLEANIMFRAMESET_63
+; Obj Param: How much to increase from base frameset, which is hardcoded as BATTLEANIMFRAMESET_AMNESIA_1
 ; anim_incobj is used to DeInit object (used by Present)
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -2534,7 +2534,7 @@ BattleAnimFunction_Amnesia:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	add BATTLEANIMFRAMESET_63 ; BATTLEANIMFRAMESET_64 BATTLEANIMFRAMESET_65
+	add BATTLEANIMFRAMESET_AMNESIA_1 ; BATTLEANIMFRAMESET_AMNESIA_2 BATTLEANIMFRAMESET_AMNESIA_3
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
@@ -2622,7 +2622,7 @@ BattleAnimFunction_String:
 	add hl, bc
 	set OAM_Y_FLIP, [hl]
 .not_param_zero
-	add BATTLEANIMFRAMESET_6A ; BATTLEANIMFRAMESET_6B BATTLEANIMFRAMESET_6C
+	add BATTLEANIMFRAMESET_STRING_SHOT_1 ; BATTLEANIMFRAMESET_STRING_SHOT_2 BATTLEANIMFRAMESET_STRING_SHOT_3
 	call ReinitBattleAnimFrameset
 .one
 	ret
@@ -2663,7 +2663,7 @@ BattleAnimFunction_Paralyzed:
 	xor $ff
 	inc a
 	ld [hl], a
-	ld a, BATTLEANIMFRAMESET_6E
+	ld a, BATTLEANIMFRAMESET_PARALYZED_FLIPPED
 	call ReinitBattleAnimFrameset
 	ret
 
@@ -3519,7 +3519,7 @@ BattleAnimFunction_SpeedLine:
 	add hl, bc
 	ld a, [hl]
 	and $7f
-	add BATTLEANIMFRAMESET_81 ; BATTLEANIMFRAMESET_82 BATTLEANIMFRAMESET_83
+	add BATTLEANIMFRAMESET_SPEED_LINE_1 ; BATTLEANIMFRAMESET_SPEED_LINE_2 BATTLEANIMFRAMESET_SPEED_LINE_3
 	call ReinitBattleAnimFrameset
 .one
 	ld hl, BATTLEANIMSTRUCT_PARAM
@@ -3538,7 +3538,7 @@ BattleAnimFunction_SpeedLine:
 	ret
 
 BattleAnimFunction_Sludge:
-; Object moves upward for $c frames and switches to FRAMESET_20
+; Object moves upward for $c frames and switches to BATTLEANIMFRAMESET_SLUDGE_BUBBLE_BURST
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3563,7 +3563,7 @@ BattleAnimFunction_Sludge:
 
 .done
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_20
+	ld a, BATTLEANIMFRAMESET_SLUDGE_BUBBLE_BURST
 	call ReinitBattleAnimFrameset
 .two
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
@@ -3751,8 +3751,8 @@ BattleAnimFunction_HealBellNotes:
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
-	ld a, BATTLEANIMFRAMESET_24
-	add [hl] ; BATTLEANIMFRAMESET_25 BATTLEANIMFRAMESET_26
+	ld a, BATTLEANIMFRAMESET_MUSIC_NOTE_1
+	add [hl] ; BATTLEANIMFRAMESET_MUSIC_NOTE_2 BATTLEANIMFRAMESET_MUSIC_NOTE_3
 	call ReinitBattleAnimFrameset
 .one
 	ld hl, BATTLEANIMSTRUCT_YOFFSET

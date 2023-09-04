@@ -347,7 +347,8 @@ CantMove:
 	call GetBattleVar
 	cp FLY
 	jr z, .fly_dig
-
+	cp SKY_ATTACK
+	jr z, .fly_dig
 	cp DIG
 	ret nz
 
@@ -2078,6 +2079,8 @@ BattleCommand_FailureText:
 
 	cp FLY
 	jr z, .fly_dig
+	cp SKY_ATTACK
+	jr z, .fly_dig	
 	cp DIG
 	jr z, .fly_dig
 
@@ -4151,14 +4154,14 @@ RaiseStat:
 	add hl, bc
 	ld b, [hl]
 	inc b
-	ld a, $d
+	ld a, MAX_STAT_LEVEL
 	cp b
 	jp c, .cant_raise_stat
 	ld a, [wLoweredStat]
 	and $f0
 	jr z, .got_num_stages
 	inc b
-	ld a, $d
+	ld a, MAX_STAT_LEVEL
 	cp b
 	jr nc, .got_num_stages
 	ld b, a
@@ -4166,7 +4169,7 @@ RaiseStat:
 	ld [hl], b
 	push hl
 	ld a, c
-	cp $5
+	cp ACCURACY
 	jr nc, .done_calcing_stats
 	ld hl, wBattleMonStats + 1
 	ld de, wPlayerStats
@@ -4645,7 +4648,7 @@ LowerStat:
 .got_num_stages
 	ld [hl], b
 	ld a, c
-	cp 5
+	cp ACCURACY
 	jr nc, .accuracy_evasion
 
 	push hl
@@ -4913,7 +4916,7 @@ SetBattleDraw:
 
 BattleCommand_ForceSwitch:
 	ld a, [wBattleType]
-	cp BATTLETYPE_SHINY
+	cp BATTLETYPE_FORCESHINY
 	jp z, .fail
 	cp BATTLETYPE_TRAP
 	jp z, .fail
@@ -5460,6 +5463,8 @@ BattleCommand_Charge:
 	call GetBattleVar
 	cp FLY
 	jr z, .flying
+	cp SKY_ATTACK
+	jr z, .flying	
 	cp DIG
 	jr z, .flying
 	call BattleCommand_RaiseSub
@@ -5475,6 +5480,8 @@ BattleCommand_Charge:
 	ld b, a
 	cp FLY
 	jr z, .set_flying
+	cp SKY_ATTACK
+	jr z, .set_flying	
 	cp DIG
 	jr nz, .dont_set_digging
 	set SUBSTATUS_UNDERGROUND, [hl]
@@ -5523,13 +5530,13 @@ BattleCommand_Charge:
 	ld hl, .BattleLoweredHeadText
 	jr z, .done
 
-	cp SKY_ATTACK
-	ld hl, .BattleGlowingText
-	jr z, .done
-
 	cp FLY
 	ld hl, .BattleFlewText
 	jr z, .done
+	
+	cp SKY_ATTACK
+	ld hl, .BattleFlewText
+	jr z, .done	
 
 	cp DIG
 	ld hl, .BattleDugText
@@ -5874,6 +5881,8 @@ CheckMoveTypeMatchesTarget:
 INCLUDE "engine/battle/move_effects/substitute.asm"
 
 BattleCommand_RechargeNextTurn:
+	farcall BattleCommand_CheckFaint
+	ret c
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr
 	set SUBSTATUS_RECHARGE, [hl]
