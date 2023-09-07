@@ -64,11 +64,6 @@ MeetMomScript:
 	writetext ComeHomeForDSTText
 	yesorno
 	iffalse .ExplainPhone
-	sjump .KnowPhone
-
-.KnowPhone:
-	writetext KnowTheInstructionsText
-	promptbutton
 	sjump .FinishPhone
 
 .ExplainPhone:
@@ -77,7 +72,7 @@ MeetMomScript:
 	sjump .FinishPhone
 
 .FinishPhone:
-	writetext InstructionsNextText
+	writetext HurryUpElmIsWaitingText
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -262,14 +257,6 @@ ComeHomeForDSTText:
 	cont "the PHONE?"
 	done
 
-KnowTheInstructionsText:
-	text "Don't you just"
-	line "turn the #GEAR"
-
-	para "on and select the"
-	line "PHONE icon?"
-	done
-
 DontKnowTheInstructionsText:
 	text "I'll read the"
 	line "instructions."
@@ -277,17 +264,6 @@ DontKnowTheInstructionsText:
 	para "Turn the #GEAR"
 	line "on and select the"
 	cont "PHONE icon."
-	done
-
-InstructionsNextText:
-	text "Phone numbers are"
-	line "stored in memory."
-
-	para "Just choose a name"
-	line "you want to call."
-
-	para "Gee, isn't that"
-	line "convenient?"
 	done
 
 HurryUpElmIsWaitingText:

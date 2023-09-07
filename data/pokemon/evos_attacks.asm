@@ -778,7 +778,7 @@ MankeyEvosAttacks:
 	db 19, FOCUS_ENERGY
 	db 22, SEISMIC_TOSS
 	db 25, SCREECH
-	db 29, CROSS_CHOP
+	db 29, MEGA_PUNCH
 	db 32, MEDITATE
 	db 36, THRASH
 	db 39, ROCK_SLIDE
@@ -860,8 +860,8 @@ PoliwrathEvosAttacks:
 	db 1, HYPNOSIS
 	db 1, BUBBLEBEAM
 	db 1, MIST
-	db 1, SUBMISSION
-	db 28, SUBMISSION		
+	db 1, MEGA_PUNCH
+	db 28, MEGA_PUNCH		
 	db 31, BODY_SLAM
 	db 35, MIND_READER
 	db 38, HYDRO_PUMP
