@@ -74,8 +74,10 @@ SpriteAnimFrameData:
 	oamend
 
 .Frameset_PartyMon:
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_1,  8
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_2,  8
+;	oamframe SPRITE_ANIM_OAMSET_RED_WALK_1,  8
+;	oamframe SPRITE_ANIM_OAMSET_RED_WALK_2,  8
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_1,  8
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_2,  8
 	oamrestart
 
 .Frameset_PartyMonWithMail:
@@ -89,8 +91,10 @@ SpriteAnimFrameData:
 	oamrestart
 
 .Frameset_PartyMonFast:
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_1,  4
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_2,  4
+;	oamframe SPRITE_ANIM_OAMSET_RED_WALK_1,  4
+;	oamframe SPRITE_ANIM_OAMSET_RED_WALK_2,  4
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_1,  4
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_2,  4
 	oamrestart
 
 .Frameset_PartyMonWithMailFast:
