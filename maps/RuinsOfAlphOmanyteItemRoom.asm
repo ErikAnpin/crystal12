@@ -13,13 +13,13 @@ RuinsOfAlphOmanyteItemRoomMysteryberry:
 	itemball UP_GRADE
 
 RuinsOfAlphOmanyteItemRoomMysticWater:
-	itemball KINGS_ROCK
+	itemball SCOPE_LENS
 
 RuinsOfAlphOmanyteItemRoomStardust:
-	itemball METAL_COAT
+	itemball CLEANSE_TAG
 
 RuinsOfAlphOmanyteItemRoomStarPiece:
-	itemball LUCKY_EGG
+	itemball LEFTOVERS
 
 RuinsOfAlphOmanyteItemRoomAncientReplica:
 	jumptext RuinsOfAlphOmanyteItemRoomAncientReplicaText

@@ -31,6 +31,10 @@ BurnedTowerB1FLadderCallback:
 	endcallback
 
 ReleaseTheBeasts:
+	setval ENTEI
+	special UnusedSetSeenMon
+	setval RAIKOU
+	special UnusedSetSeenMon
 	playmusic MUSIC_NONE
 	pause 30
 	appear BURNEDTOWERB1F_RAIKOU1

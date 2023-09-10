@@ -167,7 +167,7 @@ JohtoWaterWildMons:
 	db 6 percent ; encounter rate
 	db 20, CHINCHOU
 	db 15, TENTACOOL
-	db 20, QWILFISH
+	db 20, SKARMORY
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_41

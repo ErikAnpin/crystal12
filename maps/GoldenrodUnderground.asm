@@ -59,53 +59,53 @@ GoldenrodUndergroundCheckDayOfWeekCallback:
 	ifequal SATURDAY, .Saturday
 
 ; Sunday
-	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_GRANNY
 	endcallback
 
 .Monday:
-	disappear GOLDENRODUNDERGROUND_GRAMPS
-	checktime MORN
-	iffalse .NotMondayMorning
+;	disappear GOLDENRODUNDERGROUND_GRAMPS
+;	checktime MORN
+;	iffalse .NotMondayMorning
 	appear GOLDENRODUNDERGROUND_GRAMPS
-.NotMondayMorning:
-	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+;.NotMondayMorning:
+	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	disappear GOLDENRODUNDERGROUND_GRANNY
+	appear GOLDENRODUNDERGROUND_GRANNY
 	endcallback
 
 .Tuesday:
-	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	disappear GOLDENRODUNDERGROUND_GRANNY
+	appear GOLDENRODUNDERGROUND_GRANNY
 	endcallback
 
 .Wednesday:
-	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	disappear GOLDENRODUNDERGROUND_GRANNY
+	appear GOLDENRODUNDERGROUND_GRANNY
 	endcallback
 
 .Thursday:
-	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	disappear GOLDENRODUNDERGROUND_GRANNY
+	appear GOLDENRODUNDERGROUND_GRANNY
 	endcallback
 
 .Friday:
-	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	disappear GOLDENRODUNDERGROUND_GRANNY
+	appear GOLDENRODUNDERGROUND_GRANNY
 	endcallback
 
 .Saturday:
-	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_GRANNY
@@ -158,8 +158,13 @@ TrainerPokemaniacDonald:
 BitterMerchantScript:
 	opentext
 	readvar VAR_WEEKDAY
-	ifequal SUNDAY, .Open
+	ifequal MONDAY, .Open
+	ifequal TUESDAY, .Open
+	ifequal WEDNESDAY, .Open
+	ifequal THURSDAY, .Open
+	ifequal FRIDAY, .Open
 	ifequal SATURDAY, .Open
+	ifequal SUNDAY, .Open
 	sjump GoldenrodUndergroundScript_ShopClosed
 
 .Open:
@@ -173,11 +178,17 @@ BargainMerchantScript:
 	iftrue GoldenrodUndergroundScript_ShopClosed
 	readvar VAR_WEEKDAY
 	ifequal MONDAY, .CheckMorn
+	ifequal TUESDAY, .CheckMorn
+	ifequal WEDNESDAY, .CheckMorn
+	ifequal THURSDAY, .CheckMorn
+	ifequal FRIDAY, .CheckMorn
+	ifequal SATURDAY, .CheckMorn
+	ifequal SUNDAY, .CheckMorn
 	sjump GoldenrodUndergroundScript_ShopClosed
 
 .CheckMorn:
-	checktime MORN
-	iffalse GoldenrodUndergroundScript_ShopClosed
+;	checktime MORN
+;	iffalse GoldenrodUndergroundScript_ShopClosed
 	pokemart MARTTYPE_BARGAIN, 0
 	closetext
 	end
@@ -185,6 +196,7 @@ BargainMerchantScript:
 OlderHaircutBrotherScript:
 	opentext
 	readvar VAR_WEEKDAY
+	ifequal MONDAY, .DoHaircut	
 	ifequal TUESDAY, .DoHaircut
 	ifequal THURSDAY, .DoHaircut
 	ifequal SATURDAY, .DoHaircut
@@ -268,9 +280,9 @@ OlderHaircutBrotherScript:
 YoungerHaircutBrotherScript:
 	opentext
 	readvar VAR_WEEKDAY
-	ifequal SUNDAY, .DoHaircut
 	ifequal WEDNESDAY, .DoHaircut
 	ifequal FRIDAY, .DoHaircut
+	ifequal SUNDAY, .DoHaircut
 	sjump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:

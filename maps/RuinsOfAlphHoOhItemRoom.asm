@@ -13,7 +13,7 @@ RuinsOfAlphHoOhItemRoomGoldBerry:
 	itemball BRIGHTPOWDER
 
 RuinsOfAlphHoOhItemRoomMysteryberry:
-	itemball DRAGON_SCALE
+	itemball LUCKY_EGG
 
 RuinsOfAlphHoOhItemRoomRevivalHerb:
 	itemball BERSERK_GENE

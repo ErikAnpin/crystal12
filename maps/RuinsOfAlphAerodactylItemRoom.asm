@@ -19,7 +19,7 @@ RuinsOfAlphAerodactylItemRoomHealPowder:
 	itemball METAL_COAT
 
 RuinsOfAlphAerodactylItemRoomEnergyRoot:
-	itemball LEFTOVERS	
+	itemball DRAGON_SCALE	
 
 RuinsOfAlphAerodactylItemRoomAncientReplica:
 	jumptext RuinsOfAlphAerodactylItemRoomAncientReplicaText

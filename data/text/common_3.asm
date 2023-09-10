@@ -1505,8 +1505,8 @@ _MomLostGearBookletText::
 	prompt
 
 _MoveReminderIntro::
-    text "Hi, I'm the Move"
-    line "Reminder!"
+    text "Hi, I'm the MOVE"
+    line "REMINDER!"
 
     para "I can teach your"
     line "#mon a move it"
