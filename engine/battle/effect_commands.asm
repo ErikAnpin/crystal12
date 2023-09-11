@@ -1565,9 +1565,20 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+	; If the move is OHKO, ignore accuracy and evasion stat modifiers.
+	cp EFFECT_OHKO
+	jr z, .skip_stat_modifiers
+
+	; Moves that bypass accuracy checks without having EFFECT_ALWAYS_HIT.
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld hl, AlwaysHitMoves
+	call IsInByteArray
+	ret c
 
 	call .StatModifiers
 
+.skip_stat_modifiers
 	ld a, [wPlayerMoveStruct + MOVE_ACC]
 	ld b, a
 	ldh a, [hBattleTurn]
@@ -1842,6 +1853,7 @@ BattleCommand_CheckHit:
 	ret
 
 INCLUDE "data/battle/accuracy_multipliers.asm"
+INCLUDE "engine/battle/list_moves/always_hit_moves.asm"
 
 BattleCommand_EffectChance:
 	xor a

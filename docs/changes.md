@@ -1,11 +1,11 @@
 	Todo:
 Restore locations from R/B/Y and HG/SS: Viridian Forest, Pewter Museum, Celadon Hotel, Silph Co., Pokémon Mansion, Seafoam Islands, Cerulean Cave, Goldenrod PokéCom Center, and Bellchime Trail. Original locations, including Cinnabar Volcano, a new floor of Rock Tunnel, Cherrygrove Bay, Goldenrod Harbor, Route 35 Coast, the Ecruteak Shrine from Pokémon Christmas, custom-designed PokéWalker routes, and others.
-Roar, Whirlwind, and Struggle are unaffected by accuracy or evasion, like Swift.
-Lower crit damage but increase chance
+Lower crit damage and increase chance
 Add followers
 Make credits faster/skippable
 Add exp share to pc, change back potion
 Make itemfinder turn you to where the item is
+Make decorations obtainable
 
 	Battle
 Ghost->Special and Dark->Phyisical
@@ -18,6 +18,8 @@ Paralysis Speed reduction 75%->50%
 Removed the GYM badges boosts
 Trainers no longer use items
 Hyper Beam doesn't need to recharge if KO opp
+Roar, Whirlwind, and Struggle are unaffected by accuracy or evasion, like Swift
+OHKO moves bypass Accuracy and Evasion modifiers
 Enemy trainers have maximum happiness for a powerful Return
 Removed the 25% failure chance for AI status moves
 Gain experience from catching Pokémon
@@ -70,7 +72,6 @@ Improved POKEGEAR Rematch system
 EXP SHARE found in ROUTE_29 instead of POTION
 Marts sell cheap REPELs
 ODD EGG always has POKERUS and if SHINY ATK is now 10 instead of 2
-Decorations now obtainable from Mom
 Goldenrod Underground shops available every day
 Mahogany Herb shop sells ELIXER and ETHER
 Bargain shop sells RARE_CANDY and PP_UP
