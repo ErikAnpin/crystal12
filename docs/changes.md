@@ -6,7 +6,6 @@ Add followers
 Make credits faster/skippable
 Add exp share to pc, change back potion
 Make itemfinder turn you to where the item is
-https://github.com/pret/pokecrystal/wiki/Make-evening-the-fourth-time-of-day
 
 	Battle
 Ghost->Special and Dark->Phyisical
@@ -86,6 +85,7 @@ Raikou and Entei are registered as seen after the Burned Tower
 Added Pokemon icons for all species
 Added a third trainer card page for Kanto badges
 Added in battle weather icons
+Added Evening time
 
 	Moves
 Tackle 					95%->100%

@@ -334,8 +334,9 @@ Route29CooltrainerMText_WaitingForNight:
 	text "I'm waiting for"
 	line "#MON that"
 
-	para "appear only at"
-	line "night."
+	para "appear only in"
+	line "the evening or"
+	cont "at night."
 	done
 
 Route29CooltrainerMText_WaitingForMorning:
