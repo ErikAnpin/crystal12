@@ -785,9 +785,9 @@ LassGroup:
 
 	; LASS (9)
 	db "MICHELLE@", TRAINERTYPE_NORMAL
-	db 40, HOPPIP
-	db 41, SKIPLOOM
-	db 42, JUMPLUFF
+	db 43, JUMPLUFF
+	db 44, SUNFLORA
+	db 47, WIGGLYTUFF
 	db -1 ; end
 
 	; LASS (10)
@@ -1208,9 +1208,9 @@ BeautyGroup:
 
 	; BEAUTY (14)
 	db "JULIA@", TRAINERTYPE_NORMAL
-	db 40, PARAS
-	db 40, EXEGGCUTE
-	db 43, PARASECT
+	db 44, PARASECT
+	db 45, VENUSAUR
+	db 45, LAPRAS
 	db -1 ; end
 
 	; BEAUTY (15)
@@ -3068,6 +3068,8 @@ PicnickerGroup:
 	; PICNICKER (19)
 	db "TANYA@", TRAINERTYPE_NORMAL
 	db 45, EXEGGUTOR
+	db 45, MEGANIUM
+	db 46, CLEFABLE
 	db -1 ; end
 
 	; PICNICKER (20)

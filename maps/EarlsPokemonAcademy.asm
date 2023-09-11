@@ -1,4 +1,5 @@
 	object_const_def
+	const EARLSPOKEMONACADEMY_SUPER_NERD1	
 	const EARLSPOKEMONACADEMY_EARL
 	const EARLSPOKEMONACADEMY_YOUNGSTER1
 	const EARLSPOKEMONACADEMY_GAMEBOY_KID1
@@ -10,6 +11,14 @@ EarlsPokemonAcademy_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+
+MoveRelearner:
+	faceplayer
+	opentext
+	special MoveReminder
+	waitbutton
+	closetext
+	end	
 
 AcademyEarl:
 	applymovement EARLSPOKEMONACADEMY_EARL, AcademyEarlSpinMovement
@@ -423,6 +432,7 @@ EarlsPokemonAcademy_MapEvents:
 	bg_event  4,  0, BGEVENT_READ, AcademyBlackboard
 
 	def_object_events
+	object_event  2,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, MoveRelearner, -1	
 	object_event  4,  2, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
 	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster1Script, -1
 	object_event  3, 11, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid1Script, -1

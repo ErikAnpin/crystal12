@@ -1586,7 +1586,7 @@ HandleDefrost:
 	ret nz
 
 	call BattleRandom
-	cp 10 percent
+	cp 20 percent
 	ret nc
 	xor a
 	ld [wBattleMonStatus], a
@@ -1607,7 +1607,7 @@ HandleDefrost:
 	and a
 	ret nz
 	call BattleRandom
-	cp 10 percent
+	cp 20 percent
 	ret nc
 	xor a
 	ld [wEnemyMonStatus], a
@@ -6647,40 +6647,24 @@ ApplyPrzEffectOnSpeed:
 	and 1 << PAR
 	ret z
 	ld hl, wBattleMonSpeed + 1
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .player_ok
-	ld b, $1 ; min speed
-
-.player_ok
-	ld [hl], b
-	ret
+	jr .proceed
 
 .enemy
 	ld a, [wEnemyMonStatus]
 	and 1 << PAR
 	ret z
 	ld hl, wEnemyMonSpeed + 1
+.proceed
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
 	srl a
 	rr b
-	srl a
-	rr b
 	ld [hli], a
 	or b
-	jr nz, .enemy_ok
-	ld b, $1 ; min speed
-
-.enemy_ok
+	jr nz, .ok
+	ld b, 1 ; min speed
+.ok
 	ld [hl], b
 	ret
 
