@@ -503,8 +503,9 @@ SchoolboyGroup:
 
 	; SCHOOLBOY (10)
 	db "JACK@", TRAINERTYPE_NORMAL
-	db 19, MR__MIME
-	db 19, HOUNDOUR
+	db 19, ODDISH
+	db 19, VOLTORB
+	db 19, GROWLITHE
 	db -1 ; end
 
 	; SCHOOLBOY (11)
@@ -2709,8 +2710,8 @@ FirebreatherGroup:
 
 	; FIREBREATHER (6)
 	db "WALT@", TRAINERTYPE_NORMAL
-	db 11, MAGMAR
-	db 13, SLUGMA
+	db 12, MAGMAR
+	db 15, SLUGMA
 	db -1 ; end
 
 	; FIREBREATHER (7)
@@ -2729,10 +2730,10 @@ FirebreatherGroup:
 JugglerGroup:
 	; JUGGLER (1)
 	db "IRWIN@", TRAINERTYPE_NORMAL
-	db  6, VOLTORB
+	db  8, VOLTORB
 	db 10, VOLTORB
+	db 12, VOLTORB
 	db 14, VOLTORB
-	db 18, VOLTORB
 	db -1 ; end
 
 	; JUGGLER (2)
@@ -3290,15 +3291,15 @@ SageGroup:
 	; SAGE (1)
 	db "CHOW@", TRAINERTYPE_NORMAL
 	db  3, BELLSPROUT
-	db  3, BELLSPROUT
-	db  3, SUNKERN
+	db  4, BELLSPROUT
+	db  4, SUNKERN
 	db -1 ; end
 
 	; SAGE (2)
 	db "NICO@", TRAINERTYPE_NORMAL
 	db  3, BELLSPROUT
-	db  3, BELLSPROUT
-	db  3, GASTLY
+	db  4, BELLSPROUT
+	db  4, GASTLY
 	db -1 ; end
 
 	; SAGE (3)
@@ -3329,8 +3330,8 @@ SageGroup:
 	; SAGE (7)
 	db "EDMOND@", TRAINERTYPE_NORMAL
 	db  3, BELLSPROUT
-	db  3, BELLSPROUT
-	db  3, ODDISH
+	db  4, BELLSPROUT
+	db  4, ODDISH
 	db -1 ; end
 
 	; SAGE (8)

@@ -1554,6 +1554,9 @@ BattleCommand_CheckHit:
 	call .FlyDigMoves
 	jp nz, .Miss
 
+	call .Stomp
+    ret nz	
+
 	call .ThunderRain
 	ret z
 
@@ -1743,6 +1746,27 @@ BattleCommand_CheckHit:
 	ret z
 	cp MAGNITUDE
 	ret
+
+.Stomp:
+; New: made it so STOMP never misses minimized foes; thanks to Electro for their help
+    ld a, BATTLE_VARS_MOVE_EFFECT
+    call GetBattleVar
+    cp EFFECT_STOMP
+    jr nz, .not_stomp
+
+    ld hl, wEnemyMinimized
+    ldh a, [hBattleTurn]
+    and a
+    jr z, .got_minimized
+    ld hl, wPlayerMinimized
+.got_minimized
+    ld a, [hl]
+    and a
+    ret ; will return nz if it's minimized
+
+.not_stomp
+    xor a
+    ret ; return with z
 
 .ThunderRain:
 ; Return z if the current move always hits in rain, and it is raining.

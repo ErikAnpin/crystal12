@@ -49,6 +49,7 @@ PoisonHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	poisontarget
 	endmove
 
@@ -91,6 +92,7 @@ BurnHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	burntarget
 	endmove
 
@@ -112,6 +114,7 @@ FreezeHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	freezetarget
 	endmove
 
@@ -133,6 +136,7 @@ ParalyzeHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	paralyzetarget
 	endmove
 
@@ -175,6 +179,7 @@ DreamEater:
 	eatdream
 	checkfaint
 	buildopponentrage
+	kingsrock
 	endmove
 
 MirrorMove:
@@ -553,6 +558,7 @@ AttackDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	attackdown
 	statdownmessage
 	endmove
@@ -575,6 +581,7 @@ DefenseDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	defensedown
 	statdownmessage
 	endmove
@@ -597,6 +604,7 @@ SpeedDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	speeddown
 	statdownmessage
 	endmove
@@ -619,6 +627,7 @@ SpecialAttackDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	specialattackdown
 	statdownmessage
 	endmove
@@ -641,6 +650,7 @@ SpecialDefenseDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	specialdefensedown
 	statdownmessage
 	endmove
@@ -663,6 +673,7 @@ AccuracyDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	accuracydown
 	statdownmessage
 	endmove
@@ -685,6 +696,7 @@ EvasionDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	evasiondown
 	statdownmessage
 	endmove
@@ -705,10 +717,11 @@ DefenseUpHit:
 	applydamage
 	criticaltext
 	supereffectivetext
-	defenseup
 	statupmessage
 	checkfaint
 	buildopponentrage
+	kingsrock
+	defenseup	
 	endmove
 
 AttackUpHit:
@@ -727,10 +740,11 @@ AttackUpHit:
 	applydamage
 	criticaltext
 	supereffectivetext
-	attackup
 	statupmessage	
 	checkfaint
 	buildopponentrage
+	kingsrock
+	attackup	
 	endmove
 
 AllUpHit:
@@ -749,9 +763,10 @@ AllUpHit:
 	applydamage
 	criticaltext
 	supereffectivetext
-	allstatsup	
 	checkfaint
 	buildopponentrage
+	kingsrock
+	allstatsup
 	endmove
 
 PayDay:
@@ -909,6 +924,7 @@ FlinchHit:
 	checkfaint
 	buildopponentrage
 	flinchtarget
+	kingsrock
 	endmove
 
 OHKOHit:
@@ -988,6 +1004,7 @@ ConfuseHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	confusetarget
 	endmove
 
@@ -1030,6 +1047,7 @@ TriAttack:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	tristatuschance
 	endmove
 
@@ -1103,6 +1121,7 @@ HyperBeam:
 	rechargenextturn
 	checkfaint
 	buildopponentrage
+	kingsrock
 	endmove
 
 Rage:
@@ -1228,6 +1247,7 @@ TrapTarget:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	traptarget
 	endmove
 
@@ -1479,6 +1499,7 @@ FlameWheel:
 	defrost
 	checkfaint
 	buildopponentrage
+	kingsrock
 	burntarget
 	endmove
 
@@ -1690,6 +1711,7 @@ SacredFire:
 	defrost
 	checkfaint
 	buildopponentrage
+	kingsrock
 	burntarget
 	endmove
 
@@ -1900,6 +1922,7 @@ Twister:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock	
 	flinchtarget
 	endmove
 
@@ -1922,6 +1945,7 @@ Earthquake:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	endmove
 
 FutureSight:
@@ -1939,6 +1963,7 @@ FutureSight:
 	applydamage
 	checkfaint
 	buildopponentrage
+	kingsrock
 	endmove
 
 Gust:
@@ -1959,6 +1984,7 @@ Gust:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	endmove
 
 Stomp:
@@ -1981,6 +2007,7 @@ Stomp:
 	checkfaint
 	buildopponentrage
 	flinchtarget
+	kingsrock
 	endmove
 
 Solarbeam:
@@ -2025,6 +2052,7 @@ Thunder:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	paralyzetarget
 	endmove
 

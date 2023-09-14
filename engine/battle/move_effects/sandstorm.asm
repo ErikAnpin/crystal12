@@ -5,7 +5,7 @@ BattleCommand_StartSandstorm:
 
 	ld a, WEATHER_SANDSTORM
 	ld [wBattleWeather], a
-	ld a, 10
+	ld a, 8
 	ld [wWeatherCount], a
 	call AnimateCurrentMove
 	ld hl, SandstormBrewedText

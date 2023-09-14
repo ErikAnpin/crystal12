@@ -73,4 +73,4 @@ SilverCaveOutside_MapEvents:
 	bg_event 17, 13, BGEVENT_READ, MtSilverSign
 	bg_event  9, 25, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
 	def_object_events
-	object_event 9, 25, SPRITE_MONSTER, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SilverCaveMewtwo, EVENT_SILVERCAVE_MEWTWO
+	object_event 9, 25, SPRITE_MEWTWO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SilverCaveMewtwo, EVENT_SILVERCAVE_MEWTWO
