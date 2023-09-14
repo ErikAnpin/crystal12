@@ -53,8 +53,7 @@ King’s Rock now applies to all moves, including those that already Flinch
 Increased type-boost held items from 10->20
 Berserk Gene is no longer consumed
 Infinitely reusable TMs
-Vitamins now cost 1500 each
-Vitamons can be used up to 50k stat exp
+Vitamins now cost 4800 each, 2.5x more effective(6400 per) and soft cap removed
 Treasures are worth more
 Other item prices adjusted to match later gens
 

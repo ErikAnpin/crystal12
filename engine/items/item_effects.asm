@@ -1175,10 +1175,10 @@ VitaminEffect:
 
 	add hl, bc
 	ld a, [hl]
-	cp 210 ; nutrients cap increased to low-mid 50k stat exp (thanks Idain)
+	cp 255 ; nutrients cap increased (thanks Idain)
 	jr nc, NoEffectMessage
 
-	add 10
+	add 25 ; 6400 per vitamin (65535 max)
 	ld [hl], a
 	call UpdateStatsAfterItem
 
