@@ -10,16 +10,36 @@ RuinsOfAlphAerodactylItemRoom_MapScripts:
 	def_callbacks
 
 RuinsOfAlphAerodactylItemRoomGoldBerry:
-	itemball MOON_STONE
+	opentext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	disappear RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL1
+	setevent EVENT_PICKED_UP_GOLD_BERRY_FROM_AERODACTYL_ITEM_ROOM
+	writetext FoundAerodactylText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke AERODACTYL, 25
+	closetext
+	end
+
+.NoRoom
+	writetext FoundAerodactylText
+	waitsfx
+	promptbutton
+	writetext AerodactylPartyFullText
+	waitbutton
+	closetext
+	end
 
 RuinsOfAlphAerodactylItemRoomMoonStone:
-	itemball KINGS_ROCK
+	itemball LEAF_STONE
 
 RuinsOfAlphAerodactylItemRoomHealPowder:
-	itemball METAL_COAT
+	itemball WATER_STONE
 
 RuinsOfAlphAerodactylItemRoomEnergyRoot:
-	itemball DRAGON_SCALE	
+	itemball METAL_COAT	
 
 RuinsOfAlphAerodactylItemRoomAncientReplica:
 	jumptext RuinsOfAlphAerodactylItemRoomAncientReplicaText
@@ -28,6 +48,17 @@ RuinsOfAlphAerodactylItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
+	done
+
+FoundAerodactylText:
+	text "<PLAYER> found"
+	line "AERODACTYL!"
+	done
+	
+AerodactylPartyFullText:
+	text "But there's no"
+	line "more room left"
+	cont "in the party…"
 	done
 
 RuinsOfAlphAerodactylItemRoom_MapEvents:

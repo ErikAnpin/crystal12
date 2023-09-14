@@ -276,8 +276,8 @@ KarateChopDescription:
 	next "cal hit ratio.@"
 
 DoubleslapDescription:
-	db   "Repeatedly slaps"
-	next "2-5 times.@"
+	db   "A double slap"
+	next "attack.@"
 
 CometPunchDescription:
 	db   "Repeatedly punches"
@@ -316,16 +316,16 @@ GuillotineDescription:
 	next "pincer attack.@"
 
 RazorWindDescription:
-	db   "1st turn: Prepare"
-	next "2nd turn: Attack@"
+	db   "Has a high criti-"
+	next "cal hit ratio.@"
 
 SwordsDanceDescription:
 	db   "A dance that in-"
 	next "creases ATTACK.@"
 
 CutDescription:
-	db   "Cuts using claws,"
-	next "scythes, etc.@"
+	db   "Has a high criti-"
+	next "cal hit ratio.@"
 
 GustDescription:
 	db   "Whips up a strong"
@@ -469,7 +469,7 @@ DisableDescription:
 
 AcidDescription:
 	db   "An attack that may"
-	next "lower DEFENSE.@"
+	next "inflict a burn.@"
 
 EmberDescription:
 	db   "An attack that may"
@@ -544,8 +544,8 @@ SeismicTossDescription:
 	next "equals damage HP.@"
 
 StrengthDescription:
-	db   "A powerful physi-"
-	next "cal attack.@"
+	db   "An attack that may"
+	next "up user's ATTACK.@"
 
 AbsorbDescription:
 	db   "Steals 1/2 of the"
@@ -772,12 +772,12 @@ FireBlastDescription:
 	next "may cause a burn.@"
 
 WaterfallDescription:
-	db   "An aquatic charge"
-	next "attack.@"
+	db   "An attack that may"
+	next "cause flinching.@"
 
 ClampDescription:
-	db   "Traps the foe for"
-	next "2-5 turns.@"
+	db   "An attack that may"
+	next "cause flinching.@"
 
 SwiftDescription:
 	db   "An attack that"
@@ -860,8 +860,8 @@ FlashDescription:
 	next "reduce accuracy.@"
 
 PsywaveDescription:
-	db   "An attack with"
-	next "variable power.@"
+	db   "The user's level"
+	next "equals damage HP.@"
 
 SplashDescription:
 	db   "Has no effect"
@@ -1020,8 +1020,8 @@ SludgeBombDescription:
 	next "poison the foe.@"
 
 MudSlapDescription:
-	db   "Reduces the foe's"
-	next "accuracy.@"
+	db   "An attack that may"
+	next "reduce accuracy.@"
 
 OctazookaDescription:
 	db   "An attack that may"
@@ -1233,7 +1233,7 @@ SunnyDayDescription:
 
 CrunchDescription:
 	db   "An attack that may"
-	next "lower SPCL.DEF.@"
+	next "lower DEFENSE.@"
 
 MirrorCoatDescription:
 	db   "Counters a SPCL."

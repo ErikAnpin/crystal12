@@ -10,16 +10,36 @@ RuinsOfAlphOmanyteItemRoom_MapScripts:
 	def_callbacks
 
 RuinsOfAlphOmanyteItemRoomMysteryberry:
-	itemball UP_GRADE
+	opentext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	disappear RUINSOFALPHOMANYTEITEMROOM_POKE_BALL1
+	setevent EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM
+	writetext FoundOmanyteText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke OMANYTE, 30
+	closetext
+	end
+	
+.NoRoom
+	writetext FoundOmanyteText
+	waitsfx
+	promptbutton
+	writetext OmanytePartyFullText
+	waitbutton
+	closetext
+	end
 
 RuinsOfAlphOmanyteItemRoomMysticWater:
 	itemball SCOPE_LENS
 
 RuinsOfAlphOmanyteItemRoomStardust:
-	itemball CLEANSE_TAG
+	itemball FOCUS_BAND
 
 RuinsOfAlphOmanyteItemRoomStarPiece:
-	itemball LEFTOVERS
+	itemball BERSERK_GENE
 
 RuinsOfAlphOmanyteItemRoomAncientReplica:
 	jumptext RuinsOfAlphOmanyteItemRoomAncientReplicaText
@@ -28,6 +48,17 @@ RuinsOfAlphOmanyteItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
+	done
+
+FoundOmanyteText:
+	text "<PLAYER> found"
+	line "OMANYTE!"
+	done
+	
+OmanytePartyFullText:
+	text "But there's no"
+	line "more room left"
+	cont "in the party…"
 	done
 
 RuinsOfAlphOmanyteItemRoom_MapEvents:

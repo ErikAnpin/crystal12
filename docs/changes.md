@@ -1,20 +1,16 @@
 	Todo:
 https://github.com/pret/pokecrystal/wiki/Add-a-fourth-stats-page
-Mystery Gift is now obtained automatically after defeating the E4
+Mystery Gift/Make decorations obtainable
+Make itemfinder turn you to where the item is
 Restore locations from R/B/Y and HG/SS: Viridian Forest, Pewter Museum, Celadon Hotel, Silph Co., Pokémon Mansion, Seafoam Islands, Cerulean Cave, Goldenrod PokéCom Center, and Bellchime Trail. Original locations, including Cinnabar Volcano, a new floor of Rock Tunnel, Cherrygrove Bay, Goldenrod Harbor, Route 35 Coast, the Ecruteak Shrine from Pokémon Christmas, custom-designed PokéWalker routes, and others.
-Added gen 1 move tutors in Celadon City and the Goldenrod City tutor has been revised: he now appears after beating Pryce (Elm will tell you during the call) every day of the week except Sunday, only charges 400 coins per move, now also teaches Rock Slide, and there is no daily limit on learning moves
-Added night themes for all outdoor areas as well as some Kanto themes that were omitted from gen 2 (such as Cerulean, Cinnabar, Viridian Forest (restored) and Route 25) courtesy of TriteHexagon
+Add night themes for all outdoor areas as well as some Kanto themes that were omitted from gen 2 (such as Cerulean, Cinnabar, Viridian Forest (restored) and Route 25)
 Surf overworld sprite
 Add followers
 Cross-region Fly
 Lower crit damage and increase chance
 Make credits faster/skippable
-Add exp share to pc, change back potion
-Make itemfinder turn you to where the item is
-Make decorations obtainable
-Remove fossils from wild and add to ruins of alph
-Water encounters
-Update item and move descriptions
+Add exp share to pc, change back route 29 potion
+4th Stat Screen with DVs/Stat EXP
 
 	Battle
 Ghost->Special and Dark->Phyisical
@@ -46,6 +42,7 @@ Graveler, Kadabra, Haunter and Machoke evolve at level 38
 Gengar and Alakazam can no longer learn Ice and Fire Punch
 Cubone and Marowak no longer learn Earthquake
 Made Happinness easier to get
+More wild Pokemon have held items
 
 	Items
 Dragon Scale, Metal Coat, Up Grade and King's Rock now work like Evolution Stones
@@ -92,6 +89,9 @@ Tutor, National Park and Lapras now available any day.
 Dark Cave Violet Entrance Potion replaced with Defense Curl
 Dark Cave Blackthorn Entrance Snore replaced with Curse
 Mt Mortar Defense Curl replaced with Psychic(Requires Waterfall)
+Goldenrode Store has UP_GRADE instead of AMULET_COIN
+Fast Ship gives LUCKY_EGG instead of METAL_COAT
+Silph CO give AMULET_COINS instead of UP_GRADE
 Buena's show is always on regardless of time
 Swapped Dragonbreath TM and Waterfall HM
 Raikou and Entei are registered as seen after the Burned Tower
@@ -101,6 +101,7 @@ Added in battle weather icons
 Added Evening time
 Smashing Rocks has a chance to find items
 Increased game payouts (e.g. triple 7s gives 777 coins now)
+Fossil Mons obtainable from Ruins of Alph
 
 	Moves
 Tackle 					95%->100%
@@ -135,8 +136,8 @@ Giga Drain 		60->75
 Waterfall 							20% flinch
 Zap Cannon 		100->120
 Dynamic Punch 	100->120
-Future Sigh 	80->120  90%->100%
-Sky Attack							now works like fly
+Future Sight 	80->120  90%->100%
+Sky Attack	 	140->120	90%->95%	now works like fly
 Leech Life		20->60
 Fury Cutter		10->20
 Pin Missile  	14->20   85%->95%
@@ -144,7 +145,7 @@ Twineedle		25->40
 Fury Attack				85%->95%	20->15
 Doubleslap		15->40	85%->95%	10->15
 Stomp											Always hits Minimized
-Cut								    Normal->Bug High Crit
+Cut				50->55			    Normal->Bug High Crit
 Strength							10% atk up
 Flash					 70%->100%
 Rock Smash 		20->60
@@ -182,7 +183,7 @@ Thunder Wave 			 100%->90%
 Glare 					 75%->90%
 Poison Gas 				 55%->95%
 Smog			20->35	 70%->100%   40%->20%
-Acid			40->65							25->15
+Acid			40->65							25->15	Burn instead of -DEF
 Sludge											20->15
 Poison Sting	15->35	
 Toxic									85%->90%
@@ -203,7 +204,9 @@ Hyper Fang				90%->100%
 Snore 			40->70
 Hidden Power    x->70
 Powder Snow		40->45
-Whirlwind								Normal->Flying
+Whirlwind		Normal->Flying
+Mind Reader		Normal->Psychic
+Foresight 		Normal->Psychic
 SCary Face				90%->100%
 
 	Pokemon

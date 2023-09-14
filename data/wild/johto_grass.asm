@@ -457,25 +457,25 @@ JohtoGrassWildMons:
 	db 6, ZUBAT
 	db 8, ZUBAT
 	db 6, ONIX
-	db 8, KABUTO
-	db 8, OMANYTE
+	db 8, SEEL
+	db 8, KRABBY
 	db 8, SWINUB
 	; day
 	db 8, GEODUDE
 	db 6, ZUBAT
 	db 8, ZUBAT
 	db 6, ONIX
-	db 8, OMANYTE
-	db 8, KABUTO
+	db 8, SEEL
+	db 8, KRABBY
 	db 8, SWINUB
 	; nite
 	db 8, ZUBAT
 	db 6, ZUBAT
 	db 8, GEODUDE
 	db 8, SWINUB
-	db 8, KABUTO
-	db 8, OMANYTE
-	db 6, KABUTO
+	db 8, SEEL
+	db 8, KRABBY
+	db 6, SWINUB
 	end_grass_wildmons
 
 	def_grass_wildmons UNION_CAVE_B2F
@@ -487,7 +487,7 @@ JohtoGrassWildMons:
 	db 22, RATICATE
 	db 21, RATICATE
 	db 23, DELIBIRD
-	db 23, AERODACTYL
+	db 23, SWINUB
 	; day
 	db 20, ZUBAT
 	db 22, GOLBAT
@@ -495,7 +495,7 @@ JohtoGrassWildMons:
 	db 22, RATICATE
 	db 21, RATICATE
 	db 23, DELIBIRD
-	db 23, AERODACTYL
+	db 23, SWINUB
 	; nite
 	db 20, ZUBAT
 	db 22, GOLBAT
@@ -503,7 +503,7 @@ JohtoGrassWildMons:
 	db 21, RATICATE
 	db 23, DELIBIRD
 	db 23, DELIBIRD
-	db 22, AERODACTYL
+	db 22, SWINUB
 	end_grass_wildmons
 
 	def_grass_wildmons SLOWPOKE_WELL_B1F
@@ -1101,7 +1101,7 @@ JohtoGrassWildMons:
 	db 58, GOLDUCK
 	db 56, CROBAT
 	db 57, PARASECT
-	db 55, AERODACTYL
+	db 55, CROBAT
 	db 58, TYRANITAR
 	db 50, CROBAT
 	; day
@@ -1109,7 +1109,7 @@ JohtoGrassWildMons:
 	db 58, GOLDUCK
 	db 56, CROBAT
 	db 57, PARASECT
-	db 55, AERODACTYL
+	db 55, CROBAT
 	db 58, TYRANITAR
 	db 50, CROBAT
 	; nite
@@ -1118,7 +1118,7 @@ JohtoGrassWildMons:
 	db 56, GOLDUCK
 	db 56, QUAGSIRE
 	db 58, TYRANITAR
-	db 55, AERODACTYL
+	db 55, CROBAT
 	db 55, TYRANITAR
 	end_grass_wildmons
 
@@ -1156,26 +1156,26 @@ JohtoGrassWildMons:
 	db 58, KANGASKHAN
 	db 56, WIGGLYTUFF
 	db 60, WOBBUFFET
-	db 58, KABUTOPS
-	db 56, OMASTAR
-	db 60, OMASTAR
-	db 62, SNORLAX
+	db 58, CROBAT
+	db 56, CROBAT
+	db 60, SNORLAX
+	db 62, CROBAT
 	; day
 	db 58, KANGASKHAN
 	db 56, WIGGLYTUFF
 	db 60, WOBBUFFET
-	db 58, KABUTOPS
-	db 56, OMASTAR
-	db 60, OMASTAR
-	db 62, SNORLAX
+	db 58, CROBAT
+	db 56, CROBAT
+	db 60, SNORLAX
+	db 62, CROBAT
 	; nite
 	db 55, KANGASKHAN
 	db 58, WIGGLYTUFF
 	db 60, WOBBUFFET
-	db 58, KABUTOPS
-	db 56, OMASTAR
-	db 60, OMASTAR
-	db 62, SNORLAX
+	db 58, CROBAT
+	db 56, CROBAT
+	db 60, SNORLAX
+	db 62, CROBAT
 	end_grass_wildmons
 
 	def_grass_wildmons DARK_CAVE_VIOLET_ENTRANCE
@@ -1184,25 +1184,25 @@ JohtoGrassWildMons:
 	db 3, GEODUDE
 	db 4, ZUBAT
 	db 4, GEODUDE
-	db 4, MACHOP
+	db 3, ZUBAT
 	db 5, DUNSPARCE
 	db 4, TEDDIURSA
-	db 4, SNEASEL
+	db 5, SNEASEL
 	; day
 	db 3, GEODUDE
 	db 4, ZUBAT
 	db 4, GEODUDE
-	db 4, MACHOP
+	db 3, ZUBAT
 	db 4, TEDDIURSA
 	db 5, DUNSPARCE
 	db 4, SNEASEL
 	; nite
 	db 3, GEODUDE
 	db 4, ZUBAT
-	db 4, MACHOP
+	db 4, GEODUDE
 	db 4, TEDDIURSA
-	db 5, DUNSPARCE
-	db 4, SNEASEL
+	db 4, DUNSPARCE
+	db 5, SNEASEL
 	db 4, SNEASEL
 	end_grass_wildmons
 

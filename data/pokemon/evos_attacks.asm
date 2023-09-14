@@ -2078,7 +2078,7 @@ MewtwoEvosAttacks:
 MewEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TRANSFORM
-	db 1, METRONOME	
+	db 1, METRONOME
 	db 1, POUND
 	db 10, SOFTBOILED
 	db 20, MEGA_PUNCH
@@ -2096,7 +2096,7 @@ ChikoritaEvosAttacks:
 	db 1, TACKLE
 	db 1, GROWL
 	db 8, RAZOR_LEAF
-	db 12, REFLECT	
+	db 12, REFLECT
 	db 12, LIGHT_SCREEN
 	db 15, LEECH_SEED
 	db 17, SYNTHESIS

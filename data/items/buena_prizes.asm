@@ -7,6 +7,6 @@ BuenaPrizeItems:
 	db KINGS_ROCK,   2
 	db SCOPE_LENS,   2
 	db LEFTOVERS,    3
-	db LUCKY_EGG,    3
+	db FOCUS_BAND,   3
 	db MASTER_BALL,  3
 	assert_table_length NUM_BUENA_PRIZES

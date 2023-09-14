@@ -10,13 +10,13 @@ RuinsOfAlphHoOhItemRoom_MapScripts:
 	def_callbacks
 
 RuinsOfAlphHoOhItemRoomGoldBerry:
-	itemball BRIGHTPOWDER
+	itemball CLEANSE_TAG
 
 RuinsOfAlphHoOhItemRoomMysteryberry:
-	itemball LUCKY_EGG
+	itemball DRAGON_SCALE
 
 RuinsOfAlphHoOhItemRoomRevivalHerb:
-	itemball BERSERK_GENE
+	itemball UP_GRADE
 
 RuinsOfAlphHoOhItemRoomCharcoal:
 	itemball SACRED_ASH

@@ -10,16 +10,36 @@ RuinsOfAlphKabutoItemRoom_MapScripts:
 	def_callbacks
 
 RuinsOfAlphKabutoItemRoomBerry:
-	itemball FIRE_STONE
+	opentext
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	disappear RUINSOFALPHKABUTOITEMROOM_POKE_BALL1
+	setevent EVENT_PICKED_UP_BERRY_FROM_KABUTO_ITEM_ROOM
+	writetext FoundKabutoText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	promptbutton
+	givepoke KABUTO, 10
+	closetext
+	end
+	
+.NoRoom
+	writetext FoundKabutoText
+	waitsfx
+	promptbutton
+	writetext KabutoPartyFullText
+	waitbutton
+	closetext
+	end
 
 RuinsOfAlphKabutoItemRoomPsncureberry:
-	itemball THUNDERSTONE
+	itemball MOON_STONE
 
 RuinsOfAlphKabutoItemRoomHealPowder:
-	itemball WATER_STONE
+	itemball THUNDERSTONE
 
 RuinsOfAlphKabutoItemRoomEnergypowder:
-	itemball LEAF_STONE
+	itemball FIRE_STONE
 
 RuinsOfAlphKabutoItemRoomAncientReplica:
 	jumptext RuinsOfAlphKabutoItemRoomAncientReplicaText
@@ -28,6 +48,17 @@ RuinsOfAlphKabutoItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
+	done
+
+FoundKabutoText:
+	text "<PLAYER> found"
+	line "KABUTO!"
+	done
+	
+KabutoPartyFullText:
+	text "But there's no"
+	line "more room left"
+	cont "in the party…"
 	done
 
 RuinsOfAlphKabutoItemRoom_MapEvents:

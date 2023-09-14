@@ -65,10 +65,10 @@ GoldenrodDeptStoreB1FEther:
 	itemball ETHER
 
 GoldenrodDeptStoreB1FAmuletCoin:
-	itemball AMULET_COIN
+	itemball UP_GRADE
 
 GoldenrodDeptStoreB1FBurnHeal:
-	itemball UP_GRADE
+	itemball BURN_HEAL
 
 GoldenrodDeptStoreB1FUltraBall:
 	itemball ULTRA_BALL
