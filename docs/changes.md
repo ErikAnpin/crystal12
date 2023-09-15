@@ -1,5 +1,4 @@
 	Todo:
-https://github.com/pret/pokecrystal/wiki/Add-a-fourth-stats-page
 Mystery Gift/Make decorations obtainable
 Make itemfinder turn you to where the item is
 Restore locations from R/B/Y and HG/SS: Viridian Forest, Pewter Museum, Celadon Hotel, Silph Co., Pokémon Mansion, Seafoam Islands, Cerulean Cave, Goldenrod PokéCom Center, and Bellchime Trail. Original locations, including Cinnabar Volcano, a new floor of Rock Tunnel, Cherrygrove Bay, Goldenrod Harbor, Route 35 Coast, the Ecruteak Shrine from Pokémon Christmas, custom-designed PokéWalker routes, and others.
@@ -10,7 +9,6 @@ Cross-region Fly
 Lower crit damage and increase chance
 Make credits faster/skippable
 Add exp share to pc, change back route 29 potion
-4th Stat Screen with DVs/Stat EXP
 
 	Battle
 Ghost->Special and Dark->Phyisical
@@ -102,6 +100,7 @@ Added Evening time
 Smashing Rocks has a chance to find items
 Increased game payouts (e.g. triple 7s gives 777 coins now)
 Fossil Mons obtainable from Ruins of Alph
+Added a 4th status page with Met info, can now see DVs on 3rd
 
 	Moves
 Tackle 					95%->100%

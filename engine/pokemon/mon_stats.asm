@@ -82,6 +82,178 @@ DrawHP:
 	pop de
 	ret
 
+PrintTempMonStatsDVs:
+; Print wTempMon's stats at hl, with spacing bc.
+	push bc
+	push hl
+	push bc
+	push hl
+	ld de, .Line1
+	hlcoord 5, 9
+	call PlaceString
+	ld de, .HPLine
+	hlcoord 1, 10
+	call PlaceString
+	ld de, .AtkLine
+	hlcoord 1, 11
+	call PlaceString
+	ld de, .DefLine
+	hlcoord 1, 12
+	call PlaceString
+	ld de, .SpAtkLine
+	hlcoord 1, 13
+	call PlaceString
+	ld de, .SpDefLine
+	hlcoord 1, 14
+	call PlaceString
+	ld de, .SpeLine
+	hlcoord 1, 15
+	call PlaceString
+	pop hl
+	pop bc
+	add hl, bc
+	ld bc, (SCREEN_WIDTH * 2) - 11
+	add hl, bc
+
+	; HP
+	call .CalcHPDVs
+	ld de, wTempMonHP
+	call .PrintDVsAndStat
+	
+	; Attack
+	ld a, [wTempMonDVs]
+	and $f0 
+	swap a
+	ld de, wTempMonAttack
+	call .PrintDVsAndStat
+
+	; Defense
+	ld a, [wTempMonDVs]
+	and $f 
+	ld de, wTempMonDefense
+	call .PrintDVsAndStat
+
+	; Sp. Atk.
+	ld a, [wTempMonDVs + 1]
+	and $f
+	ld de, wTempMonSpclAtk
+	push af
+	call .PrintDVsAndStat
+
+	; Sp. Def. Reuses the same DV.
+	pop af
+	call .PrintDVsAndStat
+
+	; Speed
+	ld a, [wTempMonDVs + 1]
+	and $f0
+	swap a
+	ld de, wTempMonSpeed
+	call .PrintDVsAndStat
+
+	pop hl
+	pop bc
+	add hl, bc
+	; Stat EXP
+	ld bc, (SCREEN_WIDTH * 2) - 7
+	add hl, bc
+	ld de, wTempMonHPExp
+	lb bc, 1, 3
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5	
+	call .PrintStat
+	ld de, wTempMonAtkExp
+	call .PrintStat
+	ld de, wTempMonDefExp
+	call .PrintStat
+	ld de, wTempMonSpcExp
+	call .PrintStat
+	ld de, wTempMonSpcExp
+	call .PrintStat	
+	ld de, wTempMonSpdExp
+	; fallthrough
+
+.PrintStat:
+	push hl
+	call PrintNum
+	pop hl
+	ld de, SCREEN_WIDTH
+	add hl, de
+	ret
+
+.PrintDVsAndStat:
+; Prints the DV in a and then stat pointed by de.
+; Returns the next stat pointer in de.
+	push de
+	push hl
+	ld b, a
+	ld de, wTempMonAttack + 1
+	ld a, [de]
+	push af
+	ld a, b
+	ld [de], a
+	lb bc, 1, 3
+	call PrintNum
+	pop af
+	ld [wTempMonAttack + 1], a
+	pop hl
+	ld de, 11
+	add hl, de
+	pop de
+	push de
+	push hl
+	lb bc, 2, 3
+	call PrintNum
+	pop hl
+	ld de, 9
+	add hl, de
+	pop de
+	ret
+
+.CalcHPDVs
+	push hl
+	push bc
+	ld hl, wTempMonDVs
+	ld a, [hl]
+	swap a
+	and 1
+	add a
+	add a
+	add a
+	ld b, a
+	ld a, [hli]
+	and 1
+	add a
+	add a
+	add b
+	ld b, a
+	ld a, [hl]
+	swap a
+	and 1
+	add a
+	add b
+	ld b, a
+	ld a, [hl]
+	and 1
+	add b
+	pop bc 
+	pop hl
+	ret
+
+.Line1:
+	db "DVs  EXP  TOTAL@"
+.HPLine:
+	db "HP@"
+.AtkLine:
+	db "ATK@"
+.DefLine:
+	db "DEF@"
+.SpAtkLine:
+	db "SAT@"
+.SpDefLine:
+	db "SDE@"
+.SpeLine:
+	db "SPE@"
+	
 PrintTempMonStats:
 ; Print wTempMon's stats at hl, with spacing bc.
 	push bc
@@ -114,11 +286,11 @@ PrintTempMonStats:
 	ret
 
 .StatNames:
-	db   "ATTACK"
-	next "DEFENSE"
-	next "SPCL.ATK"
-	next "SPCL.DEF"
-	next "SPEED"
+	db   "ATK"
+	next "DEF"
+	next "SP. ATK"
+	next "SP. DEF"
+	next "SPE"
 	next "@"
 
 GetGender:
