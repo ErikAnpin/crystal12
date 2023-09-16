@@ -376,10 +376,10 @@ YoungsterGroup:
 
 	; YOUNGSTER (5)
 	db "SAMUEL@", TRAINERTYPE_NORMAL
-	db  7, RATTATA
-	db 10, SANDSHREW
-	db  8, SPEAROW
-	db  8, TYROGUE
+	db  8, RATTATA
+	db 11, SANDSHREW
+	db  9, SPEAROW
+	db  9, TYROGUE
 	db -1 ; end
 
 	; YOUNGSTER (6)
@@ -2958,9 +2958,9 @@ PicnickerGroup:
 
 	; PICNICKER (2)
 	db "GINA@", TRAINERTYPE_NORMAL
-	db  9, HOPPIP
-	db  9, HOPPIP
-	db 12, BULBASAUR
+	db 10, HOPPIP
+	db 10, HOPPIP
+	db 13, BULBASAUR
 	db -1 ; end
 
 	; PICNICKER (3)

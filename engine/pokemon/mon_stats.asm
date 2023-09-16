@@ -158,8 +158,7 @@ PrintTempMonStatsDVs:
 	ld bc, (SCREEN_WIDTH * 2) - 7
 	add hl, bc
 	ld de, wTempMonHPExp
-	lb bc, 1, 3
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 5	
+	lb bc, 2, 5
 	call .PrintStat
 	ld de, wTempMonAtkExp
 	call .PrintStat

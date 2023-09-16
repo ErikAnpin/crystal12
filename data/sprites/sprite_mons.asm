@@ -39,7 +39,6 @@ SpriteMons:
 	db ARTICUNO
 	db ZAPDOS
 	db MEWTWO
-	db MEW
 	db FARFETCH_D
 	db MEOWTH
 	db PERSIAN

@@ -427,7 +427,7 @@ JohtoGrassWildMons:
 	; morn
 	db 6, GEODUDE
 	db 6, ZUBAT
-	db 5, ZUBAT
+	db 7, ZUBAT
 	db 7, ONIX
 	db 6, SANDSHREW
 	db 7, GEODUDE
@@ -435,14 +435,14 @@ JohtoGrassWildMons:
 	; day
 	db 6, GEODUDE
 	db 6, ZUBAT
-	db 5, ZUBAT
+	db 7, ZUBAT
 	db 7, ONIX
 	db 6, SANDSHREW
 	db 7, GEODUDE
 	db 7, ZUBAT
 	; nite
 	db 6, ZUBAT
-	db 5, ZUBAT
+	db 7, ZUBAT
 	db 6, GEODUDE
 	db 7, ONIX
 	db 6, SANDSHREW
@@ -509,7 +509,7 @@ JohtoGrassWildMons:
 	def_grass_wildmons SLOWPOKE_WELL_B1F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 5, ZUBAT
+	db 8, ZUBAT
 	db 6, ZUBAT
 	db 6, SLOWPOKE
 	db 7, ZUBAT
@@ -517,7 +517,7 @@ JohtoGrassWildMons:
 	db 8, CUBONE
 	db 8, CUBONE
 	; day
-	db 5, ZUBAT
+	db 8, ZUBAT
 	db 6, ZUBAT
 	db 6, SLOWPOKE
 	db 7, ZUBAT
@@ -525,7 +525,7 @@ JohtoGrassWildMons:
 	db 8, CUBONE
 	db 8, CUBONE
 	; nite
-	db 5, ZUBAT
+	db 8, ZUBAT
 	db 6, ZUBAT
 	db 6, SLOWPOKE
 	db 7, ZUBAT
@@ -1379,27 +1379,27 @@ JohtoGrassWildMons:
 	; morn
 	db 12, SNUBBULL
 	db 13, PIDGEY
-	db 14, GRIMER
+	db 12, GRIMER
 	db 12, DROWZEE
-	db 14, PIDGEY
+	db 12, PIDGEY
 	db 12, DITTO
-	db 12, DITTO
+	db 13, DITTO
 	; day
 	db 12, SNUBBULL
 	db 13, PIDGEY
-	db 14, GRIMER
+	db 12, GRIMER
 	db 12, DROWZEE
-	db 14, PIDGEY
+	db 12, PIDGEY
 	db 12, DITTO
-	db 12, DITTO
+	db 13, DITTO
 	; nite
-	db 14, SNUBBULL
+	db 12, SNUBBULL
 	db 13, HOOTHOOT
-	db 14, GRIMER
+	db 12, GRIMER
 	db 12, DROWZEE
-	db 14, HOOTHOOT
+	db 12, HOOTHOOT
 	db 12, DITTO
-	db 12, DITTO
+	db 13, DITTO
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_35

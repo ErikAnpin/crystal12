@@ -99,11 +99,9 @@
 	const SPRITE_SILVER_TROPHY ; 5f
 	const SPRITE_KRIS ; 60
 	const SPRITE_KRIS_BIKE ; 61
-	const SPRITE_KURT_OUTSIDE ; 62
-	const SPRITE_SUICUNE ; 63
-	const SPRITE_ENTEI ; 64
-	const SPRITE_RAIKOU ; 65
-	const SPRITE_STANDING_YOUNGSTER ; 66
+	const SPRITE_SUICUNE ; 62
+	const SPRITE_ENTEI ; 63
+	const SPRITE_RAIKOU ; 64
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
@@ -147,29 +145,28 @@ DEF SPRITE_POKEMON EQU const_value
 	const SPRITE_ARTICUNO ; a3
 	const SPRITE_ZAPDOS ; a4
 	const SPRITE_MEWTWO ; a5
-	const SPRITE_MEW ; a6
-	const SPRITE_FARFETCH_D ; a7
-	const SPRITE_MEOWTH ; a8
-	const SPRITE_PERSIAN ; a9
-	const SPRITE_NIDORAN_F ; aa
-	const SPRITE_NIDORAN_M ; ab
-	const SPRITE_SPEAROW ; ac
-	const SPRITE_RATTATA ; ad
-	const SPRITE_POLIWRATH ; af
-	const SPRITE_BLISSEY ; b0
-	const SPRITE_ABRA ; b1
-	const SPRITE_DRATINI ; b2
-	const SPRITE_MILTANK ; b3
-	const SPRITE_ELECTRODE ; b4
-	const SPRITE_DRAGONITE ; b5
-	const SPRITE_PSYDUCK ; b6
-	const SPRITE_NIDORINO ; b7
-	const SPRITE_PIDGEY ; b8
-	const SPRITE_DODRIO ; b9
-	const SPRITE_FEAROW ; ba
-	const SPRITE_MURKROW ; bb
-	const SPRITE_AMPHAROS ; bc
-	const SPRITE_SLOWBRO ; bd
+	const SPRITE_FARFETCH_D ; a6
+	const SPRITE_MEOWTH ; a7
+	const SPRITE_PERSIAN ; a8
+	const SPRITE_NIDORAN_F ; a9
+	const SPRITE_NIDORAN_M ; aa
+	const SPRITE_SPEAROW ; ab
+	const SPRITE_RATTATA ; ac
+	const SPRITE_POLIWRATH ; ad
+	const SPRITE_BLISSEY ; af
+	const SPRITE_ABRA ; b0
+	const SPRITE_DRATINI ; b1
+	const SPRITE_MILTANK ; b2
+	const SPRITE_ELECTRODE ; b3
+	const SPRITE_DRAGONITE ; b4
+	const SPRITE_PSYDUCK ; b5
+	const SPRITE_NIDORINO ; b6
+	const SPRITE_PIDGEY ; b7
+	const SPRITE_DODRIO ; b8
+	const SPRITE_FEAROW ; b9
+	const SPRITE_MURKROW ; ba
+	const SPRITE_AMPHAROS ; bb
+	const SPRITE_SLOWBRO ; bc
 DEF NUM_POKEMON_SPRITES EQU const_value - SPRITE_POKEMON
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
@@ -184,12 +181,9 @@ DEF SPRITE_VARS EQU const_value
 	const SPRITE_DOLL_1 ; f1
 	const SPRITE_DOLL_2 ; f2
 	const SPRITE_BIG_DOLL ; f3
-	const SPRITE_WEIRD_TREE ; f4
-	const SPRITE_OLIVINE_RIVAL ; f5
-	const SPRITE_AZALEA_ROCKET ; f6
-	const SPRITE_FUCHSIA_GYM_1 ; f7
-	const SPRITE_FUCHSIA_GYM_2 ; f8
-	const SPRITE_FUCHSIA_GYM_3 ; f9
-	const SPRITE_FUCHSIA_GYM_4 ; fa
-	const SPRITE_COPYCAT ; fb
-	const SPRITE_JANINE_IMPERSONATOR ; fc
+	const SPRITE_FUCHSIA_GYM_1 ; f4
+	const SPRITE_FUCHSIA_GYM_2 ; f5
+	const SPRITE_FUCHSIA_GYM_3 ; f6
+	const SPRITE_FUCHSIA_GYM_4 ; f7
+	const SPRITE_COPYCAT ; f8
+	const SPRITE_JANINE_IMPERSONATOR ; f9

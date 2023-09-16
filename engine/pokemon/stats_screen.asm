@@ -784,6 +784,21 @@ LoadGreenPage:
 	db "MOVES@"
 
 LoadBluePage:
+	ld de, HPTypeString
+	hlcoord 5, 16
+	call PlaceString
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1DVs
+	call GetPartyLocation
+	ld b, h
+	ld c, l
+	farcall GetHiddenPowerType
+	ld a, e
+	ld [wNamedObjectIndex], a
+	predef GetTypeName	
+	ld de, wStringBuffer1
+	hlcoord 11, 16
+	call PlaceString
 	hlcoord 10, 8
 	ld bc, 6
 	predef PrintTempMonStatsDVs
@@ -792,20 +807,31 @@ LoadBluePage:
 LoadOrangePage:
 	call .PlaceOTInfo
 	call .placeCaughtLocation	
-	call .placeCaughtLevel	
+	call .placeCaughtLevel
+	call .StatsScreen_PrintHappiness
+	ld de, HappinessString
+	hlcoord 1, 15
+	call PlaceString
 	ld de, MetAtMapString
 	hlcoord 1, 9
 	call PlaceString
 	ret
 
+.StatsScreen_PrintHappiness:
+    hlcoord 1, 16
+    lb bc, 1, 3
+    ld de, wTempMonHappiness
+    call PrintNum
+    ret
+
 .PlaceOTInfo:
 	ld de, OTString
-	hlcoord 1, 13
+	hlcoord 13, 13
 	call PlaceString
 	ld de, IDNoString
-	hlcoord 1, 15
+	hlcoord 13, 15
 	call PlaceString
-	hlcoord 1, 16
+	hlcoord 13, 16
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, wTempMonID
 	call PrintNum
@@ -813,7 +839,7 @@ LoadOrangePage:
 	call GetNicknamePointer
 	call CopyNickname
 	farcall CorrectNickErrors
-	hlcoord 1, 14
+	hlcoord 13, 14
 	call PlaceString
 	ld a, [wTempMonCaughtGender]
 	and a
@@ -825,7 +851,7 @@ LoadOrangePage:
 	jr z, .got_gender
 	ld a, "♀"
 .got_gender
-	hlcoord 4, 13
+	hlcoord 16, 13
 	ld [hl], a
 .done
 	ret
@@ -867,7 +893,7 @@ LoadOrangePage:
 
 .unknown_location:
 	ld de, MetUnknownMapString
-	hlcoord 2, 10
+	hlcoord 1, 10
 	call PlaceString
 	ret
 
@@ -888,22 +914,25 @@ LoadOrangePage:
 
 .print
 	ld [wTextDecimalByte], a
-	hlcoord 12, 14
+	hlcoord 1, 13
 	ld de, wTextDecimalByte
 	lb bc, PRINTNUM_LEFTALIGN | 1, 3
 	call PrintNum
 	ld de, MetAtLevelString
-	hlcoord 11, 13
+	hlcoord 1, 12
 	call PlaceString
-	hlcoord 11, 14
+	hlcoord 1, 13
 	ld [hl], "<LV>"
 	ret
 
 .unknown_level
 	ld de, MetUnknownLevelString
-	hlcoord 11, 14
+	hlcoord 1, 13
 	call PlaceString
 	ret
+
+HPTypeString:
+	db "POWER:@"
 
 MetAtMapString:
 	db "MET AT:@"
@@ -922,6 +951,9 @@ IDNoString:
 
 OTString:
  	db "OT/@"
+
+HappinessString:
+	db "HAPPINESS:@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs

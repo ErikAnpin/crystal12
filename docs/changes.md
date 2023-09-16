@@ -27,10 +27,6 @@ Enemy trainers have maximum happiness for a powerful Return
 Removed the 25% failure chance for AI status moves
 Gain experience from catching Pokémon
 Don't steal experience at level 100
-Added Weather icons
-Short beeping noise for low HP
-HP bar is faster now
-Made new battle text to distinguish status move misses and fails
 
 	Pokemon
 Reworked learnsets
@@ -53,25 +49,15 @@ Treasures are worth more
 Other item prices adjusted to match later gens
 
 	World
-Stopped the blue palette from animating its white hue
-Animated tiles even when textboxes are open
-Made overworld sprites darker at night
-Prevented NPCs' heads from flipping when they walk down
-Clock Reset Button Combination is now Identical to Pokémon Gold and Silver
-Removed Clock Reset the Password Requirement
-Added a new text scrolling speed
-Removed the artificial save delay
 Restored the GS Ball Celebi Event
-Make the Lottery Corner generate a lucky number daily instead of weekly
-Kurt Makes Pokeballs Instantly
+Made the Lottery Corner generate a lucky number daily instead of weekly
+Kurt makes Pokeballs Instantly
 No longer lose HP from poisoning in the overworld
 Field moves can be used if a Pokemon can learn it
-Move names are shown when you receive a TM or HM
 Automatically ask to reuse Repel
 Added Running Shoes
-Added unique colors for each thrown Poké Ball	
 Improved POKEMON distribution and Movesets	
-Improved UNOWN Puzzle Rewards 
+Improved Ruins of Alph Puzzle Rewards 
 Added MOVE REMINDER to EARL's Academy in Violet City
 Improved TRAINERS Movesets and overall level curve
 Improved Trainer Rematch system
@@ -82,7 +68,6 @@ ODD EGG always has POKERUS and if SHINY ATK is now 10 instead of 2
 Goldenrod Underground shops available every day
 Mahogany Herb shop sells ELIXER and ETHER
 Bargain shop sells RARE_CANDY and PP_UP
-Cianwood Seer now tells Hidden Power type
 Tutor, National Park and Lapras now available any day.
 Dark Cave Violet Entrance Potion replaced with Defense Curl
 Dark Cave Blackthorn Entrance Snore replaced with Curse
@@ -93,14 +78,32 @@ Silph CO give AMULET_COINS instead of UP_GRADE
 Buena's show is always on regardless of time
 Swapped Dragonbreath TM and Waterfall HM
 Raikou and Entei are registered as seen after the Burned Tower
-Added Pokemon icons for all species
-Added a third trainer card page for Kanto badges
-Added in battle weather icons
-Added Evening time
 Smashing Rocks has a chance to find items
 Increased game payouts (e.g. triple 7s gives 777 coins now)
 Fossil Mons obtainable from Ruins of Alph
-Added a 4th status page with Met info, can now see DVs on 3rd
+
+	Graphics and UI
+Move names are shown when you receive a TM or HM	
+Stopped the blue palette from animating its white hue
+Animated tiles even when textboxes are open
+Made overworld sprites darker at night
+Clock Reset Button Combination is now Identical to Pokémon Gold and Silver
+Removed Clock Reset the Password Requirement
+Added a new text scrolling speed
+Removed the artificial save delay	
+Cianwood Seer now tells Hidden Power type
+Added Weather icons
+Made new battle text to distinguish status move misses and fails
+Short beeping noise for low HP
+HP bar is faster now
+Added unique colors for each thrown Poké Ball		
+Added Pokemon icons for all species
+Added a third trainer card page for Kanto badges
+Added in battle weather icons
+Added Evening time	
+3rd status page now shows DVs and STATEXP
+Added a 4th status page with Met, OT Info and Happiness
+Improved outdoor sprite system
 
 	Moves
 Tackle 					95%->100%

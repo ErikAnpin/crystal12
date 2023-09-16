@@ -9,7 +9,7 @@ PokeSeersHouse_MapScripts:
 SeerScript:
 	faceplayer
 	opentext
-	special HiddenPowerGuru
+	special PokeSeer
 	waitbutton
 	closetext
 	end
