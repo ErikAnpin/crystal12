@@ -887,12 +887,28 @@ RetrieveBreedmon:
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, MON_EXP + 2
+	ld hl, MON_EXP + 2
 	add hl, bc
 	ldh a, [hMultiplicand]
 	ld b, a
+	ld b, a
 	ldh a, [hMultiplicand + 1]
 	ld c, a
+	ld c, a
 	ldh a, [hMultiplicand + 2]
+	ld d, a
+	ld a, [hld]
+	sub d
+	ld a, [hld]
+	sbc c
+	ld a, [hl]
+	sbc b
+	jr c, .not_max_exp
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, d	
 	ld d, a
 	ld a, [hld]
 	sub d

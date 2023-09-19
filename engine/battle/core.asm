@@ -416,8 +416,6 @@ HandleBerserkGene:
 	ld l, e
 	ld a, b
 	call GetPartyLocation
-	;xor a
-;	ld [hl], a
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
@@ -4254,7 +4252,7 @@ PursuitSwitch:
 	call PlayStereoCry
 	ld a, [wCurBattleMon]
 	push af	
-	ld a, [wLastPlayerMon]	
+	ld a, [wLastPlayerMon]
 	ld [wCurBattleMon], a
 	call UpdateFaintedPlayerMon
 	pop af

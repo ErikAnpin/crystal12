@@ -39,6 +39,7 @@ BattleCommand_Counter:
 	ld a, [hli]
 	or [hl]
 	jr z, .failed
+	jr z, .failed
 
 	ld a, [hl]
 	add a

@@ -1250,7 +1250,7 @@ ScriptCall:
 	ret nc
 	push de
 	inc [hl]
-	ld e, a	
+	ld e, a
 	ld d, 0
 	ld hl, wScriptStack
 	add hl, de

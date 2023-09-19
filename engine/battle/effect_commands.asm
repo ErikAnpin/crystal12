@@ -506,6 +506,7 @@ CheckEnemyTurn:
 
 	call HitSelfInConfusion
 	call ConfusionDamageCalc
+	call ConfusionDamageCalc
 	call BattleCommand_LowerSub
 
 	xor a
