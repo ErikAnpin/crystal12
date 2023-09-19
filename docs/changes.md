@@ -9,6 +9,12 @@ Cross-region Fly
 Lower crit damage and increase chance
 Make credits faster/skippable
 Add exp share to pc, change back route 29 potion
+Fly to Battle Tower, Mt Moon Square and Rock Tunnel
+Cross-region Fly can be unlocked once you unlock all flypoints
+Reduce steps to get eegg
+Reduce steps to hatch
+Night Palettes after Flying
+Fly from all outdoor areas (including Goldenrod Dept Store Roof and Celadon Mansion Roof)
 
 	Battle
 Ghost->Special and Dark->Phyisical
@@ -27,6 +33,7 @@ Enemy trainers have maximum happiness for a powerful Return
 Removed the 25% failure chance for AI status moves
 Gain experience from catching Pokémon
 Don't steal experience at level 100
+Fleemons no longer flee
 
 	Pokemon
 Reworked learnsets
@@ -44,9 +51,15 @@ King’s Rock now applies to all moves, including those that already Flinch
 Increased type-boost held items from 10->20
 Berserk Gene is no longer consumed
 Infinitely reusable TMs
-Vitamins now cost 4800 each, 2.5x more effective(6400 per) and soft cap removed
+Vitamins now cost 4800 each, 1.6x more effective(4096 per) and can be used up to 61440 exp
 Treasures are worth more
 Other item prices adjusted to match later gens
+Ultra Ball: Catch Rate increased 2x->2.5x
+Heavy Ball: now -20 from CR below 50.4kg +20 between 102.5kg and 204.7kg, +30 between 204.8 kg and 307.1 kg, and +40 for over 307.1 kg
+Lure Ball: multiplier increased 3x->4x
+Moon Ball: now works as intended.
+Love Ball: now works on opposite gender Pokemon of the same egg group rather than same species, but x4 multiplier instead of x8
+Fast Ball: x4 on all fleeing Pokemon (as originally intended; a few additions to fleeing Pokemon such as Abra) and x8 for those that always flee (now includes Eevee in addition to the legendary beasts)
 
 	World
 Restored the GS Ball Celebi Event
@@ -81,6 +94,8 @@ Raikou and Entei are registered as seen after the Burned Tower
 Smashing Rocks has a chance to find items
 Increased game payouts (e.g. triple 7s gives 777 coins now)
 Fossil Mons obtainable from Ruins of Alph
+Moomoo Milk can now be bought in bulk
+Teleport can now be used anywhere
 
 	Graphics and UI
 Move names are shown when you receive a TM or HM	
@@ -104,6 +119,7 @@ Added Evening time
 3rd status page now shows DVs and STATEXP
 Added a 4th status page with Met, OT Info and Happiness
 Improved outdoor sprite system
+Eggs can now be released
 
 	Moves
 Tackle 					95%->100%

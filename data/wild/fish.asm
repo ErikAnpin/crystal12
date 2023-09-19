@@ -44,9 +44,9 @@ FishGroups:
 	db  80 percent + 1, QWILFISH,   10
 	db 100 percent,     HORSEA,     10
 .Ocean_Good:
-	db  35 percent,     MAGIKARP,   20
+	db  35 percent,     CHINCHOU,   20
 	db  70 percent,     QWILFISH,   20
-	db  90 percent + 1, CHINCHOU,   20
+	db  90 percent + 1, HORSEA,     20
 	db 100 percent,     time_group 2
 .Ocean_Super:
 	db  40 percent,     LANTURN,    40

@@ -4,7 +4,7 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FLYING ; type
-	db 20 ; catch rate
+	db 10 ; catch rate
 	db 217 ; base exp
 	db NO_ITEM, BRIGHTPOWDER ; items
 	db GENDER_UNKNOWN ; gender ratio

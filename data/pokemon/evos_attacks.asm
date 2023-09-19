@@ -1585,26 +1585,28 @@ HorseaEvosAttacks:
 	db EVOLVE_LEVEL, 32, SEADRA
 	db 0 ; no more evolutions
 	db 1, BUBBLE
-	db 8, SMOKESCREEN
-	db 11, BUBBLEBEAM	
-	db 15, LEER
-	db 19, TWISTER
-	db 25, AGILITY
-	db 32, OCTAZOOKA
+	db 1, SMOKESCREEN
+	db 13, AURORA_BEAM
+	db 18, BUBBLEBEAM
+	db 23, LEER
+	db 28, TWISTER
+	db 33, AGILITY
 	db 36, HYDRO_PUMP
-	db 40, OUTRAGE
+	db 41, OUTRAGE
+	db 46, HAZE
 	db 0 ; no more level-up moves
 
 SeadraEvosAttacks:
 	db EVOLVE_ITEM, DRAGON_SCALE, KINGDRA
 	db 0 ; no more evolutions
-	db 1, LEER
-	db 1, TWISTER
-	db 1, AGILITY
-	db 1, OCTAZOOKA	
-	db 32, OCTAZOOKA
+	db 1, SMOKESCREEN
+	db 1, BUBBLEBEAM
+	db 1, AURORA_BEAM
+	db 1, DRAGON_RAGE
+	db 35, AGILITY
 	db 38, HYDRO_PUMP
-	db 44, OUTRAGE	
+	db 43, OUTRAGE
+	db 48, HAZE
 	db 0 ; no more level-up moves	
 
 GoldeenEvosAttacks:
@@ -2785,11 +2787,11 @@ MisdreavusEvosAttacks:
 UnownEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, HIDDEN_POWER
+	db 5, ANCIENTPOWER	
 	db 10, MEAN_LOOK
 	db 15, GLARE
-	db 20, FUTURE_SIGHT
-	db 25, RECOVER
-	db 30, ANCIENTPOWER
+	db 20, RECOVER	
+	db 25, FUTURE_SIGHT
 	db 99, TELEPORT
 	db 0 ; no more level-up moves
 
@@ -3208,11 +3210,13 @@ HoundoomEvosAttacks:
 KingdraEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SMOKESCREEN
-	db 1, TWISTER
-	db 1, AGILITY
-	db 1, OCTAZOOKA	
+	db 1, BUBBLEBEAM
+	db 1, AURORA_BEAM
+	db 1, DRAGON_RAGE
+	db 35, AGILITY
 	db 38, HYDRO_PUMP
-	db 44, OUTRAGE	
+	db 43, OUTRAGE
+	db 48, HAZE
 	db 0 ; no more level-up moves
 
 PhanpyEvosAttacks:

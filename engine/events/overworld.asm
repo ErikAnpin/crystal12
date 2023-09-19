@@ -1028,8 +1028,8 @@ TeleportFunction:
 	dw .FailTeleport
 
 .TryTeleport:
-	call GetMapEnvironment
-	call CheckOutdoorMap
+;	call GetMapEnvironment
+;	call CheckOutdoorMap
 	jr z, .CheckIfSpawnPoint
 	jr .nope
 

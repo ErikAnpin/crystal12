@@ -813,7 +813,7 @@ TryEnemyFlee:
 	ld de, 1
 	ld hl, AlwaysFleeMons
 	call IsInArray
-	jr c, .Flee
+	jr c, .Stay
 
 	call BattleRandom
 	ld b, a
@@ -826,7 +826,7 @@ TryEnemyFlee:
 	ld hl, OftenFleeMons
 	call IsInArray
 	pop bc
-	jr c, .Flee
+	jr c, .Stay
 
 	ld a, b
 	cp 10 percent + 1
@@ -836,15 +836,15 @@ TryEnemyFlee:
 	ld de, 1
 	ld hl, SometimesFleeMons
 	call IsInArray
-	jr c, .Flee
+	jr c, .Stay
 
 .Stay:
 	and a
 	ret
 
-.Flee:
-	scf
-	ret
+;.Flee:
+;	scf
+;	ret
 
 INCLUDE "data/wild/flee_mons.asm"
 

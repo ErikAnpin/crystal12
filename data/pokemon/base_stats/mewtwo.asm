@@ -4,7 +4,7 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type
-	db 20 ; catch rate
+	db 10 ; catch rate
 	db 220 ; base exp
 	db NO_ITEM, BERSERK_GENE ; items
 	db GENDER_UNKNOWN ; gender ratio

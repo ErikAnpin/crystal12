@@ -4,7 +4,7 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, FLYING ; type
-	db 20 ; catch rate
+	db 10 ; catch rate
 	db 215 ; base exp
 	db NO_ITEM, BRIGHTPOWDER ; items
 	db GENDER_UNKNOWN ; gender ratio

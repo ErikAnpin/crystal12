@@ -1663,7 +1663,7 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 2, LARVITAR
 	db 2, PHANPY
-	db 2, PHANPY
+	db 3, PHANPY
 	; day
 	db 2, GEODUDE
 	db 2, SPEAROW
@@ -1671,7 +1671,7 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 2, LARVITAR
 	db 2, PHANPY
-	db 2, PHANPY
+	db 3, PHANPY
 	; nite
 	db 2, GEODUDE
 	db 2, HOOTHOOT
@@ -1679,7 +1679,7 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 2, LARVITAR
 	db 2, PHANPY
-	db 2, PHANPY
+	db 3, PHANPY
 	end_grass_wildmons
 
 	def_grass_wildmons SILVER_CAVE_OUTSIDE

@@ -4,9 +4,9 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type
-	db 20 ; catch rate
+	db 10 ; catch rate
 	db 215 ; base exp
-	db NO_ITEM, NO_ITEM ; items
+	db NO_ITEM, WATER_STONE ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
 	db 80 ; step cycles to hatch

@@ -4,9 +4,9 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC ; type
-	db 20 ; catch rate
+	db 10 ; catch rate
 	db 216 ; base exp
-	db NO_ITEM, NO_ITEM ; items
+	db NO_ITEM, THUNDERSTONE ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
 	db 80 ; step cycles to hatch

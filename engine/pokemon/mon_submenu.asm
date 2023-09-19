@@ -527,9 +527,9 @@ CanUseDig:
 	
 CanUseTeleport:
 ; Step 1: Location Check
-	call GetMapEnvironment
-	call CheckOutdoorMap
-	ret nz ; .fail
+;	call GetMapEnvironment
+;	call CheckOutdoorMap
+;	ret nz ; .fail
 	
 ; Step 2: Check if mon knows move
 	ld a, TELEPORT

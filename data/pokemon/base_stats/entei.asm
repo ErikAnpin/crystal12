@@ -4,9 +4,9 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type
-	db 20 ; catch rate
+	db 10 ; catch rate
 	db 217 ; base exp
-	db NO_ITEM, SACRED_ASH ; items
+	db NO_ITEM, FIRE_STONE ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
 	db 80 ; step cycles to hatch

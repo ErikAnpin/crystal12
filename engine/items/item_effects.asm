@@ -741,11 +741,15 @@ BallMultiplierFunctionTable:
 	db -1 ; end
 
 UltraBallMultiplier:
-; multiply catch rate by 2
-	sla b
-	ret nc
-	ld b, $ff
-	ret
+; multiply catch rate by 2.5
+	ld a, b
+    srl a
+    add b
+    add b
+    ld b, a
+    ret nc
+    ld b, $ff
+    ret
 
 SafariBallMultiplier:
 GreatBallMultiplier:
@@ -846,7 +850,8 @@ endr
 
 .compare
 	ld c, a
-	cp HIGH(1024) ; 102.4 kg
+	cp HIGH(504) ; previously 102.4 kg, now 50.4 kg - Pokemon that weigh
+	; between 50.5kg - 51.1kg (none exist in gen 2) will surpass the HIGH check
 	jr c, .lightmon
 
 	ld hl, .WeightsTable
@@ -876,29 +881,26 @@ endr
 	ret
 
 .WeightsTable:
-; weight factor, boost
-	db HIGH(2048),   0
-	db HIGH(3072),  20
-	db HIGH(4096),  30
+; weight factor, boost - modified categories to be more lenient
+	db HIGH(1024),   0
+	db HIGH(2048),  20
+	db HIGH(3072),  30
 	db HIGH(65280), 40
 
 LureBallMultiplier:
-; multiply catch rate by 3 if this is a fishing rod battle
+; multiply catch rate by 4 if this is a fishing rod battle
 	ld a, [wBattleType]
-	cp BATTLETYPE_FISH
-	ret nz
+    cp BATTLETYPE_FISH
+    ret nz
 
-	ld a, b
-	add a
-	jr c, .max
+    sla b
+    jr c, .max
 
-	add b
-	jr nc, .done
+    sla b ; 4x
+    ret nc
 .max
-	ld a, $ff
-.done
-	ld b, a
-	ret
+    ld b, $ff
+    ret
 
 MoonBallMultiplier:
 	push bc
@@ -941,15 +943,18 @@ MoonBallMultiplier:
 	ret
 
 LoveBallMultiplier:
+	push bc
+    farcall CheckBattleEggGroupCompatibility
+    pop bc
+    ; does species match? - Ultimate (from Idain): removed and instead checks
+	; for matching egg group
+;    ld a, [wTempEnemyMonSpecies]
+;    ld c, a
+;    ld a, [wTempBattleMonSpecies]
+;    cp c
+;    ret nz
 
-	; does species match?
-	ld a, [wTempEnemyMonSpecies]
-	ld c, a
-	ld a, [wTempBattleMonSpecies]
-	cp c
-	ret nz
-
-	; check player mon species
+    ; check player mon species
 	push bc
 	ld a, [wTempBattleMonSpecies]
 	ld [wCurPartySpecies], a
@@ -961,9 +966,9 @@ LoveBallMultiplier:
 	jr c, .done1 ; no effect on genderless
 
 	ld d, 0 ; male
-	jr nz, .got_player_gender
+	jr nz, .playermale
 	inc d   ; female
-.got_player_gender
+.playermale
 
 	; check wild mon species
 	push de
@@ -975,9 +980,9 @@ LoveBallMultiplier:
 	jr c, .done2 ; no effect on genderless
 
 	ld d, 0 ; male
-	jr nz, .got_wild_gender
+	jr nz, .wildmale
 	inc d   ; female
-.got_wild_gender
+.wildmale
 
 	ld a, d
 	pop de
@@ -985,8 +990,6 @@ LoveBallMultiplier:
 	pop bc
 	ret z
 
-	sla b
-	jr c, .max
 	sla b
 	jr c, .max
 	sla b
@@ -1003,34 +1006,52 @@ LoveBallMultiplier:
 	ret
 
 FastBallMultiplier:
+; This function is buggy.
+; Intent:  multiply catch rate by 4 if enemy mon is in one of the three
+;          FleeMons tables.
+; Reality: multiply catch rate by 4 if enemy mon is one of the first three in
+;          the first FleeMons table.
 	ld a, [wTempEnemyMonSpecies]
-	ld c, a
-	ld hl, FleeMons
-	ld d, 3
+    ld c, a
+    ld hl, FleeMons
+    ld d, 3
 
 .loop
-	ld a, BANK(FleeMons)
-	call GetFarByte
+    ld a, BANK(FleeMons)
+    call GetFarByte
 
-	inc hl
-	cp -1
-	jr z, .next
-	cp c
-	jr nz, .loop
-	sla b
+    inc hl
+    cp -1
+    jr z, .next
+    cp c
+    jr nz, .loop
+    ld a, d
+    dec a
+    jr z, .Alwaysflee
+    sla b
+    jr c, .max
+
+    sla b
 	jr c, .max
-
-	sla b
-	ret nc
+    ret
+.Alwaysflee
+    sla b
+    jr c, .max
+    
+    sla b
+	jr c, .max
+	
+    sla b
+    ret nc
 
 .max
-	ld b, $ff
-	ret
+    ld b, $ff
+    ret
 
 .next
-	dec d
-	jr nz, .loop
-	ret
+    dec d
+    jr nz, .loop
+    ret
 
 LevelBallMultiplier:
 ; multiply catch rate by 8 if player mon level / 4 > enemy mon level
@@ -1175,10 +1196,10 @@ VitaminEffect:
 
 	add hl, bc
 	ld a, [hl]
-	cp 255 ; nutrients cap increased (thanks Idain)
+	cp 240 ; nutrients cap increased (thanks Idain)
 	jr nc, NoEffectMessage
 
-	add 25 ; 6400 per vitamin (65535 max)
+	add 16 ; 4096 per vitamin
 	ld [hl], a
 	call UpdateStatsAfterItem
 

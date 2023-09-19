@@ -145,8 +145,8 @@ MonStatsInit:
 	farcall HDMATransferTilemapToWRAMBank3
 	call StatsScreen_CopyToTempMon
 	ld a, [wCurPartySpecies]
-	cp EGG
-	jr z, .egg
+;	cp EGG
+;	jr z, .egg
 	call StatsScreen_InitUpperHalf
 	ld hl, wStatsScreenFlags
 	set 4, [hl]
@@ -914,7 +914,7 @@ LoadOrangePage:
 
 .print
 	ld [wTextDecimalByte], a
-	hlcoord 1, 13
+	hlcoord 2, 13
 	ld de, wTextDecimalByte
 	lb bc, PRINTNUM_LEFTALIGN | 1, 3
 	call PrintNum
@@ -927,7 +927,7 @@ LoadOrangePage:
 
 .unknown_level
 	ld de, MetUnknownLevelString
-	hlcoord 1, 13
+	hlcoord 2, 13
 	call PlaceString
 	ret
 

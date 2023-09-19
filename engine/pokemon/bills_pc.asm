@@ -183,8 +183,6 @@ BillsPCDepositFuncStats:
 BillsPCDepositFuncRelease:
 	call BillsPC_CheckMail_PreventBlackout
 	jr c, BillsPCDepositFuncCancel
-	call BillsPC_IsMonAnEgg
-	jr c, BillsPCDepositFuncCancel
 	ld a, [wMenuCursorY]
 	push af
 	ld de, PCString_ReleasePKMN
@@ -439,8 +437,6 @@ BillsPC_Withdraw:
 .release
 	ld a, [wMenuCursorY]
 	push af
-	call BillsPC_IsMonAnEgg
-	jr c, .FailedRelease
 	ld de, PCString_ReleasePKMN
 	call BillsPC_PlaceString
 	call LoadStandardMenuHeader
@@ -1631,24 +1627,6 @@ BillsPC_CheckMail_PreventBlackout:
 	scf
 	ret
 
-BillsPC_IsMonAnEgg:
-	ld a, [wCurPartySpecies]
-	cp EGG
-	jr z, .egg
-	and a
-	ret
-
-.egg
-	ld de, PCString_NoReleasingEGGS
-	call BillsPC_PlaceString
-	ld de, SFX_WRONG
-	call WaitPlaySFX
-	call WaitSFX
-	ld c, 50
-	call DelayFrames
-	scf
-	ret
-
 BillsPC_StatsScreen:
 	call LowVolume
 	call BillsPC_CopyMon
@@ -2213,7 +2191,6 @@ PCString_Got: db "Got @"
 PCString_Non: db "Non.@" ; unreferenced
 PCString_BoxFull: db "The BOX is full.@"
 PCString_PartyFull: db "The party's full!@"
-PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 
 _ChangeBox:
 	call LoadStandardMenuHeader
