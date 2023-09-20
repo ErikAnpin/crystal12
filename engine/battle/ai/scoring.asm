@@ -925,14 +925,36 @@ AI_Smart_Bide:
 AI_Smart_ForceSwitch:
 ; Whirlwind, Roar.
 
+; Strongly encourage this move if the player has
+; a stat buff of at least 2 in any stat
+	push hl
+	ld hl, wPlayerAtkLevel
+	ld c, $8
+.check_next_stat
+	dec c
+	jr z, .no_stat_buff
+	ld a, [hli]
+	cp $9
+	jr c, .check_next_stat
+	pop hl
+; player has a stat buffed by at least 2
+	dec [hl]
+	cp $a
+	ret c
+; encourage more if buffed by >2
+	dec [hl]
+	ret
+
 ; Discourage this move if the player has not shown
 ; a super-effective move against the enemy.
 ; Consider player's type(s) if its moves are unknown.
 
+.no_stat_buff
+	pop hl
 	push hl
 	callfar CheckPlayerMoveTypeMatchups
 	ld a, [wEnemyAISwitchScore]
-	cp BASE_AI_SWITCH_SCORE
+	cp 10 ; neutral
 	pop hl
 	ret c
 	inc [hl]
@@ -2174,6 +2196,16 @@ AI_Smart_Rollout:
 	cp BASE_STAT_LEVEL + 1
 	jr nc, .maybe_discourage
 
+; If the mon has Defense Curl, and hasn't used it yet,
+; don't encourage Rollout
+	ld b, EFFECT_DEFENSE_CURL
+	call AIHasMoveEffect
+	jr nc, .no_defense_curl
+	ld a, [wEnemySubStatus2]
+	bit SUBSTATUS_CURLED, a
+	ret z
+
+.no_defense_curl
 ; 80% chance to greatly encourage this move otherwise.
 	call Random
 	cp 79 percent - 1
