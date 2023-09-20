@@ -754,14 +754,15 @@ UltraBallMultiplier:
 SafariBallMultiplier:
 GreatBallMultiplier:
 ParkBallMultiplier:
-; multiply catch rate by 1.5
+; multiply catch rate by 2.5
 	ld a, b
-	srl a
-	add b
-	ld b, a
-	ret nc
-	ld b, $ff
-	ret
+    srl a
+    add b
+    add b
+    ld b, a
+    ret nc
+    ld b, $ff
+    ret
 
 HeavyBall_GetDexEntryBank:
 	push hl
