@@ -1,4 +1,6 @@
 BattleCommand_SleepTalk:
+; sleeptalk
+
 	call ClearLastMove
 	ld a, [wAttackMissed]
 	and a
@@ -32,6 +34,8 @@ BattleCommand_SleepTalk:
 	add hl, bc
 	ld a, [hl]
 	pop hl
+	cp REST
+	jr z, .fail_rest
 	and a
 	jr z, .sample_move
 	ld e, a
@@ -42,8 +46,8 @@ BattleCommand_SleepTalk:
 	ld a, e
 	cp d
 	jr z, .sample_move
-	call .check_unselectable_move
-	jr c, .sample_move
+	call .check_two_turn_move
+	jr z, .sample_move
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	ld a, e
@@ -60,6 +64,10 @@ BattleCommand_SleepTalk:
 	call UpdateMoveData
 	jp ResetTurn
 
+.fail_rest
+	call AnimateFailedMove
+	ld hl, RestFailedText
+	jp StdBattleTextbox
 .fail
 	call AnimateFailedMove
 	jp TryPrintButItFailed
@@ -82,10 +90,10 @@ BattleCommand_SleepTalk:
 
 	ld a, [wEnemyDisabledMove]
 .got_move_2
-	ld b, a  ; Contains possible disabled move
+	ld b, a
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
-	ld c, a  ; Current move, aka Sleep Talk.
+	ld c, a
 	dec hl
 	ld d, NUM_MOVES
 .loop2
@@ -98,8 +106,8 @@ BattleCommand_SleepTalk:
 	cp b
 	jr z, .nope
 
-	call .check_unselectable_move
-	jr nc, .no_carry
+	call .check_two_turn_move
+	jr nz, .no_carry
 
 .nope
 	inc hl
@@ -114,21 +122,30 @@ BattleCommand_SleepTalk:
 	and a
 	ret
 
-.check_unselectable_move  
-; If move can't be selected, set Carry flag.
+.check_two_turn_move
 	push hl
 	push de
 	push bc
 
 	ld b, a
-	callfar GetMoveAnim
+	callfar GetMoveEffect
 	ld a, b
-	ld hl, SleepTalk_unallowed_moves
-	call IsInByteArray
 
 	pop bc
 	pop de
 	pop hl
-	ret
 
-INCLUDE "engine/battle/list_moves/SleepTalk_unallowed_moves.asm"
+	cp EFFECT_SKULL_BASH
+	ret z
+	cp EFFECT_SOLARBEAM
+	ret z
+	cp EFFECT_METRONOME
+	ret z
+	cp EFFECT_MIRROR_MOVE
+	ret z
+	cp EFFECT_FLY
+	ret z
+	cp EFFECT_BIDE
+	ret z
+	cp EFFECT_SKETCH
+	ret
