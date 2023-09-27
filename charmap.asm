@@ -158,6 +158,12 @@
 	charmap "x",         $b7
 	charmap "y",         $b8
 	charmap "z",         $b9
+	
+	charmap ">",		 $ba
+	charmap "<",		 $bb
+	charmap "=",		 $bc
+	charmap "+",		 $bd
+	charmap "<%>",		 $be
 
 	charmap "Ä",         $c0
 	charmap "Ö",         $c1

@@ -73,6 +73,17 @@ PokeGear:
 .InitTilemap:
 	call ClearBGPalettes
 	call ClearTilemap
+; ; time of day icons
+; 	push af
+; 	xor a
+; 	ldh [hBGMapMode], a
+; 	ld de, Pokedex_ExtraTiles tile $f
+; 	ld hl, vTiles2 tile $63
+; 	lb bc, BANK(Pokedex_ExtraTiles), 3 ; tiles
+; 	call Request2bpp
+; 	pop af
+; 	ldh [hBGMapMode], a
+;
 	call ClearSprites
 	call DisableLCD
 	xor a
@@ -310,17 +321,11 @@ InitPokegearTilemap:
 .Clock:
 	ld de, ClockTilemapRLE
 	call Pokegear_LoadTilemapRLE
-	hlcoord 12, 1
-	ld de, .switch
-	call PlaceString
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call Textbox
 	call Pokegear_UpdateClock
 	ret
-
-.switch
-	db " SWITCH▶@"
 
 .Map:
 	ld a, [wPokegearMapPlayerIconLandmark]
@@ -466,6 +471,9 @@ PokegearClock_Joypad:
 	and A_BUTTON | B_BUTTON | START | SELECT
 	jr nz, .quit
 	ld a, [hl]
+	and D_LEFT
+	jr nz, .left
+	ld a, [hl]
 	and D_RIGHT
 	ret z
 	ld a, [wPokegearFlags]
@@ -481,6 +489,16 @@ PokegearClock_Joypad:
 	jr z, .no_phone_card
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
+	jr .done
+.left
+	; if have radio card, load that, else, load phone
+	ld a, [wPokegearFlags]
+	bit POKEGEAR_RADIO_CARD_F, a
+	jr nz, .radio_card
+	jr .no_map_card
+.radio_card
+	ld c, POKEGEARSTATE_RADIOINIT
+	ld b, POKEGEARCARD_RADIO
 	jr .done
 
 .no_phone_card
@@ -507,22 +525,123 @@ PokegearClock_Joypad:
 	ret
 
 Pokegear_UpdateClock:
-	hlcoord 3, 5
-	lb bc, 5, 14
+	; makes the grey colored box
+	hlcoord 1, 5
+	lb bc, 6, 18
 	call ClearBox
+
 	ldh a, [hHours]
 	ld b, a
 	ldh a, [hMinutes]
 	ld c, a
-	decoord 6, 8
+	decoord 11, 1
 	farcall PrintHoursMins
 	ld hl, .GearTodayText
-	bccoord 6, 6
+	bccoord 2, 6
 	call PlaceHLTextAtBC
-	ret
 
-	db "ごぜん@"
-	db "ごご@"
+	; draw border
+	; ; Fix center Box since i cant find the func that originally drew this one
+	hlcoord 0, 4
+	ld [hl], $06 ; left upper corner
+	hlcoord 19, 4
+	ld [hl], $17 ; right upper corner
+	hlcoord 0, 11
+	ld [hl], $26 ; left lower corner
+	hlcoord 19, 11
+	ld [hl], $27 ; right lower corner
+	; draw horizontal bars
+	hlcoord 1, 4
+	ld a, $07
+	ld bc, 18
+	call ByteFill
+	hlcoord 1, 11
+	ld a, $07
+	ld bc, 18
+	call ByteFill
+	
+	hlcoord 0, 5
+	lb bc, 6, 1
+	ld a, $16
+	call FillBoxWithByte
+	
+	hlcoord 19, 5
+	lb bc, 6, 1
+	ld a, $16
+	call FillBoxWithByte
+	
+	; Map Location Name
+	; d ; map num
+	; e ; map group
+	ld a, [wMapGroup]
+	ld e, a
+	ld a, [wMapNumber]
+	ld d, a
+	farcall GetMapGroupNum_Name
+	; return string ptr in de
+	ld a, BANK(MapGroupNum_Names)
+	hlcoord 2, 8
+	call PlaceFarString
+	; Fishing group
+	; d ; map num
+	; e ; map group
+	ld a, [wMapGroup]
+	ld e, a
+	ld a, [wMapNumber]
+	ld d, a
+	; given map info in 'de'
+	; return: string ptr in 'de'
+	; if 'de' is zero, no fishing group on map
+	farcall GetMapsFishGroup
+	ld a, d
+	and a
+	jr nz, .print_fish_group
+	ld a, e
+	and a
+	jr z, .print_tod
+.print_fish_group
+	ld a, BANK(FishGroups_Names)
+	hlcoord 8, 10
+	call PlaceFarString
+	hlcoord 3, 10
+	ld de, .FishGrpStr
+	call PlaceString
+.print_tod
+	ld a, [wTimeOfDay]
+	and a
+	jr z, .Morn
+	cp 1
+	jr z, .Day
+	ld de, .NiteStr
+.got_tod		
+	hlcoord 11, 6
+	call PlaceString
+
+	hlcoord 11, 0
+	ld [hl], $30 ; round edge
+	inc hl
+	ld [hl], $7f
+	hlcoord 11, 2
+	ld [hl], $32
+	inc hl
+	ld [hl], $7f
+	ret
+.Morn
+	ld de, .MornStr
+	jr .got_tod
+.Day
+	ld de, .DayStr
+	jr .got_tod
+
+.MornStr:
+	db "MORN@"
+.DayStr:
+	db "DAYTIME@"
+.NiteStr:
+	db "NITE@"
+	; db "NIGHT@"
+.FishGrpStr:
+	db "FISH:@"	
 
 .GearTodayText:
 	text_far _GearTodayText
@@ -758,6 +877,10 @@ PokegearRadio_Joypad:
 	ld a, [hl]
 	and D_LEFT
 	jr nz, .left
+	ld a, [hl]
+	and D_RIGHT ; act like you have no phone and no map going left, takes to clock
+	; jr nz, .right	
+	jr nz, .no_map
 	ld a, [wPokegearRadioChannelAddr]
 	ld l, a
 	ld a, [wPokegearRadioChannelAddr + 1]
@@ -775,6 +898,7 @@ PokegearRadio_Joypad:
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
 	jr .switch_page
+.right
 
 .no_phone
 	ld a, [wPokegearFlags]
@@ -843,9 +967,14 @@ PokegearPhone_Joypad:
 .right
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_RADIO_CARD_F, a
-	ret z
+	; ret z
+	jr z, .no_map ; goes to clock	
+; .radio
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
+	jr .switch_page
+; .no_radio ; go to clock
+
 .switch_page
 	call Pokegear_SwitchPage
 	ret
@@ -1769,7 +1898,7 @@ _TownMap:
 	xor a
 	ld [wVramState], a
 
-	call ClearBGPalettes
+	; call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
@@ -1824,7 +1953,7 @@ _TownMap:
 	ldh [hInMenu], a
 	pop af
 	ld [wOptions], a
-	call ClearBGPalettes
+	; call ClearBGPalettes
 	ret
 
 .loop
@@ -2372,8 +2501,10 @@ Pokedex_GetArea:
 	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON | B_BUTTON
-	jr nz, .a_b
+	and B_BUTTON
+	jr nz, .b
+	and A_BUTTON
+	jr nz, .a
 	ldh a, [hJoypadDown]
 	and SELECT
 	jr nz, .select
@@ -2386,8 +2517,9 @@ Pokedex_GetArea:
 .next
 	call DelayFrame
 	jr .loop
-
-.a_b
+.a
+	
+.b
 	call ClearSprites
 	pop af
 	ld [wTownMapCursorLandmark], a
@@ -2416,9 +2548,10 @@ Pokedex_GetArea:
 	ret
 
 .right
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	ret z
+; only reveal Kanto map if beaten league: disabled
+	; ld a, [wStatusFlags]
+	; bit STATUSFLAGS_HALL_OF_FAME_F, a
+	; ret z
 	ldh a, [hWY]
 	and a
 	ret z
@@ -2555,10 +2688,10 @@ Pokedex_GetArea:
 
 .PlayerOAM:
 	; y pxl, x pxl, tile offset
-	db -1 * TILE_WIDTH, -1 * TILE_WIDTH, 0 ; top left
-	db -1 * TILE_WIDTH,  0 * TILE_WIDTH, 1 ; top right
-	db  0 * TILE_WIDTH, -1 * TILE_WIDTH, 2 ; bottom left
-	db  0 * TILE_WIDTH,  0 * TILE_WIDTH, 3 ; bottom right
+	db -1 * 8, -1 * 8, 0 ; top left
+	db -1 * 8,  0 * 8, 1 ; top right
+	db  0 * 8, -1 * 8, 2 ; bottom left
+	db  0 * 8,  0 * 8, 3 ; bottom right
 	db $80 ; terminator
 
 .CheckPlayerLocation:
@@ -2658,8 +2791,8 @@ TownMapPals:
 ; Current tile
 	ld a, [hli]
 	push hl
-; The palette map covers tiles $00 to $5f; $60 and above use palette 0
-	cp $60
+; The palette map covers tiles $00 to $67; $68 and above use palette 0
+	cp $68
 	jr nc, .pal0
 
 ; The palette data is condensed to nybbles, least-significant first.

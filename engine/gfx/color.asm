@@ -1360,7 +1360,24 @@ LoadMapPals:
 	ld de, wOBPals1 palette PAL_OW_ROCK + 2
 	ld bc, 1 palettes - 2
 	ld a, BANK(wOBPals1)
-	call FarCopyWRAM	
+	call FarCopyWRAM
+	ret
+
+
+LoadSingleBlackPal:
+	; Destination address of the Palette and Slot is passed in 'de'
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBGPals1)
+	ldh [rSVBK], a
+	xor a ; the color black is $0000
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+
+	pop af
+	ldh [rSVBK], a
 	ret
 
 INCLUDE "data/maps/environment_colors.asm"
