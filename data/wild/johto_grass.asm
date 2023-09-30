@@ -61,225 +61,225 @@ JohtoGrassWildMons:
 	def_grass_wildmons TIN_TOWER_2F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VICTREEBEL
+	db 44, VICTREEBEL
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VICTREEBEL
+	db 44, VICTREEBEL
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VICTREEBEL
+	db 44, VICTREEBEL
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_3F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VICTREEBEL
+	db 44, VICTREEBEL
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VICTREEBEL
+	db 44, VICTREEBEL
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VICTREEBEL
+	db 44, VICTREEBEL
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_4F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VENOMOTH
+	db 44, VENOMOTH
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VENOMOTH
+	db 44, VENOMOTH
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VENOMOTH
+	db 44, VENOMOTH
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_5F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VENOMOTH
+	db 44, VENOMOTH
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VENOMOTH
+	db 44, VENOMOTH
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, VENOMOTH
+	db 44, VENOMOTH
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_6F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, NOCTOWL
+	db 44, NOCTOWL
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, NOCTOWL
+	db 44, NOCTOWL
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, NOCTOWL
+	db 44, NOCTOWL
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_7F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, NOCTOWL
+	db 44, NOCTOWL
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, NOCTOWL
+	db 44, NOCTOWL
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, NOCTOWL
+	db 44, NOCTOWL
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_8F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, MURKROW
+	db 44, MURKROW
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, MURKROW
+	db 44, MURKROW
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, MURKROW
+	db 44, MURKROW
+	db 45, MISDREAVUS
+	db 46, MISDREAVUS
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons TIN_TOWER_9F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, MURKROW
+	db 44, MURKROW
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; day
-	db 20, RATTATA
-	db 21, RATICATE
-	db 22, FURRET
-	db 22, RATICATE
-	db 23, GASTLY
-	db 24, MISDREAVUS
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, MURKROW
+	db 44, MURKROW
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	; nite
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, MISDREAVUS
-	db 22, HOOTHOOT
-	db 23, RATICATE
-	db 24, RATICATE
-	db 24, QUILAVA
+	db 44, RATICATE
+	db 45, RATICATE
+	db 46, MURKROW
+	db 44, MURKROW
+	db 45, GENGAR
+	db 46, GENGAR
+	db 44, TYPHLOSION
 	end_grass_wildmons
 
 	def_grass_wildmons BURNED_TOWER_1F

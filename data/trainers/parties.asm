@@ -1524,7 +1524,11 @@ GruntMGroup:
 
 	; GRUNTM (31)
 	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 40, CROBAT
+	db 49, CROBAT	
+	db 48, SLOWKING
+	db 47, GLIGAR
+	db 50, MAGMAR
+	db 51, PINSIR
 	db -1 ; end
 
 GentlemanGroup:
@@ -1814,7 +1818,7 @@ FisherGroup:
 
 	; FISHER (13)
 	db "MARTIN@", TRAINERTYPE_NORMAL
-	db 45, OCTILLERY
+	db 45, TENTACRUEL
 	db 48, GYARADOS
 	db 46, DRAGONAIR
 	db -1 ; end
@@ -1868,7 +1872,7 @@ FisherGroup:
 
 	; FISHER (21)
 	db "SCOTT@", TRAINERTYPE_NORMAL
-	db 38, QWILFISH
+	db 38, MANTINE
 	db 38, QWILFISH
 	db 42, SEAKING
 	db -1 ; end
@@ -1987,7 +1991,7 @@ SwimmerMGroup:
 	db "TONY@", TRAINERTYPE_NORMAL
 	db 13, STARYU
 	db 18, STARMIE
-	db 16, HORSEA
+	db 16, CORSOLA
 	db -1 ; end
 
 	; SWIMMERM (14)
@@ -2022,7 +2026,7 @@ SwimmerMGroup:
 	; SWIMMERM (18)
 	db "SETH@", TRAINERTYPE_NORMAL
 	db 46, QUAGSIRE
-	db 46, OCTILLERY
+	db 46, POLITOED
 	db 46, POLIWRATH
 	db -1 ; end
 
@@ -2116,6 +2120,7 @@ SwimmerFGroup:
 	; SWIMMERF (12)
 	db "DAWN@", TRAINERTYPE_NORMAL
 	db 49, LAPRAS
+	db 49, SLOWBRO
 	db -1 ; end
 
 	; SWIMMERF (13)
@@ -2127,7 +2132,7 @@ SwimmerFGroup:
 	db "NICOLE@", TRAINERTYPE_NORMAL
 	db 45, MARILL
 	db 46, AZUMARILL
-	db 47, LAPRAS
+	db 47, MANTINE
 	db -1 ; end
 
 	; SWIMMERF (15)
@@ -2138,14 +2143,14 @@ SwimmerFGroup:
 
 	; SWIMMERF (16)
 	db "JODY@", TRAINERTYPE_NORMAL
-	db 20, SEAKING
+	db 20, CORSOLA
 	db -1 ; end
 
 	; SWIMMERF (17)
 	db "NIKKI@", TRAINERTYPE_NORMAL
 	db 44, SEEL
 	db 45, SEEL
-	db 46, SEEL
+	db 46, DEWGONG
 	db 47, DEWGONG
 	db -1 ; end
 
@@ -2609,7 +2614,7 @@ BikerGroup:
 	db "ZEKE@", TRAINERTYPE_NORMAL
 	db 45, WEEZING
 	db 46, CROBAT
-	db 48, QWILFISH
+	db 48, SNEASEL
 	db -1 ; end
 
 	; BIKER (6)

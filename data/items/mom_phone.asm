@@ -6,8 +6,8 @@ MACRO momitem
 ENDM
 
 MomItems_1:
-	momitem      0,   350, MOM_ITEM, SUPER_POTION
-	momitem      0,   200, MOM_ITEM, FULL_HEAL
+	momitem      0,   350,  MOM_ITEM, SUPER_POTION
+	momitem      0,   200,  MOM_ITEM, FULL_HEAL
 	momitem      0,   1500, MOM_ITEM, ELIXER
 	momitem      0,   2400, MOM_ITEM, PP_UP
 	momitem      0,   2400, MOM_ITEM, RARE_CANDY

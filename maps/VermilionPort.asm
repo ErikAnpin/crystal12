@@ -32,8 +32,9 @@ VermilionPortMew:
 	faceplayer
 	opentext
 	writetext MewText
+	yesorno
+	pause 15	
 	cry MEW
-	pause 15
 	closetext
 	setevent EVENT_FOUGHT_MEW
 	loadvar VAR_BATTLETYPE, BATTLETYPE_ROAMING	
@@ -44,7 +45,11 @@ VermilionPortMew:
 	end
 
 MewText:
-	text "Mew!"
+	text "A #MON may be"
+	line "able to move this."
+
+	para "Want to use"
+	line "STRENGTH?"
 	done				
 	
 VermilionPortNoopScene:

@@ -1285,13 +1285,14 @@ OnixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, SCREECH
-	db 10, BIND
+	db 9, BIND
 	db 14, ROCK_THROW
-	db 23, HARDEN
-	db 27, RAGE
-	db 36, SANDSTORM
-	db 38, ROCK_SLIDE
-	db 40, SLAM
+	db 18, HARDEN
+	db 23, RAGE
+	db 27, SANDSTORM
+	db 32, ROCK_SLIDE
+	db 36, SLAM
+	db 40, EARTHQUAKE
 	db 45, EXPLOSION
 	db 0 ; no more level-up moves
 
@@ -1527,8 +1528,8 @@ RhyhornEvosAttacks:
 RhydonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, STOMP
-	db 1, MAGNITUDE
 	db 1, SCARY_FACE
+	db 1, ROCK_SLIDE
 	db 1, HORN_DRILL
 	db 46, TAKE_DOWN	
 	db 50, ROCK_SLIDE
@@ -1838,7 +1839,7 @@ EeveeEvosAttacks:
 	db 30, GROWTH
 	db 33, RAGE
 	db 36, BATON_PASS
-	db 42, TAKE_DOWN
+	db 40, TAKE_DOWN
 	db 0 ; no more level-up moves
 
 VaporeonEvosAttacks:
@@ -1853,9 +1854,9 @@ VaporeonEvosAttacks:
 	db 30, GROWTH
 	db 33, LICK
 	db 36, AURORA_BEAM
-	db 42, ACID_ARMOR
-	db 47, HAZE
-	db 52, HYDRO_PUMP
+	db 40, ACID_ARMOR
+	db 43, HAZE
+	db 47, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
 JolteonEvosAttacks:
@@ -1870,9 +1871,9 @@ JolteonEvosAttacks:
 	db 30, GROWTH
 	db 33, DOUBLE_TEAM
 	db 36, PIN_MISSILE
-	db 42, THUNDER_WAVE
-	db 47, AGILITY
-	db 52, THUNDER
+	db 40, THUNDER_WAVE
+	db 43, AGILITY
+	db 47, THUNDER
 	db 0 ; no more level-up moves
 
 FlareonEvosAttacks:
@@ -1887,9 +1888,9 @@ FlareonEvosAttacks:
 	db 30, GROWTH
 	db 33, REFLECT
 	db 36, FLAME_WHEEL
-	db 42, LOW_KICK
-	db 47, LEER
-	db 52, FLAMETHROWER
+	db 40, LOW_KICK
+	db 43, LEER
+	db 47, FIRE_BLAST
 	db 0 ; no more level-up moves
 
 PorygonEvosAttacks:
@@ -2718,9 +2719,9 @@ EspeonEvosAttacks:
 	db 30, GROWTH
 	db 33, FLAME_WHEEL
 	db 36, SWIFT
-	db 42, PSYCHIC_M
-	db 47, PSYCH_UP
-	db 52, MORNING_SUN
+	db 40, PSYCHIC_M
+	db 43, PSYCH_UP
+	db 47, MORNING_SUN
 	db 99, TELEPORT
 	db 0 ; no more level-up moves
 
@@ -2736,9 +2737,9 @@ UmbreonEvosAttacks:
 	db 30, GROWTH
 	db 33, TOXIC
 	db 36, CONFUSE_RAY
-	db 42, MEAN_LOOK
-	db 47, SCREECH
-	db 52, MOONLIGHT
+	db 40, MEAN_LOOK
+	db 43, SCREECH
+	db 47, MOONLIGHT
 	db 0 ; no more level-up moves
 
 MurkrowEvosAttacks:
@@ -2882,15 +2883,15 @@ SteelixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, SCREECH
-	db 10, BIND
+	db 9, BIND
 	db 14, ROCK_THROW
-	db 23, HARDEN
-	db 27, RAGE
-	db 36, SANDSTORM
-	db 38, ROCK_SLIDE
-	db 40, SLAM
-	db 49, CRUNCH
-	db 54, EXPLOSION
+	db 18, HARDEN
+	db 23, RAGE
+	db 27, SANDSTORM
+	db 32, IRON_TAIL
+	db 36, CRUNCH
+	db 40, EARTHQUAKE
+	db 45, EXPLOSION
 	db 0 ; no more level-up moves
 
 SnubbullEvosAttacks:

@@ -88,7 +88,6 @@ VermilionGroupSprites:
 	db SPRITE_MACHOP
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
-	db SPRITE_BOULDER
 	db 0 ; end
 
 CeladonGroupSprites:
@@ -302,6 +301,7 @@ FastShipGroupSprites:
 	; 6 of max 9 walking sprites
 	db SPRITE_HO_OH
 	db SPRITE_ROCK
+	db SPRITE_BOULDER	
 	db 0 ; end
 
 CableClubGroupSprites:
