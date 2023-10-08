@@ -45,7 +45,6 @@ SpecialsPointers::
 	add_special DayCareLady
 	add_special DayCareManOutside
 	add_special MoveDeletion
-	add_special MoveReminder	
 	add_special BankOfMom
 	add_special MagnetTrain
 	add_special NameRival
@@ -180,8 +179,12 @@ SpecialsPointers::
 	add_special AskRememberPassword
 	add_special LoadMapPalettes
 	add_special UnusedFindItemInPCOrBag
-	add_special HiddenPowerGuru
-
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
+
+	add_special HiddenPowerGuru
+	add_special MoveReminder
+	add_special BillBoxSwitchCheck
+	add_special BillBoxSwitch
+
 	add_special UnusedDummySpecial ; unused
