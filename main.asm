@@ -134,9 +134,6 @@ INCLUDE "engine/battle/trainer_huds.asm"
 INCLUDE "data/trainers/class_names.asm"
 INCLUDE "engine/battle/ai/redundant.asm"
 INCLUDE "engine/events/move_deleter.asm"
-INCLUDE "engine/events/move_reminder.asm"
-INCLUDE "engine/events/hidden_power_guru.asm"
-INCLUDE "engine/events/bill_switch_box.asm"
 INCLUDE "engine/link/mystery_gift_2.asm"
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/pokemon/print_move_description.asm"
@@ -683,9 +680,11 @@ INCLUDE "engine/events/battle_tower/load_trainer.asm"
 INCLUDE "engine/events/odd_egg.asm"
 
 
-SECTION "Battle Weather Images", ROMX
+SECTION "Custom Stuff", ROMX
 
-INCLUDE "gfx/weather_images.asm
+INCLUDE "engine/events/move_reminder.asm"
+INCLUDE "engine/events/hidden_power_guru.asm"
+INCLUDE "engine/events/bill_switch_box.asm"
 
 SECTION "Battle Weather Images", ROMX
 
@@ -693,6 +692,7 @@ INCLUDE "gfx/weather_images.asm"
 
 
 SECTION "DEX GFX 2", ROMX
+
 PokedexLZ:
 INCBIN "gfx/pokedex/pokedex.2bpp.lz"
 PokedexSlowpokeLZ:
