@@ -1,6 +1,6 @@
 IconPointers:
-; entries correspond to ICON_* constants
-	dw NullIcon
+; entries correspond to ICON_* constants (see constants/icon_constants.asm)
+	table_width 2, IconPointers
 	dw BulbasaurIcon
 	dw IvysaurIcon
 	dw VenusaurIcon
@@ -29,10 +29,10 @@ IconPointers:
 	dw RaichuIcon
 	dw SandshrewIcon
 	dw SandslashIcon
-	dw NidoranFIcon
+	dw Nidoran_FIcon
 	dw NidorinaIcon
 	dw NidoqueenIcon
-	dw NidoranMIcon
+	dw Nidoran_MIcon
 	dw NidorinoIcon
 	dw NidokingIcon
 	dw ClefairyIcon
@@ -83,7 +83,7 @@ IconPointers:
 	dw SlowbroIcon
 	dw MagnemiteIcon
 	dw MagnetonIcon
-	dw FarfetchdIcon
+	dw Farfetch_DIcon
 	dw DoduoIcon
 	dw DodrioIcon
 	dw SeelIcon
@@ -122,7 +122,7 @@ IconPointers:
 	dw SeakingIcon
 	dw StaryuIcon
 	dw StarmieIcon
-	dw MrMimeIcon
+	dw Mr_MimeIcon
 	dw ScytherIcon
 	dw JynxIcon
 	dw ElectabuzzIcon
@@ -250,6 +250,10 @@ IconPointers:
 	dw PupitarIcon
 	dw TyranitarIcon
 	dw LugiaIcon
-	dw HoOhIcon
+	dw Ho_OhIcon
 	dw CelebiIcon
 	dw EggIcon
+	; dw FishIcon
+	; dw BirdIcon
+	; dw MonsterIcon
+	assert_table_length NUM_ICONS

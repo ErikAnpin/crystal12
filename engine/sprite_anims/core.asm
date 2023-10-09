@@ -291,10 +291,10 @@ UpdateAnimFrame:
 	; [de] = GetSpriteOAMAttr([hl])
 	ld a, [hl]
 	cp -1
-	jr z, .skip_attributes	
+	jr z, .skip_attributes
 	call GetSpriteOAMAttr
 	ld [de], a
-.skip_attributes	
+.skip_attributes
 	inc hl
 	inc de
 	ld a, e

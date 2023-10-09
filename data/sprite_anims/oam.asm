@@ -369,10 +369,6 @@ SpriteAnimOAMData:
 
 .OAMData_PartyMonWithMail1:
 	db 4
-;	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
-;	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
-;	dbsprite -1,  0,  0,  0, $08, PAL_OW_RED
-;	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
 	dbsprite -1, -1,  0,  0, $00, -1
 	dbsprite  0, -1,  0,  0, $01, -1
 	dbsprite -1,  0,  0,  0, $08, PAL_ICON_RED
@@ -380,10 +376,6 @@ SpriteAnimOAMData:
 
 .OAMData_PartyMonWithMail2:
 	db 4
-;	dbsprite -1, -1,  0,  0, $04, PAL_OW_RED
-;	dbsprite  0, -1,  0,  0, $05, PAL_OW_RED
-;	dbsprite -1,  0,  0,  0, $08, PAL_OW_RED
-;	dbsprite  0,  0,  0,  0, $07, PAL_OW_RED
 	dbsprite -1, -1,  0,  0, $04, -1
 	dbsprite  0, -1,  0,  0, $05, -1
 	dbsprite -1,  0,  0,  0, $08, PAL_ICON_RED
@@ -391,10 +383,6 @@ SpriteAnimOAMData:
 
 .OAMData_PartyMonWithItem1:
 	db 4
-;	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
-;	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
-;	dbsprite -1,  0,  0,  0, $09, PAL_OW_RED
-;	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
 	dbsprite -1, -1,  0,  0, $00, -1
 	dbsprite  0, -1,  0,  0, $01, -1
 	dbsprite -1,  0,  0,  0, $09, PAL_ICON_RED
@@ -402,10 +390,6 @@ SpriteAnimOAMData:
 
 .OAMData_PartyMonWithItem2:
 	db 4
-;	dbsprite -1, -1,  0,  0, $04, PAL_OW_RED
-;	dbsprite  0, -1,  0,  0, $05, PAL_OW_RED
-;	dbsprite -1,  0,  0,  0, $09, PAL_OW_RED
-;	dbsprite  0,  0,  0,  0, $07, PAL_OW_RED
 	dbsprite -1, -1,  0,  0, $04, -1
 	dbsprite  0, -1,  0,  0, $05, -1
 	dbsprite -1,  0,  0,  0, $09, PAL_ICON_RED
