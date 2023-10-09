@@ -441,7 +441,7 @@ Pokedex_InitAnimatedMonIcon:
 	ld e, $19 ; $20
 .setxdone
 ; type is partymon icon
-	ld a, SPRITE_ANIM_INDEX_PARTY_MON
+	ld a, SPRITE_ANIM_OBJ_PARTY_MON
 	call _InitSpriteAnimStruct
 
 	ld a, [wCurIconTile]
@@ -452,7 +452,7 @@ Pokedex_InitAnimatedMonIcon:
 
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_NULL
+	ld [hl], SPRITE_ANIM_FUNC_NULL
 	
 	pop af
 	ld [wCurPartySpecies], a
