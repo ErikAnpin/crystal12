@@ -159,6 +159,7 @@ _ResetWRAM:
 
 	ld hl, wNumPCItems
 	call .InitList
+	call .PCExpShare
 
 	xor a
 	ld [wRoamMon1Species], a
@@ -230,6 +231,15 @@ endc
 	ld [hli], a
 	dec a
 	ld [hl], a
+	ret
+
+.PCExpShare:
+	ld a, EXP_SHARE
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantityChange], a
+	ld hl, wNumPCItems
+	call ReceiveItem
 	ret
 
 SetDefaultBoxNames:
