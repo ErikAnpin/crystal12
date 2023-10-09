@@ -603,18 +603,20 @@ Pokegear_UpdateClock:
 	ld a, BANK(FishGroups_Names)
 	hlcoord 8, 10
 	call PlaceFarString
-	hlcoord 3, 10
+	hlcoord 2, 10
 	ld de, .FishGrpStr
 	call PlaceString
 .print_tod
 	ld a, [wTimeOfDay]
-	and a
+	cp MORN_F
 	jr z, .Morn
-	cp 1
+	cp DAY_F
 	jr z, .Day
+	cp EVE_F
+	jr z, .Eve
 	ld de, .NiteStr
 .got_tod		
-	hlcoord 11, 6
+	hlcoord 14, 6
 	call PlaceString
 
 	hlcoord 11, 0
@@ -632,14 +634,18 @@ Pokegear_UpdateClock:
 .Day
 	ld de, .DayStr
 	jr .got_tod
+.Eve
+	ld de, .EveStr
+	jr .got_tod
 
 .MornStr:
 	db "MORN@"
 .DayStr:
-	db "DAYTIME@"
+	db "DAY@"
+.EveStr:
+	db "EVE@"	
 .NiteStr:
-	db "NITE@"
-	; db "NIGHT@"
+	db "NIGHT@"
 .FishGrpStr:
 	db "FISH:@"	
 
