@@ -109,3 +109,7 @@ SECTION "Sprites 3", ROMX
 
 ChrisRunSpriteGFX::            INCBIN "gfx/sprites/chris_run.2bpp"
 KrisRunSpriteGFX::             INCBIN "gfx/sprites/kris_run.2bpp"
+RattataBackSpriteGFX::         INCBIN "gfx/sprites/rattata_back.2bpp"
+DragoniteOWSpriteGFX::         INCBIN "gfx/sprites/dragonite_ow.2bpp"
+FarfetchDOWSpriteGFX::         INCBIN "gfx/sprites/farfetchd_ow.2bpp"
+AmphyOWSpriteGFX::             INCBIN "gfx/sprites/amphy_ow.2bpp"

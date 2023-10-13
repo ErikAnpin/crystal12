@@ -104,6 +104,10 @@
 	const SPRITE_RAIKOU ; 64
 	const SPRITE_CHRIS_RUN ; 65
 	const SPRITE_KRIS_RUN; 66
+	const SPRITE_RATTATA_BACK ;67
+	const SPRITE_DRAGONITE_OW ;68
+	const SPRITE_FARFETCHD_OW ;69
+	const SPRITE_AMPHY_OW ;70
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
