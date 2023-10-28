@@ -1444,13 +1444,20 @@ HeadbuttScript:
 
 	callasm TreeMonEncounter
 	iffalse .no_battle
-	closetext
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
 	end
 
 .no_battle
+	callasm TreeItemEncounter
+	iffalse .no_item
+	opentext
+	verbosegiveitem ITEM_FROM_MEM
+	closetext
+	end
+.no_item
+	opentext
 	writetext HeadbuttNothingText
 	waitbutton
 	closetext
@@ -1746,6 +1753,12 @@ Script_NotEvenANibble:
 	writetext RodNothingText
 	sjump Script_NotEvenANibble_FallThrough
 
+.line_snapped
+	writetext LineSnappedText
+	playsound SFX_RAZOR_WIND
+	waitbutton
+	sjump Script_NotEvenANibble_FallThrough
+
 .Movement_NotFacingUp:
 	fish_got_bite
 	fish_got_bite
@@ -1771,7 +1784,6 @@ Script_NotEvenANibble:
 Script_NotEvenANibble2:
 	scall Script_FishCastRod
 	writetext RodNothingText
-
 
 LineSnappedText:
 	text "The line snapped…"
