@@ -102,12 +102,12 @@ RockItemEncounter:
 	ret
 
 .RockItems:
-	db 4, EVERSTONE
-	db 8, STARDUST
-	db 16, STAR_PIECE
-	db 32, SOFT_SAND
-	db 32, HARD_STONE
-	db 64, BRICK_PIECE
+	db 2, EVERSTONE
+	db 4, STARDUST
+	db 8, STAR_PIECE
+	db 16, SOFT_SAND
+	db 16, HARD_STONE
+	db 32, BRICK_PIECE
 	db -1
 
 FishItemEncounter:
@@ -158,10 +158,10 @@ TreeItemEncounter:
 	ret
 	
 .TreeItems:
-	db 4, LEAF_STONE
-	db 8, BIG_MUSHROOM
-	db 16, TINYMUSHROOM
-	db 32, POISON_BARB
-	db 32, MIRACLE_SEED
-	db 64, MYSTERYBERRY
+	db 2, LEAF_STONE
+	db 4, BIG_MUSHROOM
+	db 8, TINYMUSHROOM
+	db 16, POISON_BARB
+	db 16, MIRACLE_SEED
+	db 32, MYSTERYBERRY
 	db -1
