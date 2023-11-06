@@ -11,7 +11,8 @@ MoveReminder:
 	ld hl, Text_MoveReminderWhichMon
 	call PrintText
 	call JoyWaitAorB
-
+	;fallthrough
+	.loop_party_menu
 	farcall SelectMonFromParty
 	jr c, .cancel
 
@@ -28,9 +29,10 @@ MoveReminder:
 	ld hl, Text_MoveReminderWhichMove
 	call PrintText
 	call JoyWaitAorB
-
+	;fallthrough
+	.loop_move_menu
 	call ChooseMoveToLearn
-	jr c, .skip_learn
+	jr c, .loop_party_menu
 
 	ld a, [wMenuSelection]
 	ld [wNamedObjectIndex], a
@@ -43,10 +45,8 @@ MoveReminder:
 	predef LearnMove
 	ld a, b
 	and a
-	jr z, .skip_learn
-	; fallthrough
-.skip_learn
-	call ReturnToMapWithSpeechTextbox
+	jr .loop_move_menu
+	
 .cancel
 	ld hl, Text_MoveReminderCancel
 	jp PrintText
