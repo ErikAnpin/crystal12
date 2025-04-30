@@ -4742,6 +4742,7 @@ PrintPlayerHUD:
 	hlcoord 14, 8
 	push af ; back up gender
 	push hl
+	ld bc, wPlayerSubStatus5 ; To check for Toxic
 	ld de, wBattleMonStatus
 	predef PlaceNonFaintStatus
 	pop hl
@@ -4819,6 +4820,7 @@ DrawEnemyHUD:
 	hlcoord 6, 1
 	push af
 	push hl
+	ld bc, wEnemySubStatus5 ; To check for Toxic
 	ld de, wEnemyMonStatus
 	predef PlaceNonFaintStatus
 	pop hl
