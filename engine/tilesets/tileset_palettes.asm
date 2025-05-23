@@ -25,7 +25,7 @@ LoadSpecialMapPalette:
 .darkness
 	call LoadDarknessPalette
 	scf
-	ret	
+	ret
 
 .pokecom_2f
 	call LoadPokeComPalette
@@ -73,7 +73,7 @@ LoadDarknessPalette:
 	jp FarCopyWRAM
 
 DarknessPalette:
-INCLUDE "gfx/tilesets/darkness.pal"	
+INCLUDE "gfx/tilesets/darkness.pal"
 
 LoadPokeComPalette:
 	ld a, BANK(wBGPals1)

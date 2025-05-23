@@ -5,7 +5,6 @@ LoadWildMonData:
 	xor a
 	ld [hli], a
 	ld [hli], a
-	ld [hli], a
 	ld [hl], a
 	jr .done_copy
 
