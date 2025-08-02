@@ -3,7 +3,7 @@
 	db  70,  95,  63,  78, 112,  90
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIRE, FIRE ; type
+	db FIRE, FIGHTING ; type
 	db 45 ; catch rate
 	db 167 ; base exp
 	db BURNT_BERRY, BURNT_BERRY ; items

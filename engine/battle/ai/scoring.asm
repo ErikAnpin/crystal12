@@ -321,7 +321,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HEAL,             AI_Smart_Heal
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen
-	dbw EFFECT_OHKO,             AI_Smart_Ohko
+	dbw EFFECT_CRIT_HIT,         AI_Smart_Crit
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
@@ -365,7 +365,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FURY_CUTTER,      AI_Smart_FuryCutter
 	dbw EFFECT_ATTRACT,          AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
-	dbw EFFECT_MAGNITUDE,        AI_Smart_Magnitude
+	dbw EFFECT_SPEED_UP_HIT,     AI_Smart_SpeedUpHit
 	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin
@@ -1004,20 +1004,6 @@ AI_Smart_Reflect:
 	inc [hl]
 	ret
 
-AI_Smart_Ohko:
-; Dismiss this move if player's level is higher than enemy's level.
-; Else, discourage this move is player's HP is below 50%.
-
-	ld a, [wBattleMonLevel]
-	ld b, a
-	ld a, [wEnemyMonLevel]
-	cp b
-	jp c, AIDiscourageMove
-	call AICheckPlayerHalfHP
-	ret c
-	inc [hl]
-	ret
-
 AI_Smart_TrapTarget:
 ; Bind, Wrap, Fire Spin, Clamp
 
@@ -1126,6 +1112,8 @@ AI_Smart_Confuse:
 	inc [hl]
 	ret
 
+AI_Smart_Crit:
+AI_Smart_SpeedUpHit:
 AI_Smart_SpDefenseUp2:
 ; Discourage this move if enemy's HP is lower than 50%.
 	call AICheckEnemyHalfHP
@@ -2251,7 +2239,6 @@ AI_Smart_Safeguard:
 	inc [hl]
 	ret
 
-AI_Smart_Magnitude:
 AI_Smart_Earthquake:
 ; Greatly encourage this move if the player is underground and the enemy is faster.
 	ld a, [wLastPlayerCounterMove]

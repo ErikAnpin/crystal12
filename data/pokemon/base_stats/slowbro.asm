@@ -3,7 +3,7 @@
 	db  95,  75, 120,  30, 100,  70
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, PSYCHIC_TYPE ; type
+	db WATER, GHOST ; type
 	db 75 ; catch rate
 	db 164 ; base exp
 	db NO_ITEM, KINGS_ROCK ; items

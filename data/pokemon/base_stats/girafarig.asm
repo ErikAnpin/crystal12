@@ -3,7 +3,7 @@
 	db  95,  85,  67,  72, 100,  67
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, PSYCHIC_TYPE ; type
+	db PSYCHIC_T, DARK ; type
 	db 60 ; catch rate
 	db 149 ; base exp
 	db MYSTERYBERRY, MYSTERYBERRY ; items

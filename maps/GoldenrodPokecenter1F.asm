@@ -16,7 +16,7 @@ GoldenrodPokecenter1FNurseScript:
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
 	checkcode VAR_BADGES
-	if_equal 3, .gsball
+	if_equal 4, .gsball
 	setval BATTLETOWERACTION_GSBALL
 	special BattleTowerAction
 	ifequal GS_BALL_AVAILABLE, .gsball
@@ -50,7 +50,7 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 
 GoldenrodPokecenter1F_GSBallSceneRight:
 	checkcode VAR_BADGES
-	if_equal 3, .gsball
+	if_equal 4, .gsball
 	setval BATTLETOWERACTION_GSBALL
 	special BattleTowerAction
 	ifequal GS_BALL_AVAILABLE, .gsball

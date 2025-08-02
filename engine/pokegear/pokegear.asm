@@ -469,7 +469,7 @@ PokegearClock_Joypad:
 	call .UpdateClock
 	ld hl, hJoyLast
 	ld a, [hl]
-	and PAD_BUTTONS
+	and B_BUTTON | START | SELECT
 	jr nz, .quit
 	ld a, [hl]
 	and D_LEFT

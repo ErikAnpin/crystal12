@@ -3,7 +3,7 @@
 	db  57, 110,  75,  60,  63,  72
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, FLYING ; type
+	db FLYING, FIGHTING ; type
 	db 45 ; catch rate
 	db 94 ; base exp
 	db NO_ITEM, STICK ; items

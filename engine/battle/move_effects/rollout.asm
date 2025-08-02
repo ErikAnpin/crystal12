@@ -1,4 +1,4 @@
-DEF MAX_ROLLOUT_COUNT EQU 5
+DEF MAX_ROLLOUT_COUNT EQU 3
 
 BattleCommand_CheckRollout:
 	ld de, wPlayerRolloutCount

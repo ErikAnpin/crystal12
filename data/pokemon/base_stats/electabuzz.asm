@@ -3,7 +3,7 @@
 	db  70, 103,  63, 100,  95,  85
 	;   hp  atk  def  spd  sat  sdf
 
-	db ELECTRIC, ELECTRIC ; type
+	db ELECTRIC, FIGHTING ; type
 	db 45 ; catch rate
 	db 156 ; base exp
 	db PRZCUREBERRY, PRZCUREBERRY ; items
