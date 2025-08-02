@@ -39,7 +39,7 @@ MoveEffectsPointers:
 	dw LightScreen
 	dw TriAttack
 	dw NormalHit
-	dw OHKOHit
+	dw CritHit
 	dw RazorWind
 	dw SuperFang
 	dw StaticDamage
@@ -127,7 +127,7 @@ MoveEffectsPointers:
 	dw Frustration
 	dw Safeguard
 	dw SacredFire
-	dw Magnitude
+	dw SpeedUpHit
 	dw BatonPass
 	dw Pursuit
 	dw RapidSpin
