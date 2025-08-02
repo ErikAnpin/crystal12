@@ -204,6 +204,7 @@ TryWildEncounter::
 
 .EncounterRate:
 	call GetMapEncounterRate
+	call ApplyRunningEffectOnEncounterRate
 	call ApplyMusicEffectOnEncounterRate
 	call ApplyCleanseTagEffectOnEncounterRate
 	call Random
@@ -221,6 +222,14 @@ GetMapEncounterRate:
 	ld b, 0
 	add hl, bc
 	ld b, [hl]
+	ret
+
+ApplyRunningEffectOnEncounterRate::
+; Running removes encounter rate.
+	ld a, [wPlayerState]
+	cp PLAYER_RUN
+	ret nz
+    ld b, 0
 	ret
 
 ApplyMusicEffectOnEncounterRate::

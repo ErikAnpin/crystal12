@@ -1,6 +1,5 @@
 BattleCommand_TripleKick:
-	ld a, [wBattleAnimParam]
-	ld b, a
+	ld b, 3
 	inc b
 	ld hl, wCurDamage + 1
 	ld a, [hld]

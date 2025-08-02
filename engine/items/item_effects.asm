@@ -218,10 +218,6 @@ PokeBallEffect:
 	cp BATTLETYPE_TUTORIAL
 	jr z, .room_in_party
 
-	ld a, [wBattleType]
-	cp BATTLETYPE_TUTORIAL
-	jr z, .room_in_party
-
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr nz, .room_in_party
@@ -236,8 +232,6 @@ PokeBallEffect:
 .room_in_party
 	xor a
 	ld [wWildMon], a
-	ld a, [wBattleType]
-	cp BATTLETYPE_CONTEST
 	ld a, [wBattleType]
 	cp BATTLETYPE_CONTEST
 	call nz, ReturnToBattle_UseBall
@@ -364,7 +358,6 @@ PokeBallEffect:
 	ld d, a
 	push de
 	ld a, [wBattleMonItem]
-	ld b, a
 	ld b, a
 	farcall GetItemHeldEffect
 	ld a, b
@@ -776,7 +769,6 @@ HeavyBall_GetDexEntryBank:
 	push de
 	ld a, [wEnemyMonSpecies]
 	dec a
-	dec a
 	rlca
 	rlca
 	maskbits NUM_DEX_ENTRY_BANKS
@@ -946,7 +938,6 @@ MoonBallMultiplier:
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp MOON_STONE
-	cp MOON_STONE
 	pop bc
 	ret nz
 
@@ -1005,7 +996,6 @@ LoveBallMultiplier:
 	pop de
 	cp d
 	pop bc
-	ret z
 	ret z
 
 	sla b

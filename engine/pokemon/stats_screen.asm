@@ -3,9 +3,9 @@
 	const GREEN_PAGE  ; 1
 	const BLUE_PAGE   ; 2
 	const ORANGE_PAGE ; 3
-NUM_STAT_PAGES EQU const_value
+DEF NUM_STAT_PAGES EQU const_value
 
-STAT_PAGE_MASK EQU %00000011
+DEF STAT_PAGE_MASK EQU %00000011
 
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
