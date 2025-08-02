@@ -231,7 +231,6 @@ CheckOwnMon:
 
 	ld hl, wPlayerName
 
-; BUG: CheckOwnMon only checks the first five letters of OT names (see docs/bugs_and_glitches.md)
 rept PLAYER_NAME_LENGTH - 2
 	ld a, [de]
 	cp [hl]

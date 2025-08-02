@@ -1054,8 +1054,8 @@ _PokegearAskWhoCallText::
 	done
 
 _PokegearPressButtonText::
-	text "Press any button"
-	line "to exit."
+	text "Navigate to the"
+	line "sides."
 	done
 
 _PokegearAskDeleteText::
