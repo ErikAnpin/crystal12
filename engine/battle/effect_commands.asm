@@ -175,8 +175,6 @@ BattleCommand_CheckTurn:
 	jr .not_asleep
 
 .fast_asleep
-	ld hl, FastAsleepText
-	call StdBattleTextbox
 
 	; Snore and Sleep Talk bypass sleep.
 	ld a, [wCurPlayerMove]
@@ -185,8 +183,6 @@ BattleCommand_CheckTurn:
 	cp SLEEP_TALK
 	jr z, .not_asleep
 
-	call CantMove
-	jp EndTurn
 
 .not_asleep
 
@@ -200,12 +196,6 @@ BattleCommand_CheckTurn:
 	jr z, .not_frozen
 	cp SACRED_FIRE
 	jr z, .not_frozen
-
-	ld hl, FrozenSolidText
-	call StdBattleTextbox
-
-	call CantMove
-	jp EndTurn
 
 .not_frozen
 
@@ -272,8 +262,6 @@ BattleCommand_CheckTurn:
 	ld [hl], a
 
 	call HitConfusion
-	call CantMove
-	jp EndTurn
 
 .not_confused
 
@@ -288,15 +276,6 @@ BattleCommand_CheckTurn:
 	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
-	; 50% chance of infatuation
-	call BattleRandom
-	cp 50 percent + 1
-	jr c, .not_infatuated
-
-	ld hl, InfatuationText
-	call StdBattleTextbox
-	call CantMove
-	jp EndTurn
 
 .not_infatuated
 
@@ -320,15 +299,7 @@ BattleCommand_CheckTurn:
 	bit PAR, [hl]
 	ret z
 
-	; 25% chance to be fully paralyzed
-	call BattleRandom
-	cp 25 percent
 	ret nc
-
-	ld hl, FullyParalyzedText
-	call StdBattleTextbox
-	call CantMove
-	jp EndTurn
 
 CantMove:
 	ld a, BATTLE_VARS_SUBSTATUS1
@@ -385,8 +356,6 @@ CheckEnemyTurn:
 	and a
 	jr z, .woke_up
 
-	ld hl, FastAsleepText
-	call StdBattleTextbox
 	xor a
 	ld [wNumHits], a
 	ld de, ANIM_SLP
@@ -413,8 +382,6 @@ CheckEnemyTurn:
 	jr z, .not_asleep
 	cp SLEEP_TALK
 	jr z, .not_asleep
-	call CantMove
-	jp EndTurn
 
 .not_asleep
 
@@ -429,11 +396,6 @@ CheckEnemyTurn:
 	cp SACRED_FIRE
 	jr z, .not_frozen
 
-	ld hl, FrozenSolidText
-	call StdBattleTextbox
-	call CantMove
-	jp EndTurn
-
 .not_frozen
 
 	ld hl, wEnemySubStatus3
@@ -443,9 +405,6 @@ CheckEnemyTurn:
 	res SUBSTATUS_FLINCHED, [hl]
 	ld hl, FlinchedText
 	call StdBattleTextbox
-
-	call CantMove
-	jp EndTurn
 
 .not_flinched
 
@@ -471,15 +430,6 @@ CheckEnemyTurn:
 	add a ; bit SUBSTATUS_CONFUSED
 	jr nc, .not_confused
 
-	ld hl, wEnemyConfuseCount
-	dec [hl]
-	jr nz, .confused
-
-	ld hl, wEnemySubStatus3
-	res SUBSTATUS_CONFUSED, [hl]
-	ld hl, ConfusedNoMoreText
-	call StdBattleTextbox
-	jr .not_confused
 
 .confused
 	ld hl, IsConfusedText
@@ -490,22 +440,7 @@ CheckEnemyTurn:
 	ld de, ANIM_CONFUSED
 	call FarPlayBattleAnimation
 
-	; 50% chance of hitting itself
-	call BattleRandom
-	cp 50 percent + 1
-	jr nc, .not_confused
-
-	; clear confusion-dependent substatus
-	ld hl, wEnemySubStatus3
-	ld a, [hl]
-	and 1 << SUBSTATUS_CONFUSED
-	ld [hl], a
-
-	ld hl, HurtItselfText
-	call StdBattleTextbox
-
 	call HitSelfInConfusion
-	call ConfusionDamageCalc
 	call ConfusionDamageCalc
 	call BattleCommand_LowerSub
 
@@ -522,8 +457,6 @@ CheckEnemyTurn:
 	ld c, TRUE
 	call DoEnemyDamage
 	call BattleCommand_RaiseSub
-	call CantMove
-	jp EndTurn
 
 .not_confused
 
@@ -538,15 +471,7 @@ CheckEnemyTurn:
 	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
-	; 50% chance of infatuation
-	call BattleRandom
-	cp 50 percent + 1
-	jr c, .not_infatuated
 
-	ld hl, InfatuationText
-	call StdBattleTextbox
-	call CantMove
-	jp EndTurn
 
 .not_infatuated
 
@@ -571,14 +496,7 @@ CheckEnemyTurn:
 	bit PAR, [hl]
 	ret z
 
-	; 25% chance to be fully paralyzed
-	call BattleRandom
-	cp 25 percent
 	ret nc
-
-	ld hl, FullyParalyzedText
-	call StdBattleTextbox
-	call CantMove
 
 	; fallthrough
 
@@ -1120,89 +1038,8 @@ CheckMimicUsed:
 	ret
 
 BattleCommand_Critical:
-; Determine whether this attack's hit will be critical.
+; Always crit
 
-	xor a
-	ld [wCriticalHit], a
-
-	ld a, BATTLE_VARS_MOVE_POWER
-	call GetBattleVar
-	and a
-	ret z
-
-	ldh a, [hBattleTurn]
-	and a
-	ld hl, wEnemyMonItem
-	ld a, [wEnemyMonSpecies]
-	jr nz, .Item
-	ld hl, wBattleMonItem
-	ld a, [wBattleMonSpecies]
-
-.Item:
-	ld c, 0
-
-	cp CHANSEY
-	jr nz, .Farfetchd
-	ld a, [hl]
-	cp LUCKY_PUNCH
-	jr nz, .FocusEnergy
-
-; +2 critical level
-	ld c, 2
-	jr .Tally
-
-.Farfetchd:
-	cp FARFETCH_D
-	jr nz, .FocusEnergy
-	ld a, [hl]
-	cp STICK
-	jr nz, .FocusEnergy
-
-; +2 critical level
-	ld c, 2
-	jr .Tally
-
-.FocusEnergy:
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVar
-	bit SUBSTATUS_FOCUS_ENERGY, a
-	jr z, .CheckCritical
-
-; +1 critical level
-	inc c
-
-.CheckCritical:
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	ld de, 1
-	ld hl, CriticalHitMoves
-	push bc
-	call IsInArray
-	pop bc
-	jr nc, .ScopeLens
-
-; +2 critical level
-	inc c
-	inc c
-
-.ScopeLens:
-	push bc
-	call GetUserItem
-	ld a, b
-	cp HELD_CRITICAL_UP ; Increased critical chance. Only Scope Lens has this.
-	pop bc
-	jr nz, .Tally
-
-; +1 critical level
-	inc c
-
-.Tally:
-	ld hl, CriticalHitChances
-	ld b, 0
-	add hl, bc
-	call BattleRandom
-	cp [hl]
-	ret nc
 	ld a, 1
 	ld [wCriticalHit], a
 	ret
@@ -1569,8 +1406,8 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
-	; If the move is OHKO, ignore accuracy and evasion stat modifiers.
-	cp EFFECT_OHKO
+	; If the move is CRIT, ignore accuracy and evasion stat modifiers.
+	cp EFFECT_CRIT_HIT
 	jr z, .skip_stat_modifiers
 
 	; Moves that bypass accuracy checks without having EFFECT_ALWAYS_HIT.
@@ -2647,14 +2484,11 @@ PlayerAttackDamage:
 	call ThickClubBoost
 
 .done
-	push hl
-	call DittoMetalPowder
-	pop hl
-	
 	call TruncateHL_BC
 
 	ld a, [wBattleMonLevel]
 	ld e, a
+	call DittoMetalPowder
 
 	ld a, 1
 	and a
@@ -2896,14 +2730,11 @@ EnemyAttackDamage:
 	call ThickClubBoost
 
 .done
-	push hl
-	call DittoMetalPowder
-	pop hl
-	
 	call TruncateHL_BC
 
 	ld a, [wEnemyMonLevel]
 	ld e, a
+	call DittoMetalPowder
 
 	ld a, 1
 	and a
@@ -3087,7 +2918,6 @@ ConfusionDamageCalc:
 
 .DoneItem:
 ; Critical hits
-	call .CriticalMultiplier
 
 ; Update wCurDamage. Max 999 (capped at 997, then add 2).
 DEF MAX_DAMAGE EQU 999
@@ -3172,28 +3002,6 @@ DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	and a
 	ret
 
-.CriticalMultiplier:
-	ld a, [wCriticalHit]
-	and a
-	ret z
-
-; x2
-	ldh a, [hQuotient + 3]
-	add a
-	ldh [hQuotient + 3], a
-
-	ldh a, [hQuotient + 2]
-	rl a
-	ldh [hQuotient + 2], a
-
-; Cap at $ffff.
-	ret nc
-
-	ld a, $ff
-	ldh [hQuotient + 2], a
-	ldh [hQuotient + 3], a
-
-	ret
 
 INCLUDE "data/types/type_boost_items.asm"
 
@@ -3702,6 +3510,10 @@ BattleCommand_SleepTarget:
 	inc a
 	ld [de], a
 	call UpdateOpponentInParty
+	ld hl, ApplySlpEffectOnDefense
+	call CallBattleCore
+	ld hl, ApplySlpEffectOnSpclDef
+	call CallBattleCore
 	call RefreshBattleHuds
 
 	ld hl, FellAsleepText
@@ -4063,6 +3875,8 @@ BattleCommand_FreezeTarget:
 	call GetBattleVarAddr
 	set FRZ, [hl]
 	call UpdateOpponentInParty
+	ld hl, ApplyFrzEffectOnSpclAttack
+	call CallBattleCore
 	ld de, ANIM_FRZ
 	call PlayOpponentBattleAnim
 	call RefreshBattleHuds
@@ -4800,6 +4614,15 @@ CalcPlayerStats:
 	ld hl, ApplyPrzEffectOnSpeed
 	call CallBattleCore
 
+	ld hl, ApplySlpEffectOnDefense
+	call CallBattleCore
+
+	ld hl, ApplySlpEffectOnSpclDef
+	call CallBattleCore
+
+	ld hl, ApplyFrzEffectOnSpclAttack
+	call CallBattleCore
+
 	ld hl, ApplyBrnEffectOnAttack
 	call CallBattleCore
 
@@ -4816,6 +4639,15 @@ CalcEnemyStats:
 	call BattleCommand_SwitchTurn
 
 	ld hl, ApplyPrzEffectOnSpeed
+	call CallBattleCore
+
+	ld hl, ApplySlpEffectOnDefense
+	call CallBattleCore
+
+	ld hl, ApplySlpEffectOnSpclDef
+	call CallBattleCore
+
+	ld hl, ApplyFrzEffectOnSpclAttack
 	call CallBattleCore
 
 	ld hl, ApplyBrnEffectOnAttack
@@ -4919,11 +4751,8 @@ BattleCommand_CheckRampage:
 	jr nz, .continue_rampage
 
 	set SUBSTATUS_CONFUSED, [hl]
-	call BattleRandom
-	and %00000001
-	inc a
-	inc a
-	inc de ; ConfuseCount
+; Always 2 turns
+	ld a, 1 ; Load fixed turn count (e.g., 2)
 	ld [de], a
 .continue_rampage
 	ld b, rampage_command
@@ -4945,10 +4774,8 @@ BattleCommand_Rampage:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	set SUBSTATUS_RAMPAGE, [hl]
-; Rampage for 1 or 2 more turns
-	call BattleRandom
-	and %00000001
-	inc a
+; Always 2 turns
+	ld a, 1 ; Load fixed turn count (e.g., 2)
 	ld [de], a
 	ld a, 1
 	ld [wSomeoneIsRampaging], a
@@ -5425,7 +5252,7 @@ BattleCommand_HeldFlinch:
 	set SUBSTATUS_FLINCHED, [hl]
 	ret
 
-BattleCommand_OHKO:
+BattleCommand_CritHit:
 	call ResetDamage
 	ld a, [wTypeModifier]
 	and $7f
@@ -5449,9 +5276,9 @@ BattleCommand_OHKO:
 	ld e, a
 	ld a, [bc]
 	add e
-	jr nc, .finish_ohko
+	jr nc, .finish_crit_hit
 	ld a, $ff
-.finish_ohko
+.finish_crit_hit
 	ld [bc], a
 	call BattleCommand_CheckHit
 	ld hl, wCurDamage

@@ -353,7 +353,7 @@ DEX_PrintType_Short:
 	db "GRD@"
 	db "RCK@"
 	db "BUG@"
-	db "GST@"
+	db "DRK@"
 	db "STL@"
 	db "FIR@"
 	db "WTR@"
@@ -362,7 +362,7 @@ DEX_PrintType_Short:
 	db "PSY@"
 	db "ICE@"
 	db "DRG@"
-	db "DRK@"
+	db "GST@"
 
 INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/pokedex/pokedex_evolution_page.asm"

@@ -8,26 +8,26 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 4, BELLSPROUT
 	db 5, RATTATA
-	db 3, SUNKERN
-	db 6, YANMA
+	db 6, SUNKERN
+	db 3, YANMA
 	db 5, RATTATA
 	db 5, GASTLY
 	; day
 	db 3, RATTATA
 	db 4, BELLSPROUT
 	db 5, BELLSPROUT
-	db 3, SUNKERN
+	db 5, SUNKERN
 	db 6, GASTLY
 	db 5, GASTLY
-	db 5, YANMA
+	db 3, YANMA
 	; nite
 	db 3, RATTATA
 	db 4, GASTLY
 	db 5, MISDREAVUS
-	db 3, BELLSPROUT
+	db 5, BELLSPROUT
 	db 6, RATTATA
 	db 5, SUNKERN
-	db 5, YANMA
+	db 3, YANMA
 	end_grass_wildmons
 
 	def_grass_wildmons SPROUT_TOWER_3F
@@ -512,7 +512,7 @@ JohtoGrassWildMons:
 	db 8, ZUBAT
 	db 6, ZUBAT
 	db 6, SLOWPOKE
-	db 7, ZUBAT
+	db 7, PARAS
 	db 8, WOBBUFFET
 	db 8, CUBONE
 	db 8, CUBONE
@@ -520,7 +520,7 @@ JohtoGrassWildMons:
 	db 8, ZUBAT
 	db 6, ZUBAT
 	db 6, SLOWPOKE
-	db 7, ZUBAT
+	db 7, PARAS
 	db 8, WOBBUFFET
 	db 8, CUBONE
 	db 8, CUBONE
@@ -528,7 +528,7 @@ JohtoGrassWildMons:
 	db 8, ZUBAT
 	db 6, ZUBAT
 	db 6, SLOWPOKE
-	db 7, ZUBAT
+	db 7, PARAS
 	db 8, WOBBUFFET
 	db 8, CUBONE
 	db 8, CUBONE
@@ -570,24 +570,24 @@ JohtoGrassWildMons:
 	db 10, METAPOD
 	db 10, KAKUNA
 	db 10, PIDGEY
-	db 9,  PARAS
 	db 9,  VENONAT
+	db 9,  FARFETCH_D
 	; day
 	db 8,  CATERPIE
 	db 8,  WEEDLE
 	db 10, METAPOD
 	db 10, KAKUNA
 	db 10, PIDGEY
-	db 9,  PARAS
 	db 9,  VENONAT
+	db 9,  FARFETCH_D
 	; nite
 	db 8,  ODDISH
 	db 8,  VENONAT
 	db 10, ODDISH
 	db 10, PSYDUCK
 	db 10, HOOTHOOT
-	db 9,  PARAS
-	db 9,  PARAS
+	db 9,  VENONAT
+	db 9,  FARFETCH_D
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_1F_OUTSIDE
@@ -1657,29 +1657,29 @@ JohtoGrassWildMons:
 	def_grass_wildmons ROUTE_46
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 2, GEODUDE
-	db 2, SPEAROW
 	db 3, GEODUDE
-	db 3, RATTATA
-	db 2, LARVITAR
-	db 2, PHANPY
+	db 3, SPEAROW
+	db 4, GEODUDE
+	db 4, RATTATA
+	db 3, LARVITAR
 	db 3, PHANPY
+	db 4, PHANPY
 	; day
-	db 2, GEODUDE
-	db 2, SPEAROW
 	db 3, GEODUDE
-	db 3, RATTATA
-	db 2, LARVITAR
-	db 2, PHANPY
+	db 3, SPEAROW
+	db 4, GEODUDE
+	db 4, RATTATA
+	db 3, LARVITAR
 	db 3, PHANPY
+	db 4, PHANPY
 	; nite
-	db 2, GEODUDE
-	db 2, HOOTHOOT
 	db 3, GEODUDE
-	db 3, RATTATA
-	db 2, LARVITAR
-	db 2, PHANPY
+	db 3, HOOTHOOT
+	db 4, GEODUDE
+	db 4, RATTATA
+	db 3, LARVITAR
 	db 3, PHANPY
+	db 4, PHANPY
 	end_grass_wildmons
 
 	def_grass_wildmons SILVER_CAVE_OUTSIDE

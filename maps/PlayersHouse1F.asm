@@ -54,17 +54,12 @@ MeetMomScript:
 	special InitialSetDSTFlag
 	yesorno
 	iffalse .SetDayOfWeek
-	sjump .DayOfWeekDone
+	sjump .FinishPhone
 
 .WrongDay:
 	special InitialClearDSTFlag
 	yesorno
 	iffalse .SetDayOfWeek
-.DayOfWeekDone:
-	writetext ComeHomeForDSTText
-	yesorno
-	iffalse .ExplainPhone
-	sjump .FinishPhone
 
 .ExplainPhone:
 	writetext DontKnowTheInstructionsText
@@ -243,18 +238,6 @@ MomGivesPokegearText:
 IsItDSTText:
 	text "Is it Daylight"
 	line "Saving Time now?"
-	done
-
-ComeHomeForDSTText:
-	text "Come home to"
-	line "adjust your clock"
-
-	para "for Daylight"
-	line "Saving Time."
-
-	para "By the way, do you"
-	line "know how to use"
-	cont "the PHONE?"
 	done
 
 DontKnowTheInstructionsText:

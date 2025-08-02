@@ -1366,8 +1366,6 @@ HandleLeftovers:
 	call GetSixteenthMaxHP
 	call SwitchTurnCore
 	call RestoreHP
-	ld hl, BattleText_TargetRecoveredWithItem
-	jp StdBattleTextbox
 
 HandleMysteryberry:
 	ldh a, [hSerialConnectionStatus]
@@ -6635,6 +6633,9 @@ ApplyStatusEffectOnEnemyStats:
 ApplyStatusEffectOnStats:
 	ldh [hBattleTurn], a
 	call ApplyPrzEffectOnSpeed
+	call ApplySlpEffectOnDefense
+	call ApplySlpEffectOnSpclDef
+	call ApplyFrzEffectOnSpclAttack
 	jp ApplyBrnEffectOnAttack
 
 ApplyPrzEffectOnSpeed:
@@ -6662,6 +6663,98 @@ ApplyPrzEffectOnSpeed:
 	or b
 	jr nz, .ok
 	ld b, 1 ; min speed
+.ok
+	ld [hl], b
+	ret
+
+ApplySlpEffectOnDefense:
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy
+	ld a, [wBattleMonStatus]
+	and 1 << SLP_MASK
+	ret z
+	ld hl, wBattleMonDefense + 1
+	jr .proceed
+
+.enemy
+	ld a, [wEnemyMonStatus]
+	and 1 << SLP_MASK
+	ret z
+	ld hl, wEnemyMonDefense+ 1
+
+.proceed
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	srl a
+	rr b
+	ld [hli], a
+	or b
+	jr nz, .ok
+	ld b, $1 ; min def
+
+.ok
+	ld [hl], b
+	ret
+
+ApplySlpEffectOnSpclDef:
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy
+	ld a, [wBattleMonStatus]
+	and 1 << SLP_MASK
+	ret z
+	ld hl, wBattleMonSpclDef + 1
+	jr .proceed
+
+.enemy
+	ld a, [wEnemyMonStatus]
+	and 1 << SLP_MASK
+	ret z
+	ld hl, wEnemyMonSpclDef+ 1
+
+.proceed
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	srl a
+	rr b
+	ld [hli], a
+	or b
+	jr nz, .ok
+	ld b, $1 ; min spcldef
+
+.ok
+	ld [hl], b
+	ret
+
+ApplyFrzEffectOnSpclAttack:
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy
+	ld a, [wBattleMonStatus]
+	and 1 << FRZ
+	ret z
+	ld hl, wBattleMonSpclAtk + 1
+	jr .proceed
+
+.enemy
+	ld a, [wEnemyMonStatus]
+	and 1 << FRZ
+	ret z
+	ld hl, wEnemyMonSpclAtk + 1
+.proceed
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	srl a
+	rr b
+	ld [hli], a
+	or b
+	jr nz, .ok
+	ld b, $1 ; min special attack
+
 .ok
 	ld [hl], b
 	ret
