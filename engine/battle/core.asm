@@ -42,8 +42,6 @@ DoBattle:
 	call EnemySwitch
 
 .wild
-	ld c, 40
-	call DelayFrames
 
 .player_2
 	call LoadTilemapToTempTilemap
@@ -1177,8 +1175,6 @@ ResidualDamage:
 
 .fainted
 	call RefreshBattleHuds
-	ld c, 20
-	call DelayFrames
 	xor a
 	ret
 
@@ -2063,8 +2059,6 @@ HandleEnemyMonFaint:
 
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, 60
-	call DelayFrames
 
 	ld a, [wBattleMode]
 	dec a
@@ -2423,8 +2417,6 @@ WinTrainerBattle:
 	jr nz, .battle_tower
 
 	call BattleWinSlideInEnemyTrainerFrontpic
-	ld c, 40
-	call DelayFrames
 
 	ld a, [wBattleType]
 	cp BATTLETYPE_CANLOSE
@@ -2442,16 +2434,12 @@ WinTrainerBattle:
 
 .mobile
 	call BattleWinSlideInEnemyTrainerFrontpic
-	ld c, 40
-	call DelayFrames
 	ld c, $4 ; win
 	farcall Mobile_PrintOpponentBattleMessage
 	ret
 
 .battle_tower
 	call BattleWinSlideInEnemyTrainerFrontpic
-	ld c, 40
-	call DelayFrames
 	call EmptyBattleTextbox
 	ld c, BATTLETOWERTEXT_LOSS_TEXT
 	farcall BattleTowerText
@@ -4998,8 +4986,6 @@ LoadBattleMenu2:
 	jr nz, .error
 	ld hl, BattleText_LinkErrorBattleCanceled
 	call StdBattleTextbox
-	ld c, 60
-	call DelayFrames
 .error
 	scf
 	ret
@@ -5296,8 +5282,6 @@ EnemyMonEntrance:
 BattleMonEntrance:
 	call WithdrawMonText
 
-	ld c, 50
-	call DelayFrames
 
 	ld hl, wPlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -5330,8 +5314,6 @@ BattleMonEntrance:
 	ret
 
 PassedBattleMonEntrance:
-	ld c, 50
-	call DelayFrames
 
 	hlcoord 9, 7
 	lb bc, 5, 11
@@ -5829,8 +5811,6 @@ CheckPlayerHasUsableMoves:
 .force_struggle
 	ld hl, BattleText_MonHasNoMovesLeft
 	call StdBattleTextbox
-	ld c, 60
-	call DelayFrames
 	xor a
 	ret
 
@@ -7357,8 +7337,6 @@ GiveExperiencePoints:
 	hlcoord 11, 1
 	ld bc, 4
 	predef PrintTempMonStats
-	ld c, 30
-	call DelayFrames
 	call WaitPressAorB_BlinkCursor
 	call SafeLoadTempTilemapToTilemap
 	xor a ; PARTYMON
@@ -7633,13 +7611,11 @@ AnimateExpBar:
 	call WaitSFX
 	ld de, SFX_EXP_BAR
 	call PlaySFX
-	ld c, 10
-	call DelayFrames
 	pop bc
 	ret
 
 .LoopBarAnimation:
-	ld d, 3
+	ld d, 1
 	dec b
 .anim_loop
 	inc b
