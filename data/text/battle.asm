@@ -7,13 +7,6 @@ BattleText_PlayerPickedUpPayDayMoney:
 	text "!"
 	prompt
 
-WildPokemonAppearedText:
-	text "Wild @"
-	text_ram wEnemyMonNickname
-	text_start
-	line "appeared!"
-	prompt
-
 HookedPokemonAttackedText:
 	text "The hooked"
 	line "@"

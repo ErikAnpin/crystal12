@@ -9186,8 +9186,7 @@ BattleStartMessage:
 	jr z, .PlaceBattleStartText
 	ld hl, WildCelebiAppearedText
 	cp BATTLETYPE_CELEBI
-	jr z, .PlaceBattleStartText
-	ld hl, WildPokemonAppearedText
+	ret
 
 .PlaceBattleStartText:
 	push hl
