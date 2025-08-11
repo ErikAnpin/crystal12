@@ -73,6 +73,38 @@ RuinsOfAlphHoOhChamberPuzzle:
 	warpcheck
 	end
 
+RuinsOfAlphHoOhChamberSkip:
+	refreshscreen
+	writetext RuinsOfAlphHoOhChamberSkipText
+	yesorno
+	iftrue .PuzzleSkip
+	closetext
+	end
+
+.PuzzleSkip:
+	refreshscreen
+	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	setevent EVENT_SOLVED_HO_OH_PUZZLE
+	setflag ENGINE_UNLOCKED_UNOWNS_X_TO_Z
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
+	earthquake 30
+	showemote EMOTE_SHOCK, PLAYER, 15
+	changeblock 2, 2, $18 ; left hole
+	changeblock 4, 2, $19 ; right hole
+	reloadmappart
+	playsound SFX_STRENGTH
+	earthquake 80
+	applymovement PLAYER, RuinsOfAlphHoOhChamberSkyfallTopMovement
+	playsound SFX_KINESIS
+	waitsfx
+	pause 20
+	warpcheck
+	end
+
+RuinsOfAlphHoOhChamberSkipText:
+	text "Skip puzzle?"
+	done
+
 RuinsOfAlphHoOhChamberAncientReplica:
 	jumptext RuinsOfAlphHoOhChamberAncientReplicaText
 
@@ -155,7 +187,7 @@ RuinsOfAlphHoOhChamber_MapEvents:
 
 	def_bg_events
 	bg_event  2,  3, BGEVENT_READ, RuinsOfAlphHoOhChamberAncientReplica
-	bg_event  5,  3, BGEVENT_READ, RuinsOfAlphHoOhChamberAncientReplica
+	bg_event  5,  3, BGEVENT_RIGHT, RuinsOfAlphHoOhChamberSkip
 	bg_event  3,  2, BGEVENT_UP, RuinsOfAlphHoOhChamberPuzzle
 	bg_event  4,  2, BGEVENT_UP, RuinsOfAlphHoOhChamberDescriptionSign
 	bg_event  3,  0, BGEVENT_UP, RuinsOfAlphHoOhChamberWallPatternLeft
