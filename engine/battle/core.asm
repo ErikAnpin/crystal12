@@ -175,6 +175,7 @@ BattleTurn:
 	ld [wCurDamage + 1], a
 
 	call HandleBerserkGene
+	call HandleStatBoostingHeldItems
 	call UpdateBattleMonInParty
 	farcall AIChooseMove
 
@@ -296,7 +297,6 @@ HandleBetweenTurnEffects:
 	call HandleDefrost
 	call HandleSafeguard
 	call HandleScreens
-	call HandleStatBoostingHeldItems
 	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
@@ -414,6 +414,8 @@ HandleBerserkGene:
 	ld l, e
 	ld a, b
 	call GetPartyLocation
+	xor a
+	;ld [hl], a
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
@@ -427,9 +429,9 @@ HandleBerserkGene:
 	call BattleRandom
 	and %11
 	add 2
-	ld [hl], a	
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVarAddr
+	ld [hl], a
+ 	ld a, BATTLE_VARS_MOVE_ANIM
+ 	call GetBattleVarAddr
 	push hl
 	push af
 	xor a
@@ -4572,11 +4574,11 @@ HandleStatBoostingHeldItems:
 	ret nz
 	xor a
 	ld [bc], a
-	ld [de], a
+	;ld [de], a
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
-	callfar BattleCommand_StatUpMessage
+	;callfar BattleCommand_StatUpMessage
 	ret
 
 .finish
