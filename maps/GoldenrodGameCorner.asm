@@ -1,9 +1,9 @@
-DEF GOLDENRODGAMECORNER_TM25_COINS      EQU 2500
-DEF GOLDENRODGAMECORNER_TM14_COINS      EQU 2500
-DEF GOLDENRODGAMECORNER_TM38_COINS      EQU 2500
-DEF GOLDENRODGAMECORNER_CLEFAIRY_COINS  EQU 500
-DEF GOLDENRODGAMECORNER_PORYGON_COINS   EQU 1500
-DEF GOLDENRODGAMECORNER_SNORLAX_COINS   EQU 3000
+DEF GOLDENRODGAMECORNER_TM25_COINS      EQU 1000 ;Double Team
+DEF GOLDENRODGAMECORNER_TM14_COINS      EQU 2000 ;Psychic
+DEF GOLDENRODGAMECORNER_TM38_COINS      EQU 3000 ;Hyper Beam
+DEF GOLDENRODGAMECORNER_ABRA_COINS      EQU 100  ;Clefairy
+DEF GOLDENRODGAMECORNER_CUBONE_COINS    EQU 800  ;Porygon
+DEF GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500 ;Snorlax
 
 	object_const_def
 	const GOLDENRODGAMECORNER_CLERK
@@ -26,14 +26,11 @@ GoldenrodGameCorner_MapScripts:
 	callback MAPCALLBACK_OBJECTS, GoldenrodGameCornerMoveTutorCallback
 
 GoldenrodGameCornerMoveTutorCallback:
-;	checkevent EVENT_BEAT_ELITE_FOUR
-;	iffalse .finish
+
 	checkitem COIN_CASE
 	iffalse .move_tutor_inside
 	iftrue .move_tutor_outside	
-;	readvar VAR_WEEKDAY
-;	ifequal WEDNESDAY, .move_tutor_outside
-;	ifequal SATURDAY, .move_tutor_outside
+
 .move_tutor_inside
 	appear GOLDENRODGAMECORNER_MOVETUTOR
 	endcallback
@@ -76,40 +73,40 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
-	checkitem TM_THUNDER
+	checkitem TM_DOUBLE_TEAM
 	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM25_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_THUNDER
+	getitemname STRING_BUFFER_3, TM_DOUBLE_TEAM
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
-	giveitem TM_THUNDER
+	giveitem TM_DOUBLE_TEAM
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM25_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .Blizzard:
-	checkitem TM_BLIZZARD
+	checkitem TM_PSYCHIC_M
 	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM14_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_BLIZZARD
+	getitemname STRING_BUFFER_3, TM_PSYCHIC_M
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
-	giveitem TM_BLIZZARD
+	giveitem TM_PSYCHIC_M
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM14_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .FireBlast:
-	checkitem TM_FIRE_BLAST
+	checkitem TM_HYPER_BEAM
 	iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM38_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	getitemname STRING_BUFFER_3, TM_FIRE_BLAST
+	getitemname STRING_BUFFER_3, TM_HYPER_BEAM
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
-	giveitem TM_FIRE_BLAST
+	giveitem TM_HYPER_BEAM
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM38_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
@@ -129,7 +126,7 @@ GoldenrodGameCornerTMVendor_FinishScript:
 GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript:
 	writetext GoldenrodGameCornerPrizeVendorAlreadyHaveTMText
 	waitbutton
-	sjump GoldenrodGameCornerTMVendor_LoopScript	
+	sjump GoldenrodGameCornerTMVendor_LoopScript
 
 GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript:
 	writetext GoldenrodGameCornerPrizeVendorNeedMoreCoinsText
@@ -157,16 +154,16 @@ GoldenrodGameCornerPrizeVendor_NoCoinCaseScript:
 
 GoldenrodGameCornerTMVendorMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 2, 15, TEXTBOX_Y - 1
+	menu_coords 0, 2, 18, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "THUNDER  2500@"
-	db "BLIZZARD 2500@"
-	db "FIREBLST 2500@"
+	db "DOUBLE TEAM 1000@"
+	db "PSYCHIC     2000@"
+	db "HYPER BEAM  3000@"
 	db "CANCEL@"
 
 GoldenrodGameCornerPrizeMonVendorScript:
@@ -182,13 +179,13 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .Clefairy
-	ifequal 2, .Porygon
-	ifequal 3, .Snorlax
+	ifequal 1, .Abra
+	ifequal 2, .Cubone
+	ifequal 3, .Wobbuffet
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
-.Clefairy:
-	checkcoins GOLDENRODGAMECORNER_CLEFAIRY_COINS
+.Abra:
+	checkcoins GOLDENRODGAMECORNER_ABRA_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -201,12 +198,12 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	waitbutton
 	setval CLEFAIRY
 	special GameCornerPrizeMonCheckDex
-	givepoke CLEFAIRY, 5
-	takecoins GOLDENRODGAMECORNER_CLEFAIRY_COINS
+	givepoke CLEFAIRY, 15
+	takecoins GOLDENRODGAMECORNER_ABRA_COINS
 	sjump .loop
 
-.Porygon:
-	checkcoins GOLDENRODGAMECORNER_PORYGON_COINS
+.Cubone:
+	checkcoins GOLDENRODGAMECORNER_CUBONE_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -219,12 +216,12 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	waitbutton
 	setval PORYGON
 	special GameCornerPrizeMonCheckDex
-	givepoke PORYGON, 15
-	takecoins GOLDENRODGAMECORNER_PORYGON_COINS
+	givepoke CUBONE, 15
+	takecoins GOLDENRODGAMECORNER_CUBONE_COINS
 	sjump .loop
 
-.Snorlax:
-	checkcoins GOLDENRODGAMECORNER_SNORLAX_COINS
+.Wobbuffet:
+	checkcoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -238,7 +235,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	setval SNORLAX
 	special GameCornerPrizeMonCheckDex
 	givepoke SNORLAX, 15
-	takecoins GOLDENRODGAMECORNER_SNORLAX_COINS
+	takecoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	sjump .loop
 
 .MenuHeader:
@@ -250,9 +247,9 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "CLEFAIRY    500@"
-	db "PORYGON    1500@"
-	db "SNORLAX    3000@"
+	db "CLEFAIRY    100@"
+	db "PORYGON     800@"
+	db "SNORLAX    1500@"
 	db "CANCEL@"
 
 GoldenrodGameCornerPharmacistScript:
