@@ -62,4 +62,5 @@ SpriteMons:
 	db AMPHAROS
 	db SLOWBRO
 	db BAYLEEF
+	db KANGASKHAN
 	assert_table_length NUM_POKEMON_SPRITES
