@@ -2,6 +2,20 @@
 
 This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal) disassembly.
 
+### TODO
+- Remove hardcoded quick claw and kings rock effects
+- do a run with just trade/giftmons
+- adjust all kicks and punches
+- Change Sleep to ATK drop, repurpose Snore and Sleep Talk
+- Repurpose every effect that deals with Accuracy, Evasion and Flinch
+- Repurpose Focus Energy, Mind Reader and Lock On
+- Fix Item/Move Descriptions and NPC explanations
+- Fix sine night NPC sprites being bright
+- Add way to Toggle Run
+- Use Lv50 for calculations, would still be used for new moves and evolutions 
+- Adjust Healing Items for Lv50
+- Adjust AI for all changes
+
 ## Plus branch
 
 - Removed RNG (Accuracy, Confusion, Damage Rolls, etc)
@@ -15,6 +29,8 @@ This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
 - Sleep halves defenses
 - Rapid Spin and Bone Rush give Speed UP
 - Removed Flinch and OHKO
+- Focus Band, King's Rock, Scope Lens, Brightpowder and Quick Claw give +1 boost in battle
+- Stat Multipliers now match Acurracy Multipliers (x3 at +6 instead of x4)
 
 ### Type Changes
 Ampharos/Flaaffy/Mareep: Electric/Normal
@@ -51,22 +67,11 @@ Porygon2/Porygon: Normal/Ghost
 Seel: Water/Ice
 Slowpoke: Water/Water
 Slowbro: Water/Ghost
-Stantler: Normal/Psychic
+Stantler: Normal/Ice
 Sunflora: Grass/Fire
 Victreebel: Grass/Dark
 Bellsprout/Weepinbell: Grass/Grass
 Yanma: Bug/Dragon
-
-### TODO
-- Adjust Radio Tower and Blackthorn Lvs
-- Make sure wrong battle type bug for Red Gyarados battle is fixed, possibly related to Move Reminder bug
-- Change Sleep to ATK drop, repurpose Snore and Sleep Talk
-- Repurpose every effect that deals with Accuracy and Evasion
-- Repurpose Focus Energy, Mind Reader and Lock On
-- Add way to Toggle Run
-- Use Lv50 for calculations, would still be used for new moves and evolutions 
-- Adjust Healing Items for Lv50
-- Adjust AI for all changes
 
 ## Main branch
 

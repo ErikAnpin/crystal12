@@ -1,4 +1,11 @@
 ; Johto Pokémon in grass
+	; 30% chance
+	; 30% chance
+	; 20% chance
+	; 10% chance
+	;  5% chance
+	;  4% chance
+	;  1% chance
 
 JohtoGrassWildMons:
 
@@ -285,55 +292,55 @@ JohtoGrassWildMons:
 	def_grass_wildmons BURNED_TOWER_1F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 13, RATTATA
+	db 13, ZUBAT
 	db 14, KOFFING
-	db 15, RATTATA
-	db 14, ZUBAT
 	db 15, SLUGMA
-	db 15, MAGMAR
-	db 16, SLUGMA
+	db 14, SLUGMA
+	db 15, RATTATA
+	db 15, RATTATA
+	db 16, RATTATA
 	; day
-	db 13, RATTATA
+	db 13, ZUBAT
 	db 14, KOFFING
-	db 15, RATTATA
-	db 14, ZUBAT
 	db 15, SLUGMA
-	db 15, MAGMAR
-	db 16, SLUGMA
+	db 14, SLUGMA
+	db 15, RATTATA
+	db 15, RATTATA
+	db 16, RATTATA
 	; nite
-	db 13, RATTATA
+	db 13, ZUBAT
 	db 14, KOFFING
-	db 15, RATTATA
-	db 14, ZUBAT
 	db 15, SLUGMA
-	db 15, MAGMAR
-	db 16, SLUGMA
+	db 14, SLUGMA
+	db 15, RATTATA
+	db 15, RATTATA
+	db 16, RATTATA
 	end_grass_wildmons
 
 	def_grass_wildmons BURNED_TOWER_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	db 14, RATTATA
+	db 14, ZUBAT
 	db 14, KOFFING
-	db 13, KOFFING
-	db 15, ZUBAT
-	db 16, SLUGMA
+	db 13, RATTATA
+	db 15, MAGMAR
+	db 16, CHARMANDER
 	db 15, CHARMANDER
 	db 17, SLUGMA
 	; day
-	db 14, RATTATA
+	db 14, ZUBAT
 	db 14, KOFFING
-	db 13, KOFFING
-	db 15, ZUBAT
-	db 16, SLUGMA
+	db 13, RATTATA
+	db 15, MAGMAR
+	db 16, CHARMANDER
 	db 15, CHARMANDER
 	db 17, SLUGMA
 	; nite
-	db 14, RATTATA
+	db 14, ZUBAT
 	db 14, KOFFING
 	db 16, RATTATA
-	db 15, ZUBAT
-	db 16, SLUGMA
+	db 15, MAGMAR
+	db 16, CHARMANDER
 	db 15, CHARMANDER
 	db 17, SLUGMA
 	end_grass_wildmons
@@ -1158,7 +1165,7 @@ JohtoGrassWildMons:
 	db 60, WOBBUFFET
 	db 58, CROBAT
 	db 56, CROBAT
-	db 60, SNORLAX
+	db 60, GOLEM
 	db 62, CROBAT
 	; day
 	db 58, KANGASKHAN
@@ -1166,7 +1173,7 @@ JohtoGrassWildMons:
 	db 60, WOBBUFFET
 	db 58, CROBAT
 	db 56, CROBAT
-	db 60, SNORLAX
+	db 60, GOLEM
 	db 62, CROBAT
 	; nite
 	db 55, KANGASKHAN
@@ -1174,7 +1181,7 @@ JohtoGrassWildMons:
 	db 60, WOBBUFFET
 	db 58, CROBAT
 	db 56, CROBAT
-	db 60, SNORLAX
+	db 60, GOLEM
 	db 62, CROBAT
 	end_grass_wildmons
 
@@ -1549,25 +1556,25 @@ JohtoGrassWildMons:
 	db 19, SPEAROW
 	db 20, RATTATA
 	db 21, RATICATE
-	db 20, EKANS
+	db 20, LICKITUNG
 	db 21, LICKITUNG
-	db 21, SPEAROW
+	db 21, LICKITUNG
 	; day
 	db 18, EKANS
 	db 19, SPEAROW
 	db 20, RATTATA
 	db 21, RATICATE
-	db 20, EKANS
+	db 20, LICKITUNG
 	db 21, LICKITUNG
-	db 21, SPEAROW
+	db 21, LICKITUNG
 	; nite
-	db 18, SPINARAK
+	db 18, EKANS
 	db 19, ZUBAT
-	db 20, RATICATE
-	db 21, GOLBAT
+	db 20, RATTATA
+	db 21, RATICATE
 	db 20, SPINARAK
 	db 21, LICKITUNG
-	db 21, ZUBAT
+	db 21, LICKITUNG
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_43
@@ -1691,7 +1698,7 @@ JohtoGrassWildMons:
 	db 54, STANTLER
 	db 51, PINSIR
 	db 53, CHANSEY
-	db 53, PINSIR
+	db 53, CHANSEY
 	; day
 	db 51, DODRIO
 	db 52, GOLDUCK
@@ -1699,7 +1706,7 @@ JohtoGrassWildMons:
 	db 54, STANTLER
 	db 51, SCYTHER
 	db 53, CHANSEY
-	db 53, SCYTHER
+	db 53, CHANSEY
 	; nite
 	db 51, DODRIO
 	db 52, CROBAT

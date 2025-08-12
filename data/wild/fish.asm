@@ -160,18 +160,18 @@ FishGroups:
 	db 100 percent,     DRAGONAIR,  10
 
 .WhirlIslands_Old:
-	db  70 percent + 1, MAGIKARP,   10
-	db  85 percent + 1, HORSEA,     10
-	db 100 percent,     KRABBY,     10
+	db  20 percent + 1, MAGIKARP,   10
+	db  80 percent + 1, HORSEA,     10
+	db 100 percent,     DRATINI,    10
 .WhirlIslands_Good:
-	db  35 percent,     MAGIKARP,   20
+	db  20 percent,     MAGIKARP,   20
 	db  70 percent,     HORSEA,     20
-	db  90 percent + 1, KRABBY,     20
+	db  90 percent + 1, DRATINI,    20
 	db 100 percent,     time_group 18
 .WhirlIslands_Super:
-	db  40 percent,     KRABBY,     40
+	db  20 percent,     KRABBY,     40
 	db  70 percent,     time_group 19
-	db  90 percent + 1, SEADRA,     40
+	db  90 percent + 1, DRATINI,    40
 	db 100 percent,     KINGLER,    40
 
 .Qwilfish_NoSwarm_Old:

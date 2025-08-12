@@ -3,7 +3,7 @@
 	db  73,  95,  62,  85,  85,  65
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, PSYCHIC_T ; type
+	db NORMAL, ICE ; type
 	db 45 ; catch rate
 	db 165 ; base exp
 	db MINT_BERRY, MINT_BERRY ; items
