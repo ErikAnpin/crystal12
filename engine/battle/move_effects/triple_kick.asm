@@ -1,5 +1,6 @@
 BattleCommand_TripleKick:
-	ld b, 3
+	ld a, 3
+	ld b, a
 	inc b
 	ld hl, wCurDamage + 1
 	ld a, [hld]
