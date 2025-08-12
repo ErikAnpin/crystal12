@@ -1191,6 +1191,7 @@ TripleKick:
     startloop
     lowersub
     checkhit
+    critical
     damagestats
     damagecalc
     triplekick
@@ -1697,7 +1698,6 @@ Thunder:
     doturn
     damagestats
     damagecalc
-    thunderaccuracy
     checkhit
     effectchance
     stab
