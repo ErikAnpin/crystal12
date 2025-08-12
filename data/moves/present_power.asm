@@ -1,6 +1,6 @@
 PresentPower:
 	; chance, power
-	db 40 percent,     40 ; 40% chance
-	db 80 percent + 1, 80 ; 30% chance
-	db 99 percent,    120 ; 10% chance
-	db -1                 ; 20% chance to heal instead
+	db 30 percent,     80 ; 30% chance
+	db 60 percent + 1, 90 ; 30% chance
+	db 90 percent,    100 ; 30% chance
+	db -1                 ; 10% chance to heal

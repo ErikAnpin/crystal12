@@ -272,16 +272,16 @@ PoundDescription:
 	next "legs or tail.@"
 
 KarateChopDescription:
-	db   "Has a high criti-"
-	next "cal hit ratio.@"
+	db   "Always lands a"
+	next "critical hit.@"
 
 DoubleslapDescription:
 	db   "A double slap"
 	next "attack.@"
 
 CometPunchDescription:
-	db   "Repeatedly punches"
-	next "2-5 times.@"
+	db   "A powerful punch"
+	next "Like a comet.@"
 
 MegaPunchDescription:
 	db   "A powerful punch"

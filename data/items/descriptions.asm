@@ -268,8 +268,8 @@ UltraBallDesc:
 	next "rate of success.@"
 
 BrightpowderDesc:
-	db   "Lowers the foe's"
-	next "accuracy. (HOLD)@"
+	db   "Raises SP DEF"
+	next "of #MON. (HOLD)@"
 
 GreatBallDesc:
 	db   "A BALL with a de-"
@@ -543,8 +543,8 @@ MoomooMilkDesc:
 	next "HP by 100.@"
 
 QuickClawDesc:
-	db   "Raises 1st strike"
-	next "ratio. (HOLD)@"
+	db   "Boosts SPEED"
+	next "of #MON. (HOLD)@"
 
 PsnCureBerryDesc:
 	db   "A self-cure for"
@@ -579,8 +579,8 @@ PoisonBarbDesc:
 	next "type moves. (HOLD)@"
 
 KingsRockDesc:
-	db   "May make the foe"
-	next "flinch. (HOLD)@"
+	db   "Boosts DEFENSE"
+	next "of #MON. (HOLD)@"
 
 BitterBerryDesc:
 	db   "A self-cure for"
@@ -720,8 +720,8 @@ ThickClubDesc:
 	next "sort. Sell low.@"
 
 FocusBandDesc:
-	db   "May prevent faint-"
-	next "ing. (HOLD)@"
+	db   "Boosts ATTACK"
+	next "of #MON. (HOLD)@"
 
 TeruSama8Desc:
 	db   "?@"
@@ -799,8 +799,8 @@ BerryJuiceDesc:
 	next "HP by 20.@"
 
 ScopeLensDesc:
-	db   "Raises critical"
-	next "hit ratio. (HOLD)@"
+	db   "Boosts SP ATT"
+	next "of #MON. (HOLD)@"
 
 TeruSama12Desc:
 	db   "?@"
