@@ -154,11 +154,6 @@ GetMonSubmenuItems:
 	call AddMonMenuItem
 
 .skip2
-	ld a, [wMonSubmenuCount]
-	cp NUM_MONMENU_ITEMS
-	jr z, .ok2
-	ld a, MONMENUITEM_CANCEL
-	call AddMonMenuItem
 
 .ok2
 	call TerminateMonSubmenu
@@ -168,8 +163,6 @@ GetMonSubmenuItems:
 	ld a, MONMENUITEM_STATS
 	call AddMonMenuItem
 	ld a, MONMENUITEM_SWITCH
-	call AddMonMenuItem
-	ld a, MONMENUITEM_CANCEL
 	call AddMonMenuItem
 	call TerminateMonSubmenu
 	ret
