@@ -5831,7 +5831,10 @@ BattleCommand_Heal:
 	ld a, b
 	cp REST
 	jr nz, .not_rest
-
+    ld a, BATTLE_VARS_STATUS
+    call GetBattleVar
+    and SLP_MASK
+    jr nz, .already_asleep
 	push hl
 	push de
 	push af
@@ -5886,6 +5889,11 @@ BattleCommand_Heal:
 	call AnimateFailedMove
 	ld hl, HPIsFullText
 	jp StdBattleTextbox
+
+.already_asleep
+    call AnimateFailedMove
+    ld hl, RestFailedText
+    jp StdBattleTextbox
 
 INCLUDE "engine/battle/move_effects/transform.asm"
 
