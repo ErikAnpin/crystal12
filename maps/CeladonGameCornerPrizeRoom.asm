@@ -1,9 +1,9 @@
 DEF CELADONGAMECORNERPRIZEROOM_TM32_COINS     EQU 3000 ;Thunder 25
 DEF CELADONGAMECORNERPRIZEROOM_TM29_COINS     EQU 3000 ;Blizzard 14
 DEF CELADONGAMECORNERPRIZEROOM_TM15_COINS     EQU 3000 ;Fire Blast 18
-DEF CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS  EQU 1000 ;Eevee
-DEF CELADONGAMECORNERPRIZEROOM_PORYGON_COINS  EQU 2000 ;Dratini
-DEF CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS EQU 4000 ;Larvitar
+DEF CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS  EQU 1500 ;BULBASAUR
+DEF CELADONGAMECORNERPRIZEROOM_PORYGON_COINS  EQU 1500 ;CHARMANDER
+DEF CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS EQU 1500 ;SQUIRTLE
 
 	object_const_def
 	const CELADONGAMECORNERPRIZEROOM_GENTLEMAN
@@ -155,16 +155,16 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
-	getmonname STRING_BUFFER_3, EEVEE
+	getmonname STRING_BUFFER_3, BULBASAUR
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	setval EEVEE
+	setval BULBASAUR
 	special GameCornerPrizeMonCheckDex
-	givepoke EEVEE, 40
+	givepoke BULBASAUR, 15
 	takecoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
 	sjump .loop
 
@@ -173,16 +173,16 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
-	getmonname STRING_BUFFER_3, DRATINI
+	getmonname STRING_BUFFER_3, CHARMANDER
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	setval DRATINI
+	setval CHARMANDER
 	special GameCornerPrizeMonCheckDex
-	givepoke DRATINI, 40
+	givepoke CHARMANDER, 15
 	takecoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	sjump .loop
 
@@ -191,16 +191,16 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
-	getmonname STRING_BUFFER_3, LARVITAR
+	getmonname STRING_BUFFER_3, SQUIRTLE
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	setval LARVITAR
+	setval SQUIRTLE
 	special GameCornerPrizeMonCheckDex
-	givepoke LARVITAR, 40
+	givepoke SQUIRTLE, 15
 	takecoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
 	sjump .loop
 
@@ -213,13 +213,13 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "EEVEE      {d:CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS}@"
-	db "DRATINI    {d:CELADONGAMECORNERPRIZEROOM_PORYGON_COINS}@"
-	db "LARVITAR   {d:CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS}@"
+	db "BULBASAUR  {d:CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS}@"
+	db "CHARMANDER {d:CELADONGAMECORNERPRIZEROOM_PORYGON_COINS}@"
+	db "SQUIRTLE   {d:CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS}@"
 	db "CANCEL@"
 
 CeladonGameCornerPrizeRoomGentlemanText:
-	text "I wanted DRATINI,"
+	text "I wanted SQUIRTLE,"
 	line "but I was short by"
 	cont "100 coins…"
 	done
