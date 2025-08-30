@@ -27,9 +27,7 @@ PewterCityGrampsScript:
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue .GotSilverWing
 	writetext PewterCityGrampsText
-	promptbutton
-	verbosegiveitem SILVER_WING
-	setevent EVENT_GOT_SILVER_WING
+	waitbutton
 	closetext
 	end
 
@@ -100,9 +98,9 @@ PewterCityGrampsText:
 	para "like as a young"
 	line "man."
 
-	para "Here. I want you"
-	line "to have this item"
-	cont "I found in JOHTO."
+	para "You should go see"
+	line "my friend in the"
+	cont "LAKE OF RAGE."
 	done
 
 PewterCityGrampsText_GotSilverWing:

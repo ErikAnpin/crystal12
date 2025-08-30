@@ -114,7 +114,19 @@ LakeOfRageGrampsScript:
 	end
 
 .ClearedRocketHideout:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_SILVER_WING
+	iftrue .GotSilverWing
 	writetext LakeOfRageGrampsText_ClearedRocketHideout
+	promptbutton
+	verbosegiveitem SILVER_WING
+	setevent EVENT_GOT_SILVER_WING
+	closetext
+	end
+
+.GotSilverWing:
+	writetext LakeOfRageGrampsText_GotSilverWing
 	waitbutton
 	closetext
 	end
@@ -227,7 +239,7 @@ LakeOfRageElixer:
 	itemball ELIXER
 
 LakeOfRageTMDetect:
-	itemball TM_DETECT
+	itemball TM_PROTECT
 
 LakeOfRageHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE
@@ -327,6 +339,18 @@ LakeOfRageGrampsText:
 	done
 
 LakeOfRageGrampsText_ClearedRocketHideout:
+	text "Ah, you are the"
+	line "one who calmed"
+	cont "down the GYARADOS."
+
+	para "I can fish again"
+	line "for MAGIKARP."
+
+	para "I want you to have"
+	line "this."
+	done
+
+LakeOfRageGrampsText_GotSilverWing:
 	text "Hahah! The MAGI-"
 	line "KARP are biting!"
 	done
