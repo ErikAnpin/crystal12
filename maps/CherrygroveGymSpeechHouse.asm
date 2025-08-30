@@ -8,27 +8,18 @@ CherrygroveGymSpeechHouse_MapScripts:
 	def_callbacks
 
 CherrygroveGymSpeechHousePokefanMScript:
-	jumptextfaceplayer CherrygroveGymSpeechHousePokefanMText
+	faceplayer
+	opentext
+	trade NPC_TRADE_CHRIS
+	waitbutton
+	closetext
+	end
 
 CherrygroveGymSpeechHouseBugCatcherScript:
 	jumptextfaceplayer CherrygroveGymSpeechHouseBugCatcherText
 
 CherrygroveGymSpeechHouseBookshelf:
 	jumpstd PictureBookshelfScript
-
-CherrygroveGymSpeechHousePokefanMText:
-	text "You're trying to"
-	line "see how good you"
-
-	para "are as a #MON"
-	line "trainer?"
-
-	para "You better visit"
-	line "the #MON GYMS"
-
-	para "all over JOHTO and"
-	line "collect BADGES."
-	done
 
 CherrygroveGymSpeechHouseBugCatcherText:
 	text "When I get older,"

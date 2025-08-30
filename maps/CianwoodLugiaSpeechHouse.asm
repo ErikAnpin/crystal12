@@ -9,7 +9,12 @@ CianwoodLugiaSpeechHouse_MapScripts:
 	def_callbacks
 
 CianwoodLugiaSpeechHouseTeacherScript:
-	jumptextfaceplayer CianwoodLugiaSpeechHouseTeacherText
+	faceplayer
+	opentext
+	trade NPC_TRADE_KIM
+	waitbutton
+	closetext
+	end
 
 CianwoodLugiaSpeechHouseLassScript:
 	jumptextfaceplayer CianwoodLugiaSpeechHouseLassText
@@ -19,20 +24,6 @@ CianwoodLugiaSpeechHouseTwinScript:
 
 CianwoodLugiaSpeechHouseBookshelf:
 	jumpstd PictureBookshelfScript
-
-CianwoodLugiaSpeechHouseTeacherText:
-	text "You came from"
-	line "OLIVINE?"
-
-	para "Do you remember"
-	line "the four islands"
-	cont "along the way?"
-
-	para "I heard that a "
-	line "mythical sea crea-"
-	cont "ture is hiding in"
-	cont "them."
-	done
 
 CianwoodLugiaSpeechHouseLassText:
 	text "I heard that you"

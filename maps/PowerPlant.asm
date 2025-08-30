@@ -187,9 +187,7 @@ PowerPlantManager:
 	end
 
 Forest:
-	faceplayer
-	opentext
-	trade NPC_TRADE_FOREST
+	writetext PowerPlantForestText
 	waitbutton
 	closetext
 	end
@@ -211,6 +209,13 @@ PowerPlantOfficer1ReturnToPostMovement:
 	step LEFT
 	turn_head DOWN
 	step_end
+
+PowerPlantForestText:
+	text "Paralyzed #MON"
+	line "will have their"
+
+	para "SPEED lowered."
+	done
 
 PowerPlantOfficer1AThiefBrokeInText:
 	text "A thief broke into"
