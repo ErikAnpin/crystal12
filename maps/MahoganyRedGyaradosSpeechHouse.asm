@@ -13,9 +13,7 @@ MahoganyRedGyaradosSpeechHouseBlackBeltScript:
 MahoganyRedGyaradosSpeechHouseTeacherScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	iftrue .RocketsInRadioTower
-	writetext MahoganyRedGyaradosSpeechHouseTeacherText
+	trade NPC_TRADE_FOREST
 	waitbutton
 	closetext
 	end
@@ -42,12 +40,6 @@ MahoganyRedGyaradosSpeechHouseBlackBeltText:
 
 	para "GYARADOS are rare"
 	line "in that lake…"
-	done
-
-MahoganyRedGyaradosSpeechHouseTeacherText:
-	text "My favorite radio"
-	line "program? I'd say"
-	cont "#MON MUSIC."
 	done
 
 MahoganyRedGyaradosSpeechHouseTeacherText_RocketsInRadioTower:

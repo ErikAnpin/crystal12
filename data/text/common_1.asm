@@ -1566,14 +1566,24 @@ _NPCTradeAfterText3::
 	done
 
 _NPCTradeCompleteText4::
-	text "Uh? What happened?"
+	text "Wow! Thank you!"
+	line "I always wanted"
+	cont "@"
+	text_ram wMonOrItemNameBuffer
+	text "!"
 	done
 
 _NPCTradeAfterText4::
-	text "Trading is so odd…"
+	text "How is that"
+	line "@"
+	text_ram wStringBuffer2
+	text " I"
+	cont "traded you doing?"
 
-	para "I still have a lot"
-	line "to learn about it."
+	para "Your @"
+	text_ram wMonOrItemNameBuffer
+	text "'s"
+	line "so cute!"
 	done
 
 _MomLeavingText1::

@@ -28,12 +28,21 @@ PewterPokecenter1FBugCatcherScript:
 	jumptextfaceplayer PewterPokecenter1FBugCatcherText
 
 Chris:
-	faceplayer
-	opentext
-	trade NPC_TRADE_CHRIS
-	waitbutton
-	closetext
-	end
+	jumptextfaceplayer PewterPokecenter1FBugCatcherText
+
+PewterPokecenter1FChrisText:
+	text "You're trying to"
+	line "see how good you"
+
+	para "are as a #MON"
+	line "trainer?"
+
+	para "You better visit"
+	line "the #MON GYMS"
+
+	para "all over KANTO and"
+	line "collect BADGES."
+	done
 
 PewterPokecenter1FTeacherText:
 	text "…Yeah, and the"
