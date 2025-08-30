@@ -738,22 +738,28 @@ MultiHit:
     endmove
 
 PoisonMultiHit:
-    usedmovetext
-    doturn
-    startloop
-    damagestats
-    damagecalc
-    stab
-    checkhit
-    moveanim
-    failuretext
-    applydamage
-    supereffectivetext
-    checkfaint
-    buildopponentrage
-    endloop
-    poisontarget
-    endmove
+	usedmovetext
+	doturn
+	startloop
+	lowersub
+	checkhit
+	effectchance
+	critical
+	damagestats
+	damagecalc
+	stab
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	cleartext
+	supereffectivelooptext
+	checkfaint
+	buildopponentrage
+	endloop
+	raisesub
+	poisontarget
+	endmove
 
 FlinchHit:
     usedmovetext
@@ -1713,7 +1719,7 @@ Thunder:
 Teleport:
     usedmovetext
     doturn
-    teleport
+    batonpass
     endmove
 
 BeatUp:
