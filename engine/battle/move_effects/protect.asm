@@ -22,41 +22,15 @@ ProtectChance:
 	call CheckOpponentWentFirst
 	jr nz, .failed
 
-; Can't have a substitute.
 
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	jr nz, .failed
 
-; Halve the chance of a successful Protect for each consecutive use.
-
-	ld b, $ff
-	ld a, [de]
-	ld c, a
-.loop
-	ld a, c
-	and a
-	jr z, .done
-	dec c
-
-	srl b
-	ld a, b
-	and a
-	jr nz, .loop
-	jr .failed
-.done
-
-.rand
-	call BattleRandom
-	and a
-	jr z, .rand
-
-	dec a
-	cp b
-	jr nc, .failed
-
-; Another consecutive Protect use.
+	ld a, [de]  ;load count
+	and a       ;check if 0
+	jr nz, .failed
 
 	ld a, [de]
 	inc a
@@ -72,3 +46,4 @@ ProtectChance:
 	call PrintButItFailed
 	scf
 	ret
+	
