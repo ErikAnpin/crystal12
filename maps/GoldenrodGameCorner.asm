@@ -1,7 +1,7 @@
 DEF GOLDENRODGAMECORNER_TM25_COINS      EQU 1000 ;Double Team
 DEF GOLDENRODGAMECORNER_TM14_COINS      EQU 2000 ;Psychic
 DEF GOLDENRODGAMECORNER_TM38_COINS      EQU 3000 ;Hyper Beam
-DEF GOLDENRODGAMECORNER_ABRA_COINS      EQU 100  ;Clefairy
+DEF GOLDENRODGAMECORNER_ABRA_COINS      EQU 100  ;Abra
 DEF GOLDENRODGAMECORNER_CUBONE_COINS    EQU 800  ;Porygon
 DEF GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500 ;Snorlax
 
@@ -189,16 +189,16 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, CLEFAIRY
+	getmonname STRING_BUFFER_3, ABRA
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	setval CLEFAIRY
+	setval ABRA
 	special GameCornerPrizeMonCheckDex
-	givepoke CLEFAIRY, 15
+	givepoke ABRA, 15
 	takecoins GOLDENRODGAMECORNER_ABRA_COINS
 	sjump .loop
 
@@ -216,7 +216,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	waitbutton
 	setval PORYGON
 	special GameCornerPrizeMonCheckDex
-	givepoke CUBONE, 15
+	givepoke PORYGON, 15
 	takecoins GOLDENRODGAMECORNER_CUBONE_COINS
 	sjump .loop
 
@@ -247,7 +247,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "CLEFAIRY    100@"
+	db "ABRA        100@"
 	db "PORYGON     800@"
 	db "SNORLAX    1500@"
 	db "CANCEL@"
