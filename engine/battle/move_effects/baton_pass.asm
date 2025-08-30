@@ -9,6 +9,7 @@ BattleCommand_BatonPass:
 
 	call UpdateBattleMonInParty
 	call AnimateCurrentMove
+    call ResetBatonPasserStatus
 
 	ld c, 50
 	call DelayFrames
@@ -53,6 +54,7 @@ BattleCommand_BatonPass:
 
 	call UpdateEnemyMonInParty
 	call AnimateCurrentMove
+    call ResetBatonPasserStatus
 	call BatonPass_LinkEnemySwitch
 
 ; Mobile link battles handle entrances differently
@@ -159,6 +161,38 @@ ResetBatonPassStatus:
 	xor a
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
+	ret
+
+ResetBatonPasserStatus:
+	ldh a, [hBattleTurn] ;turn check
+	and a
+	jr z, .Player
+
+.Enemy
+	ld hl, wEnemySubStatus4
+	res SUBSTATUS_SUBSTITUTE, [hl]
+	xor a
+	ld [wEnemySubstituteHP], a
+
+	ld hl, wEnemyAtkLevel
+	jr .ResetStats
+
+.Player
+	ld hl, wPlayerSubStatus4
+	res SUBSTATUS_SUBSTITUTE, [hl]
+	xor a
+	ld [wPlayerSubstituteHP], a
+
+	ld hl, wPlayerAtkLevel
+	; fallthrough
+
+.ResetStats
+	ld a, BASE_STAT_LEVEL
+	ld b, 7
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
 	ret
 
 CheckAnyOtherAlivePartyMons:
