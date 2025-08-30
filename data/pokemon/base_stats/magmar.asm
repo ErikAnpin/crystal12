@@ -1,6 +1,6 @@
 	db MAGMAR ; 126
 
-	db  70,  95,  63,  78, 112,  90
+	db  70,  95,  62,  78, 112,  90
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIGHTING ; type
