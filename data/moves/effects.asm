@@ -1306,26 +1306,21 @@ Endure:
     endmove
 
 Rollout:
-	checkcurl
-	checkobedience
-	doturn
-	usedmovetext
-	critical
-	damagestats
-	damagecalc
-	stab
-	checkhit
-	rolloutpower
-	damagevariation
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	kingsrock
-	endmove
+    checkcurl
+    doturn
+    usedmovetext
+    damagestats
+    damagecalc
+    stab
+    checkhit
+    rolloutpower
+    moveanim
+    failuretext
+    applydamage
+    supereffectivetext
+    checkfaint
+    buildopponentrage
+    endmove
 
 Swagger:
     usedmovetext
