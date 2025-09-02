@@ -569,11 +569,13 @@ Pokedex_Handle_Reinit_Evo:
 	ret
 
 DexEntryScreen_ArrowCursorData:
-	db PAD_RIGHT | PAD_LEFT, 4
-	dwcoord 1, 17  ; PAGE
-	dwcoord 6, 17  ; AREA
-	dwcoord 11, 17 ; CRY
-	dwcoord 15, 17 ; PRNT
+	db PAD_RIGHT | PAD_LEFT, 6
+	dwcoord 1, 17  ; INFO
+	dwcoord 4, 17  ; STAT
+	dwcoord 7, 17  ; MOVES
+	dwcoord 11, 17 ; AREA
+	dwcoord 14, 17 ; EVO
+	dwcoord 17, 17 ; PICS
 
 DexEntryScreen_MenuActionJumptable:
 	dw Pokedex_Page
@@ -1021,17 +1023,19 @@ Pokedex_UpdateOptionScreen:
 	ret
 
 .NoUnownModeArrowCursorData:
-	db PAD_UP | PAD_DOWN, 3
-	dwcoord 2,  4 ; NEW
-	dwcoord 2,  6 ; OLD
-	dwcoord 2,  8 ; ABC
+	db PAD_UP | PAD_DOWN, 4
+	dwcoord 2,  3 ; NEW
+	dwcoord 2,  4 ; OLD
+	dwcoord 2,  5 ; ABC
+	dwcoord 2,  6 ; COLOR
 
 .ArrowCursorData:
-	db PAD_UP | PAD_DOWN, 4
-	dwcoord 2,  4 ; NEW
-	dwcoord 2,  6 ; OLD
-	dwcoord 2,  8 ; ABC
-	dwcoord 2, 10 ; UNOWN
+	db PAD_UP | PAD_DOWN, 5
+	dwcoord 2,  3 ; NEW
+	dwcoord 2,  4 ; OLD
+	dwcoord 2,  5 ; ABC
+	dwcoord 2,  6 ; COLOR
+	dwcoord 2,  7 ; UNOWN
 
 .MenuActionJumptable:
 	dw .MenuAction_NewMode
