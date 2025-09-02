@@ -9,9 +9,9 @@ Pokedex_PlaceAnimatedFrontpic:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	ld bc, wTempSpecies
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call .AnimateMon
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 .AnimateMon:

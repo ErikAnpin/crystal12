@@ -91,7 +91,7 @@ VermilionPortSailorAtGangwayScript:
 	waitsfx
 	applymovement PLAYER, VermilionPortEnterFastShipMovement
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special FadeOutToWhite
 	waitsfx
 	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
@@ -153,7 +153,7 @@ VermilionPortWalkUpToShipScript:
 	end
 
 .NextShipWednesday:
-	writetext VermilionPortSailMondayText
+	writetext VermilionPortSailWednesdayText
 	waitbutton
 	closetext
 	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
@@ -214,7 +214,7 @@ VermilionPortSailorScript:
 	end
 
 .NextShipWednesday:
-	writetext VermilionPortSailMondayText
+	writetext VermilionPortSailWednesdayText
 	waitbutton
 	closetext
 	end
@@ -318,7 +318,7 @@ VermilionPortNoTicketText:
 	line "S.S.TICKET."
 	done
 
-VermilionPortSailMondayText:
+VermilionPortSailWednesdayText:
 	text "The FAST SHIP will"
 	line "sail on Wednesday."
 	done

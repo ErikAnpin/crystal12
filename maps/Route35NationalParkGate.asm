@@ -70,7 +70,7 @@ Route35NationalParkGateLeavingContestEarlyScript:
 	closetext
 	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutPalettes
+	special FadeOutToWhite
 	waitsfx
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
 	end
@@ -102,7 +102,7 @@ Route35NationalParkGate_OkayToProceed:
 	special GiveParkBalls
 	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutPalettes
+	special FadeOutToWhite
 	waitsfx
 	special SelectRandomBugContestContestants
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47

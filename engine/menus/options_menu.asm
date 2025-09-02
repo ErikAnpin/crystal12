@@ -48,12 +48,12 @@ _Option:
 	call WaitBGMap
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 .joypad_loop
 	call JoyTextDelay
 	ldh a, [hJoyPressed]
-	and START | B_BUTTON
+	and PAD_START | PAD_B
 	jr nz, .ExitOptions
 	call OptionsControl
 	jr c, .dpad
@@ -114,9 +114,9 @@ GetOptionPointer:
 Options_TextSpeed:
 	call GetTextSpeed
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	ld a, c ; right pressed
 	cp OPT_TEXT_SPEED_NONE
@@ -204,9 +204,9 @@ GetTextSpeed:
 Options_BattleScene:
 	ld hl, wOptions
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	bit BATTLE_SCENE, [hl]
 	jr nz, .ToggleOn
@@ -243,9 +243,9 @@ Options_BattleScene:
 Options_BattleStyle:
 	ld hl, wOptions
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	bit BATTLE_SHIFT, [hl]
 	jr nz, .ToggleShift
@@ -281,9 +281,9 @@ Options_BattleStyle:
 Options_Sound:
 	ld hl, wOptions
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	bit STEREO, [hl]
 	jr nz, .SetMono
@@ -333,9 +333,9 @@ Options_Sound:
 Options_Print:
 	call GetPrinterSetting
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	ld a, c
 	cp OPT_PRINT_DARKEST
@@ -428,9 +428,9 @@ GetPrinterSetting:
 Options_MenuAccount:
 	ld hl, wOptions2
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	bit MENU_ACCOUNT, [hl]
 	jr nz, .ToggleOff
@@ -466,9 +466,9 @@ Options_MenuAccount:
 Options_Frame:
 	ld hl, wTextboxFrame
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .RightPressed
 	and a
 	ret
@@ -496,7 +496,7 @@ UpdateFrame:
 
 Options_Cancel:
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .Exit
 	and a
 	ret
@@ -508,9 +508,9 @@ Options_Cancel:
 OptionsControl:
 	ld hl, wJumptableIndex
 	ldh a, [hJoyLast]
-	cp D_DOWN
+	cp PAD_DOWN
 	jr z, .DownPressed
-	cp D_UP
+	cp PAD_UP
 	jr z, .UpPressed
 	and a
 	ret

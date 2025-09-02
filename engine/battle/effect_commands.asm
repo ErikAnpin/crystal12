@@ -111,9 +111,9 @@ CheckTurn:
 BattleCommand_CheckTurn:
 ; Repurposed as hardcoded turn handling. Useless as a command.
 
-; Move $ff immediately ends the turn.
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
+	assert CANNOT_MOVE == $ff
 	inc a
 	jp z, EndTurn
 
@@ -156,7 +156,7 @@ BattleCommand_CheckTurn:
 	jr z, .woke_up
 
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld de, ANIM_SLP
 	call FarPlayBattleAnimation
 	jr .fast_asleep
@@ -256,7 +256,7 @@ BattleCommand_CheckTurn:
 	ld hl, IsConfusedText
 	call StdBattleTextbox
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld de, ANIM_CONFUSED
 	call FarPlayBattleAnimation
 
@@ -284,7 +284,7 @@ BattleCommand_CheckTurn:
 	ld hl, InLoveWithText
 	call StdBattleTextbox
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
@@ -388,7 +388,7 @@ CheckEnemyTurn:
 	ld hl, FastAsleepText
 	call StdBattleTextbox
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld de, ANIM_SLP
 	call FarPlayBattleAnimation
 	jr .fast_asleep
@@ -486,7 +486,7 @@ CheckEnemyTurn:
 	call StdBattleTextbox
 
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld de, ANIM_CONFUSED
 	call FarPlayBattleAnimation
 
@@ -510,7 +510,7 @@ CheckEnemyTurn:
 	call BattleCommand_LowerSub
 
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 
 	; Flicker the monster pic unless flying or underground.
 	ld de, ANIM_HIT_CONFUSION
@@ -534,7 +534,7 @@ CheckEnemyTurn:
 	ld hl, InLoveWithText
 	call StdBattleTextbox
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
@@ -613,7 +613,7 @@ HitConfusion:
 	call BattleCommand_LowerSub
 
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 
 	; Flicker the monster pic unless flying or underground.
 	ld de, ANIM_HIT_CONFUSION
@@ -657,9 +657,9 @@ BattleCommand_CheckObedience:
 	and a
 	ret nz
 
-	; If the monster's id doesn't match the player's,
+	; If the Pokémon's Trainer ID doesn't match the player's,
 	; some conditions need to be met.
-	ld a, MON_ID
+	ld a, MON_OT_ID
 	call BattlePartyAttr
 
 	ld a, [wPlayerID]
@@ -1281,7 +1281,7 @@ BattleCommand_Stab:
 	ld [wCurDamage + 1], a
 
 	ld hl, wTypeModifier
-	set 7, [hl]
+	set STAB_DAMAGE_F, [hl]
 
 .SkipStab:
 	ld a, BATTLE_VARS_MOVE_TYPE
@@ -1320,7 +1320,7 @@ BattleCommand_Stab:
 	push bc
 	inc hl
 	ld a, [wTypeModifier]
-	and %10000000
+	and STAB_DAMAGE
 	ld b, a
 ; If the target is immune to the move, treat it as a miss and calculate the damage as 0
 	ld a, [hl]
@@ -1386,7 +1386,7 @@ BattleCommand_Stab:
 	ld a, [wTypeMatchup]
 	ld b, a
 	ld a, [wTypeModifier]
-	and %10000000
+	and STAB_DAMAGE
 	or b
 	ld [wTypeModifier], a
 	ret
@@ -1949,7 +1949,7 @@ BattleCommand_LowerSub:
 	jr c, .mimic_anims
 
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld [wFXAnimID + 1], a
 	inc a
 	ld [wBattleAnimParam], a
@@ -1992,13 +1992,13 @@ BattleCommand_MoveAnimNoSub:
 	ldh a, [hBattleTurn]
 	and a
 	ld de, wPlayerRolloutCount
-	ld a, BATTLEANIM_ENEMY_DAMAGE
+	ld a, ANIM_ENEMY_DAMAGE - BATTLE_AFTERANIMS
 	jr z, .got_rollout_count
 	ld de, wEnemyRolloutCount
-	ld a, BATTLEANIM_PLAYER_DAMAGE
+	ld a, ANIM_PLAYER_DAMAGE - BATTLE_AFTERANIMS
 
 .got_rollout_count
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_MULTI_HIT
@@ -2045,7 +2045,7 @@ BattleCommand_MoveAnimNoSub:
 	pop af
 	jp z, PlayFXAnimID
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	jp PlayFXAnimID
 
 BattleCommand_StatUpAnim:
@@ -2063,14 +2063,14 @@ BattleCommand_StatDownAnim:
 
 	ldh a, [hBattleTurn]
 	and a
-	ld a, BATTLEANIM_ENEMY_STAT_DOWN
+	ld a, ANIM_ENEMY_STAT_DOWN - BATTLE_AFTERANIMS
 	jr z, BattleCommand_StatUpDownAnim
-	ld a, BATTLEANIM_WOBBLE
+	ld a, ANIM_WOBBLE - BATTLE_AFTERANIMS
 
 	; fallthrough
 
 BattleCommand_StatUpDownAnim:
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	xor a
 	ld [wBattleAnimParam], a
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -2095,7 +2095,7 @@ BattleCommand_RaiseSub:
 	jp c, BattleCommand_RaiseSubNoAnim
 
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld [wFXAnimID + 1], a
 	ld a, $2
 	ld [wBattleAnimParam], a
@@ -2241,7 +2241,7 @@ GetFailureResultText:
 	ld hl, DoesntAffectText
 	ld de, DoesntAffectText
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jr z, .got_text
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -2266,7 +2266,7 @@ GetFailureResultText:
 	ret nz
 
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 
 	ld hl, wCurDamage
@@ -2311,7 +2311,7 @@ BattleCommand_BideFailText:
 	ret z
 
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jp z, PrintDoesntAffect
 	jp PrintButItFailed
 
@@ -2366,7 +2366,7 @@ BattleCommand_SuperEffectiveLoopText:
 
 BattleCommand_SuperEffectiveText:
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	cp EFFECTIVE
 	ret z
 	ld hl, SuperEffectiveText
@@ -2432,7 +2432,7 @@ BattleCommand_CheckFaint:
 
 	call BattleCommand_SwitchTurn
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld [wFXAnimID + 1], a
 	inc a
 	ld [wBattleAnimParam], a
@@ -3726,7 +3726,7 @@ BattleCommand_PoisonTarget:
 	and a
 	ret nz
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	ld a, POISON ; Don't poison a Poison-type
 	call CheckIfTargetIsGivenType
@@ -3758,7 +3758,7 @@ BattleCommand_PoisonTarget:
 BattleCommand_Poison:
 	ld hl, DoesntAffectText
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jp z, .failed
 
 	ld a, POISON
@@ -3969,7 +3969,7 @@ SapHealth:
 
 BattleCommand_BurnTarget:
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -3977,7 +3977,7 @@ BattleCommand_BurnTarget:
 	and a
 	jp nz, Defrost
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	ld a, FIRE ; Don't burn a Fire-type
 	call CheckIfTargetIsGivenType
@@ -4034,7 +4034,7 @@ Defrost:
 
 BattleCommand_FreezeTarget:
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -4042,7 +4042,7 @@ BattleCommand_FreezeTarget:
 	and a
 	ret nz
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
@@ -4086,7 +4086,7 @@ BattleCommand_FreezeTarget:
 
 BattleCommand_ParalyzeTarget:
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -4094,7 +4094,7 @@ BattleCommand_ParalyzeTarget:
 	and a
 	ret nz
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	call GetOpponentItem
 	ld a, b
@@ -4635,6 +4635,7 @@ GetStatName:
 
 INCLUDE "data/battle/stat_names.asm"
 
+StatLevelMultipliers:
 INCLUDE "data/battle/stat_multipliers.asm"
 
 BattleCommand_AllStatsUp:
@@ -5004,7 +5005,7 @@ BattleCommand_ForceSwitch:
 .wild_force_flee
 	call UpdateBattleMonInParty
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	inc a ; TRUE
 	ld [wForcedSwitch], a
 	call SetBattleDraw
@@ -5097,7 +5098,7 @@ BattleCommand_ForceSwitch:
 .wild_succeed_playeristarget
 	call UpdateBattleMonInParty
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	inc a ; TRUE
 	ld [wForcedSwitch], a
 	call SetBattleDraw
@@ -5428,7 +5429,7 @@ BattleCommand_HeldFlinch:
 BattleCommand_OHKO:
 	call ResetDamage
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jr z, .no_effect
 	ld hl, wEnemyMonLevel
 	ld de, wBattleMonLevel
@@ -5504,7 +5505,7 @@ BattleCommand_Charge:
 
 	call BattleCommand_LowerSub
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	inc a
 	ld [wBattleAnimParam], a
 	call LoadMoveAnim
@@ -5844,7 +5845,7 @@ BattleCommand_Paralyze:
 	call CheckForStatusIfAlreadyHasAny
 	jr nz, .paralyzed
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jr z, .didnt_affect
 	call GetOpponentItem
 	ld a, b
@@ -6596,18 +6597,18 @@ PlayDamageAnim:
 
 	ldh a, [hBattleTurn]
 	and a
-	ld a, BATTLEANIM_ENEMY_DAMAGE
+	ld a, ANIM_ENEMY_DAMAGE - BATTLE_AFTERANIMS
 	jr z, .player
-	ld a, BATTLEANIM_PLAYER_DAMAGE
+	ld a, ANIM_PLAYER_DAMAGE - BATTLE_AFTERANIMS
 
 .player
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 
 	jp PlayUserBattleAnim
 
 LoadMoveAnim:
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 	ld [wFXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -6638,7 +6639,7 @@ PlayOpponentBattleAnim:
 	ld a, d
 	ld [wFXAnimID + 1], a
 	xor a
-	ld [wNumHits], a
+	ld [wBattleAfterAnim], a
 
 	push hl
 	push de

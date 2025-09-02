@@ -23,15 +23,16 @@ Red:
 	writetext RedLeavesText
 	waitbutton
 	closetext
+	special FadeOutToBlack
 	setevent EVENT_BEAT_RED
-	special FadeBlackQuickly
+	special FadeOutToBlack
 	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
 	pause 15
-	special FadeInQuickly
+	special FadeInFromBlack
 	pause 30
 	special HealParty
-	refreshscreen
+	reanchormap
 	credits
 	end
 

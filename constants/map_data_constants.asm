@@ -29,7 +29,7 @@ DEF MAP_LENGTH EQU _RS
 	const DUNGEON
 DEF NUM_ENVIRONMENTS EQU const_value - 1
 
-; map palettes (wEnvironment)
+; map palettes (wMapTimeOfDay)
 	const_def
 	const PALETTE_AUTO
 	const PALETTE_DAY
@@ -38,8 +38,8 @@ DEF NUM_ENVIRONMENTS EQU const_value - 1
 	const PALETTE_EVE
 DEF NUM_MAP_PALETTES EQU const_value
 
-IN_DARKNESS_F EQU 3
-IN_DARKNESS EQU 1 << IN_DARKNESS_F ; masked with a PALETTE_* constant
+DEF IN_DARKNESS_F EQU 3
+DEF IN_DARKNESS EQU 1 << IN_DARKNESS_F ; masked with a PALETTE_* constant
 
 ; FishGroups indexes (see data/wild/fish.asm)
 	const_def
@@ -59,14 +59,8 @@ IN_DARKNESS EQU 1 << IN_DARKNESS_F ; masked with a PALETTE_* constant
 	const FISHGROUP_QWILFISH_NO_SWARM
 DEF NUM_FISHGROUPS EQU const_value - 1
 
-; connection directions (see data/maps/data.asm)
-	const_def
-	const EAST_F
-	const WEST_F
-	const SOUTH_F
-	const NORTH_F
-
 ; wMapConnections
+; connection directions (see data/maps/data.asm)
 	const_def
 	shift_const EAST
 	shift_const WEST
@@ -140,3 +134,5 @@ DEF KANTO_FLYPOINT EQU const_value
 	const FLY_CINNABAR
 	const FLY_INDIGO
 DEF NUM_FLYPOINTS EQU const_value
+
+DEF MAX_OUTDOOR_SPRITES EQU 23 ; see engine/overworld/overworld.asm

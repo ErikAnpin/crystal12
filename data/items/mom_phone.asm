@@ -1,7 +1,6 @@
 MACRO momitem
 ; money to trigger, cost, kind, item
-	dt \1
-	dt \2
+	bigdt \1, \2
 	db \3, \4
 ENDM
 
@@ -25,3 +24,5 @@ MomItems_2:
 	momitem  90000,  2400, MOM_ITEM, PP_UP
 	momitem 100000,  2400, MOM_ITEM, RARE_CANDY
 .End
+
+	bigdt 0 ; unused

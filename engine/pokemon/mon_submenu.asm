@@ -39,20 +39,20 @@ MonSubmenu:
 
 MonMenuLoop:
 .loop
-	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
+	ld a, MENU_UNUSED | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuDataFlags], a
 	ld a, [wMonSubmenuCount]
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ldh a, [hJoyPressed]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .select
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .cancel
 	jr .loop
 
@@ -239,16 +239,16 @@ BattleMonMenu:
 	call WaitBGMap
 	call CopyMenuData
 	ld a, [wMenuDataFlags]
-	bit 7, a
+	bit STATICMENU_CURSOR_F, a
 	jr z, .set_carry
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ldh a, [hJoyPressed]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .clear_carry
 	ret z
 
@@ -454,7 +454,7 @@ CanUseFly:
 	
 Can_Use_Sweet_Scent:
 ; Step 1: Location check
-	farcall CanUseSweetScent
+	farcall CanEncounterWildMon
 	ret nc
 	farcall GetMapEncounterRate
 	ld a, b

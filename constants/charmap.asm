@@ -6,10 +6,10 @@
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
 	charmap "<MOBILE>",  $15
 	charmap "<CR>",      $16
-	charmap "¯",         $1f ; soft linebreak
+	charmap "<BSP>",     $1f ; breakable space (usually " ", or "<LF>" on the Town Map)
 	charmap "<LF>",      $22
 	charmap "<POKE>",    $24 ; "<PO><KE>"
-	charmap "%",         $25 ; soft linebreak in landmark names
+	charmap "<WBR>",     $25 ; word-break opportunity (usually skipped, or "<LF>" on the Town Map)
 	charmap "<RED>",     $38 ; wRedsName
 	charmap "<GREEN>",   $39 ; wGreensName
 	charmap "<ENEMY>",   $3f
@@ -197,7 +197,7 @@
 	charmap "▶",         $ed
 	charmap "▼",         $ee
 	charmap "♂",         $ef
-	charmap "¥",         $f0
+	charmap "¥",         $f0 ; Poké Dollar sign
 	charmap "×",         $f1
 	charmap "<DOT>",     $f2 ; decimal point; same as "." in English
 	charmap "/",         $f3
@@ -424,12 +424,22 @@
 	charmap "８", $fe
 	charmap "９", $ff
 
+; Unown charmap, for Unown words (see gfx/tilesets/ruins_of_alph.png)
+pushc
+	newcharmap unown
+	DEF PRINTABLE_UNOWN EQUS "ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
+	for i, STRLEN(#PRINTABLE_UNOWN)
+		charmap STRSLICE(#PRINTABLE_UNOWN, i, i + 1), $10 * (i / 8) + 2 * i
+	endr
+	charmap "@", $ff ; end
+popc
+
 ; ASCII charmap, for mobile functions
 pushc
 	newcharmap ascii
 	DEF PRINTABLE_ASCII EQUS " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz\{|}~"
-	for i, STRLEN("{PRINTABLE_ASCII}")
-		charmap STRSUB("{PRINTABLE_ASCII}", i + 1, 1), i + $20
+	for i, STRLEN(#PRINTABLE_ASCII)
+		charmap STRSLICE(#PRINTABLE_ASCII, i, i + 1), i + $20
 	endr
 	charmap "\t", $09
 	charmap "\n", $0a
