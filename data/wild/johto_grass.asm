@@ -572,29 +572,29 @@ JohtoGrassWildMons:
 	def_grass_wildmons ILEX_FOREST
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 8,  CATERPIE
-	db 8,  WEEDLE
-	db 10, METAPOD
-	db 10, KAKUNA
-	db 10, PIDGEY
-	db 9,  VENONAT
-	db 9,  FARFETCH_D
-	; day
-	db 8,  CATERPIE
-	db 8,  WEEDLE
-	db 10, METAPOD
-	db 10, KAKUNA
-	db 10, PIDGEY
-	db 9,  VENONAT
-	db 9,  FARFETCH_D
-	; nite
-	db 8,  ODDISH
-	db 8,  VENONAT
+	db 8,  SPINARAK
 	db 10, ODDISH
-	db 10, PSYDUCK
-	db 10, HOOTHOOT
 	db 9,  VENONAT
+	db 8,  PSYDUCK
+	db 10, HOOTHOOT
 	db 9,  FARFETCH_D
+	db 11, FARFETCH_D
+	; day
+	db 8,  WEEDLE
+	db 9,  CATERPIE
+	db 10, VENONAT
+	db 9,  FARFETCH_D
+	db 9,  HOOTHOOT
+	db 8,  SPINARAK
+	db 11, SPINARAK
+	; nite
+	db 10, SPINARAK
+	db 9,  ODDISH
+	db 8,  HOOTHOOT
+	db 10, PSYDUCK
+	db 10, VENONAT
+	db 9,  FARFETCH_D
+	db 11, FARFETCH_D
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_1F_OUTSIDE
@@ -1328,26 +1328,26 @@ JohtoGrassWildMons:
 	def_grass_wildmons ROUTE_32
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 4, PIDGEY
-	db 5, BELLSPROUT
+	db 4, SPEAROW
+	db 5, ODDISH
 	db 7, MAREEP
-	db 6, ODDISH
-	db 7, WOOPER
+	db 6, WOOPER
+	db 7, HOPPIP
 	db 7, HOPPIP
 	db 7, HOPPIP
 	; day
-	db 4, PIDGEY
-	db 5, BELLSPROUT
-	db 7, MAREEP
-	db 6, ODDISH
-	db 7, WOOPER
+	db 4, SPEAROW
+	db 5, MAREEP
+	db 7, ODDISH
+	db 6, WOOPER
+	db 7, HOPPIP
 	db 7, HOPPIP
 	db 7, HOPPIP
 	; nite
 	db 4, HOOTHOOT
-	db 5, BELLSPROUT
+	db 5, ODDISH
 	db 7, MAREEP
-	db 6, ODDISH
+	db 6, WOOPER
 	db 7, WOOPER
 	db 7, GASTLY
 	db 7, GASTLY
@@ -1442,7 +1442,7 @@ JohtoGrassWildMons:
 	; morn
 	db 4, NIDORAN_F
 	db 4, NIDORAN_M
-	db 5, BELLSPROUT
+	db 5, PIDGEY
 	db 5, NATU
 	db 5, VULPIX
 	db 6, VULPIX
@@ -1450,7 +1450,7 @@ JohtoGrassWildMons:
 	; day
 	db 4, NIDORAN_F
 	db 4, NIDORAN_M
-	db 5, BELLSPROUT
+	db 5, PIDGEY
 	db 5, NATU
 	db 5, GROWLITHE
 	db 6, GROWLITHE
@@ -1458,7 +1458,7 @@ JohtoGrassWildMons:
 	; nite
 	db 4, NIDORAN_F
 	db 4, NIDORAN_M
-	db 5, BELLSPROUT
+	db 5, PIDGEY
 	db 5, HOOTHOOT
 	db 5, HOUNDOUR
 	db 5, HOUNDOUR

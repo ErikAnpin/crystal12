@@ -5,7 +5,6 @@
 ; once for CalcBattleStats (see engine/battle/effect_commands.asm),
 ; and once for ApplyStatLevelMultiplier (see engine/battle/core.asm).
 
-StatLevelMultipliers:
 	db  33, 100 ; -6 =  33%
 	db  36, 100 ; -5 =  36%
 	db  43, 100 ; -4 =  43%

@@ -1,6 +1,6 @@
 	db ELECTABUZZ ; 125
 
-	db  70, 103,  63, 100,  95,  85
+	db  70, 103,  62, 100,  95,  85
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, FIGHTING ; type
