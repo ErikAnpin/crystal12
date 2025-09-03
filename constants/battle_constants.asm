@@ -11,8 +11,8 @@ DEF BASE_STAT_LEVEL EQU 7
 DEF MAX_STAT_LEVEL EQU 13
 
 ; turns that sleep lasts
-DEF REST_SLEEP_TURNS EQU 2
-DEF TREEMON_SLEEP_TURNS EQU 2
+DEF REST_SLEEP_TURNS EQU 3
+DEF TREEMON_SLEEP_TURNS EQU 3
 
 ; default move priority
 DEF BASE_PRIORITY EQU 1
@@ -159,7 +159,7 @@ assert const_value % 2 == 0
 DEF NUM_BATTLE_VAR_LOCATION_PAIRS EQU const_value / 2
 
 ; status condition bit flags
-DEF SLP_MASK EQU %011 ; 1-3 turns
+DEF SLP_MASK EQU %111 ; 0-7 turns
 	const_def 3
 	const PSN
 	const BRN

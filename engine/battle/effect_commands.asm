@@ -3495,19 +3495,7 @@ BattleCommand_SleepTarget:
 	jr nz, .fail
 
 	call AnimateCurrentMove
-	ld b, SLP_MASK
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr z, .random_loop
-	ld b, %011
-
-.random_loop
-	call BattleRandom
-	and b
-	jr z, .random_loop
-	cp SLP_MASK
-	jr z, .random_loop
-	inc a
+	ld a, 4
 	ld [de], a
 	call UpdateOpponentInParty
 	ld hl, ApplySlpEffectOnDefense

@@ -6633,25 +6633,25 @@ ApplyPrzEffectOnSpeed:
 	ret z
 	ld hl, wEnemyMonSpeed + 1
 .proceed
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .ok
-	ld b, 1 ; min speed
+    ld a, [hld]
+    ld b, a
+    ld a, [hl]
+    srl a
+    rr b
+    ld [hli], a
+    or b
+    jr nz, .ok
+    ld b, 1 ; min speed
 .ok
-	ld [hl], b
-	ret
+    ld [hl], b
+    ret
 
 ApplySlpEffectOnDefense:
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .enemy
 	ld a, [wBattleMonStatus]
-	and 1 << SLP_MASK
+	and SLP_MASK
 	ret z
 	ld hl, wBattleMonDefense + 1
 	jr .proceed
@@ -6682,7 +6682,7 @@ ApplySlpEffectOnSpclDef:
 	and a
 	jr z, .enemy
 	ld a, [wBattleMonStatus]
-	and 1 << SLP_MASK
+	and SLP_MASK
 	ret z
 	ld hl, wBattleMonSpclDef + 1
 	jr .proceed
