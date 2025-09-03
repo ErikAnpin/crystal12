@@ -7,3 +7,4 @@ MagnitudePower:
 	db  85 percent + 1,  90,  8 ; 20%
 	db  95 percent,     110,  9 ; 10%
 	db 100 percent,     150, 10 ; 5%
+	
