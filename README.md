@@ -3,6 +3,8 @@
 This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal) disassembly.
 
 ### TODO
+- Test status stat drops again
+- Nightmare TM can be swapped
 - Add more birds to water routes, adjust encounter rate per size
 - fix aerodactyl room flash bug
 - Check if hardcoded quick claw and kings rock effects need to be removed
@@ -23,7 +25,7 @@ This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
 - Rampage always lasts 2 turns
 - Freeze halves SPA
 - Paralysis doesn't have random chance
-- Sleep halves defenses. Rest fails if already asleep.
+- Sleep lasts 3 turns and halves defenses. Rest fails if already asleep.
 - Rapid Spin and Bone Rush give Speed UP
 - Removed Flinch and OHKO
 - Focus Band(ATT), King's Rock(DEF), Scope Lens(SAT), Brightpowder(SDE) and Quick Claw(SPE) give +1 boost in battle
@@ -52,7 +54,7 @@ Girafarig: Dark/Psychic
 Golduck/Psyduck: Water/Psychic
 Golem/Geodude/Graveler: Rock/Rock
 Granbull/Snubbull: Normal/Dark
-Gyarados: Dragon
+Gyarados: Dragon/Dragon
 Ivysaur/Bulbasaur: Grass/Grass
 Pupitar/Larvitar: Rock/Dark
 Lapras: Ice/Dragon

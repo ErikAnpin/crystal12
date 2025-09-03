@@ -753,13 +753,13 @@ GrowlitheEvosAttacks:
 	db EVOLVE_ITEM, FIRE_STONE, ARCANINE
 	db 0 ; no more evolutions
 	db 1, BITE
-	db 1, ROAR
+	db 1, GROWL
 	db 9, EMBER
-	db 13, GROWL
+	db 13, ROAR
 	db 18, TAKE_DOWN
 	db 22, FIRE_SPIN
-	db 27, AGILITY
-	db 31, CRUNCH
+	db 27, CRUNCH
+	db 31, EXTREMESPEED
 	db 36, FLAMETHROWER
 	db 40, MORNING_SUN
 	db 44, SOLARBEAM
@@ -769,15 +769,13 @@ GrowlitheEvosAttacks:
 ArcanineEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, BITE
-	db 1, ROAR
-	db 1, FIRE_SPIN
-	db 1, EXTREMESPEED
+	db 1, GROWL
 	db 9, EMBER
-	db 13, GROWL
+	db 13, ROAR
 	db 18, TAKE_DOWN
 	db 22, FIRE_SPIN
-	db 27, AGILITY
-	db 31, CRUNCH
+	db 27, CRUNCH
+	db 31, EXTREMESPEED
 	db 36, FLAMETHROWER
 	db 40, MORNING_SUN
 	db 44, SOLARBEAM
@@ -2724,14 +2722,14 @@ DunsparceEvosAttacks:
 	db 1, RAGE
 	db 5, DEFENSE_CURL
 	db 13, GLARE
-	db 16, HORN_ATTACK
-	db 20, SPITE
-	db 26, PURSUIT
-	db 30, ANCIENTPOWER
+	db 16, SPITE
+	db 20, HORN_ATTACK
+	db 26, DRAGON_RAGE
+	db 30, SCARY_FACE
 	db 33, SCREECH
-	db 38, TAKE_DOWN
+	db 38, FLAIL
 	db 43, OUTRAGE
-	db 47, DRILL_PECK
+	db 47, HORN_DRILL
 	db 0 ; no more level-up moves
 
 GligarEvosAttacks:
@@ -3019,6 +3017,7 @@ MantineEvosAttacks:
 	db 33, HYDRO_PUMP
 	db 37, HAZE
 	db 40, SKY_ATTACK
+	db 44, WHIRLWIND
 	db 0 ; no more level-up moves
 
 SkarmoryEvosAttacks:
@@ -3028,12 +3027,12 @@ SkarmoryEvosAttacks:
 	db 7, SAND_ATTACK
 	db 13, FURY_ATTACK
 	db 18, WING_ATTACK
-	db 23, AGILITY
-	db 28, WHIRLWIND
-	db 31, STEEL_WING
+	db 23, WHIRLWIND
+	db 28, STEEL_WING
+	db 31, AGILITY
 	db 38, DRILL_PECK
-	db 43, SHARPEN
-	db 49, SPIKES
+	db 42, SHARPEN
+	db 46, SPIKES
 	db 0 ; no more level-up moves
 
 HoundourEvosAttacks:

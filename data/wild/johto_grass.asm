@@ -1,12 +1,3 @@
-; Johto Pokémon in grass
-	; 30% chance
-	; 30% chance
-	; 20% chance
-	; 10% chance
-	;  5% chance
-	;  4% chance
-	;  1% chance
-
 JohtoGrassWildMons:
 
 	def_grass_wildmons SPROUT_TOWER_2F
