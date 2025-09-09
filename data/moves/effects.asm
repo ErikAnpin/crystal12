@@ -1200,7 +1200,6 @@ TripleKick:
     critical
     damagestats
     damagecalc
-    triplekick
     stab
     clearmissdamage
     moveanimnosub
@@ -1210,7 +1209,6 @@ TripleKick:
     supereffectivelooptext
     checkfaint
     buildopponentrage
-    kickcounter
     endloop
     raisesub
     endmove
