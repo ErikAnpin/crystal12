@@ -260,7 +260,7 @@ BattleText_TheresNoEscapeFromTrainerBattle:
 
 BattleText_GotAwaySafely:
 	text "Got away safely!"
-	prompt
+	done
 
 BattleText_UserFledUsingAStringBuffer1:
 	text "<USER>"

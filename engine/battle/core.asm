@@ -3889,6 +3889,8 @@ TryToRunAwayFromBattle:
 	ld hl, BattleText_GotAwaySafely
 	call StdBattleTextbox
 	call WaitSFX
+	ld c, 20
+	call DelayFrames
 	call LoadTilemapToTempTilemap
 	scf
 	ret
