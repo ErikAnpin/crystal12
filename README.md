@@ -3,10 +3,12 @@
 This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal) disassembly.
 
 ### TODO
-- Test status stat drops again
-- Nightmare TM can be swapped
+- Adjust levels between Morty and Clair
+- Diversify Pokemon in Pryce Gym and Mahogany Rocket
+- Playtest Weather balance changes
+- Swap Nightmare TM with something more useful early
 - Add more birds to water routes, adjust encounter rate per size
-- fix aerodactyl room flash bug
+- Fix Aerodactyl Room not needing to actually use Flash
 - Check if hardcoded quick claw and kings rock effects need to be removed
 - Change Sleep to ATK drop
 - Fix Item/Move Descriptions and NPC explanations
@@ -14,6 +16,7 @@ This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
 - Add way to Toggle Run
 - Use Lv50 for calculations, would still be used for new moves and evolutions and adjust Healing Items for Lv50
 - Adjust AI for all changes
+- Battle Tower lol
 
 ## Plus branch
 
@@ -33,6 +36,7 @@ This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
 - Removed Kanto trades for new ones in Cherrygrove, Cianwood and Mahogany
 - Protect always fails on 2nd consecutive use
 - Baton pass doesn't pass Status changes and Substitute. Teleport works the same but with reduced priority
+- Focus Energy cures status
 
 ### Type Changes
 Ampharos/Flaaffy/Mareep: Electric/Normal
