@@ -164,7 +164,6 @@ BattleCommand_CheckTurn:
 .woke_up
 	ld hl, WokeUpText
 	call StdBattleTextbox
-	call CantMove
 	call UpdateBattleMonInParty
 	ld hl, UpdatePlayerHUD
 	call CallBattleCore
@@ -207,7 +206,6 @@ BattleCommand_CheckTurn:
 	ld hl, FlinchedText
 	call StdBattleTextbox
 
-	call CantMove
 	jp EndTurn
 
 .not_flinched
@@ -290,7 +288,6 @@ BattleCommand_CheckTurn:
 	jr nz, .no_disabled_move
 
 	call MoveDisabled
-	call CantMove
 	jp EndTurn
 
 .no_disabled_move
@@ -330,7 +327,6 @@ CantMove:
 
 OpponentCantMove:
 	call BattleCommand_SwitchTurn
-	call CantMove
 	jp BattleCommand_SwitchTurn
 
 CheckEnemyTurn:
@@ -365,7 +361,6 @@ CheckEnemyTurn:
 .woke_up
 	ld hl, WokeUpText
 	call StdBattleTextbox
-	call CantMove
 	call UpdateEnemyMonInParty
 	ld hl, UpdateEnemyHUD
 	call CallBattleCore
@@ -5297,13 +5292,6 @@ BattleCommand_Charge:
 	call BattleCommand_ClearText
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and SLP_MASK
-	jr z, .awake
-
-	call BattleCommand_MoveDelay
-	call BattleCommand_RaiseSub
-	call PrintButItFailed
-	jp EndMoveEffect
 
 .awake
 	ld a, BATTLE_VARS_SUBSTATUS3
