@@ -12,7 +12,7 @@ TinTower4FUltraBall:
 	itemball ULTRA_BALL
 
 TinTower4FPPUp:
-	itemball PP_UP
+	itemball IRON
 
 TinTower4FEscapeRope:
 	itemball ESCAPE_ROPE

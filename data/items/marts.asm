@@ -119,14 +119,12 @@ MartGoldenrod2F2:
 	db -1 ; end
 
 MartGoldenrod3F:
-	db 7 ; # items
+	db 5 ; # items
 	db X_SPEED
 	db X_SPECIAL
 	db X_DEFEND
 	db X_ATTACK
-	db DIRE_HIT
 	db GUARD_SPEC
-	db X_ACCURACY
 	db -1 ; end
 
 MartGoldenrod4F:
@@ -255,7 +253,7 @@ MartPewter:
 	db -1 ; end
 
 MartCerulean:
-	db 9 ; # items
+	db 8 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
 	db SUPER_POTION
@@ -263,7 +261,6 @@ MartCerulean:
 	db FULL_HEAL
 	db X_DEFEND
 	db X_ATTACK
-	db DIRE_HIT
 	db SURF_MAIL
 	db -1 ; end
 
@@ -342,10 +339,8 @@ MartCeladon5F1:
 	db -1 ; end
 
 MartCeladon5F2:
-	db 7 ; # items
-	db X_ACCURACY
+	db 5 ; # items
 	db GUARD_SPEC
-	db DIRE_HIT
 	db X_ATTACK
 	db X_DEFEND
 	db X_SPEED

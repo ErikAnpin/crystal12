@@ -9,9 +9,9 @@ MysteryGiftItems:
 	db X_DEFEND
 	db X_ATTACK
 	db BITTER_BERRY
-	db DIRE_HIT
+	db GOLD_LEAF
 	db X_SPECIAL
-	db X_ACCURACY
+	db SILVER_LEAF
 	db EON_MAIL
 	db MORPH_MAIL
 	db MUSIC_MAIL
@@ -32,7 +32,7 @@ MysteryGiftItems:
 	db MAX_REVIVE
 	db SCOPE_LENS
 	db HP_UP
-	db PP_UP
+	db SLOWPOKETAIL
 	db RARE_CANDY
 	db BLUESKY_MAIL
 	db MIRAGE_MAIL

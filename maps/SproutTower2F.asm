@@ -34,7 +34,7 @@ SproutTower2FStatue:
 	jumptext SproutTower2FStatueText
 
 SproutTower2FXAccuracy:
-	itemball X_ACCURACY
+	itemball X_SPECIAL
 
 SageNicoSeenText:
 	text "However hard we"

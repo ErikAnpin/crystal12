@@ -82,7 +82,7 @@ Route15Sign:
 	jumptext Route15SignText
 
 Route15PPUp:
-	itemball PP_UP
+	itemball PROTEIN
 
 TeacherColetteSeenText:
 	text "Have you forgotten"

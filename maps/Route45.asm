@@ -56,7 +56,7 @@ TrainerBlackbeltKenji:
 	checkevent EVENT_KENJI_ON_BREAK
 	iffalse Route45NumberAcceptedM
 	scall Route45GiftM
-	verbosegiveitem PP_UP
+	verbosegiveitem RARE_CANDY
 	iffalse .NoRoom
 	clearevent EVENT_KENJI_ON_BREAK
 	special SampleKenjiBreakCountdown
@@ -306,7 +306,7 @@ Route45MaxPotion:
 	itemball MAX_POTION
 
 Route45HiddenPpUp:
-	hiddenitem PP_UP, EVENT_ROUTE_45_HIDDEN_PP_UP
+	hiddenitem HP_UP, EVENT_ROUTE_45_HIDDEN_PP_UP
 
 HikerErikSeenText:
 	text "Be prepared for"

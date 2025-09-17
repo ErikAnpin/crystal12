@@ -12,7 +12,7 @@ IcePath1FHMWaterfall:
 	itemball TM_DRAGONBREATH
 
 IcePath1FPPUp:
-	itemball PP_UP
+	itemball RARE_CANDY
 
 IcePath1FProtein:
 	itemball PROTEIN

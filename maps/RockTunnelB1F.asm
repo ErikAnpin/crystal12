@@ -12,7 +12,7 @@ RockTunnelB1FIron:
 	itemball IRON
 
 RockTunnelB1FPPUp:
-	itemball PP_UP
+	itemball HP_UP
 
 RockTunnelB1FRevive:
 	itemball REVIVE

@@ -87,7 +87,7 @@ VioletCityMartSign:
 	jumpstd MartSignScript
 
 VioletCityPPUp:
-	itemball PP_UP
+	itemball CARBOS
 
 VioletCityRareCandy:
 	itemball RARE_CANDY
