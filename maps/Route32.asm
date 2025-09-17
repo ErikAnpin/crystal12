@@ -107,7 +107,7 @@ Route32RoarTMGuyScript:
 	iftrue .AlreadyHaveRoar
 	writetext Text_RoarIntro
 	promptbutton
-	verbosegiveitem TM_ROAR
+	verbosegiveitem TM_SUNNY_DAY
 	iffalse .Finish
 	setevent EVENT_GOT_TM05_ROAR
 .AlreadyHaveRoar:
@@ -826,22 +826,18 @@ Route32UnusedText: ; unreferenced
 	done
 
 Text_RoarIntro:
-	text "WROOOOAR!"
-	line "PEOPLE RUN WHEN I"
+	text "There's nothing"
+	line "better than a"
 
-	para "ROAR! BUT YOU"
-	line "CAME LOOKING!"
-
-	para "THAT PLEASES ME!"
-	line "NOW TAKE THIS!"
+	para "SUNNY DAY."
+	line "Here, take this!"
 	done
 
 Text_RoarOutro:
-	text "WROOOAR!"
-	line "IT'S ROAR!"
-
-	para "EVEN #MON RUN"
-	line "FROM A GOOD ROAR!"
+	text "It's SUNNY DAY."
+	line "It powers up fire-"
+	cont "type moves for a"
+	cont "while."
 	done
 
 MeetFriedaText:

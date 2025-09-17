@@ -65,7 +65,7 @@ RadioTower3FCooltrainerFScript:
 .NoRockets:
 	writetext RadioTower3FCooltrainerFYoureMyHeroText
 	promptbutton
-	verbosegiveitem TM_SUNNY_DAY
+	verbosegiveitem TM_ROAR
 	iffalse .NoRoom
 	writetext RadioTower3FCooltrainerFItsSunnyDayText
 	waitbutton
@@ -209,23 +209,27 @@ RadioTower3FCooltrainerFIsDirectorSafeText:
 	done
 
 RadioTower3FCooltrainerFYoureMyHeroText:
-	text "Thank you!"
-	line "You're my hero!"
+	text "WROOOOAR!"
+	line "PEOPLE RUN WHEN I"
 
-	para "This is a token of"
-	line "my appreciation."
+	para "ROAR! BUT YOU"
+	line "CAME LOOKING!"
+
+	para "THAT PLEASES ME!"
+	line "NOW TAKE THIS!"
 	done
 
 RadioTower3FCooltrainerFItsSunnyDayText:
-	text "It's SUNNY DAY."
-	line "It powers up fire-"
-	cont "type moves for a"
-	cont "while."
+	text "WROOOAR!"
+	line "IT'S ROAR!"
+
+	para "EVEN #MON RUN"
+	line "FROM A GOOD ROAR!"
 	done
 
 RadioTower3FCooltrainerFYouWereMarvelousText:
-	text "You were simply"
-	line "marvelous!"
+	text "ROAR WITH ME!"
+	line "IT'S FUN!"
 	done
 
 GruntM7SeenText:
