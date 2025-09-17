@@ -200,7 +200,7 @@ Route31MailRecipientScript:
 	writetext Text_Route31ReadingMail
 	promptbutton
 	setevent EVENT_GAVE_KENYA
-	verbosegiveitem TM_NIGHTMARE
+	verbosegiveitem TM_SOLARBEAM
 	iffalse .NoRoomForItems
 	setevent EVENT_GOT_TM50_NIGHTMARE
 .DescribeNightmare:
@@ -292,18 +292,8 @@ BugCatcherWade1AfterText:
 Text_Route31SleepyMan:
 	text "… Hnuurg… Huh?"
 
-	para "I walked too far"
-	line "today looking for"
-	cont "#MON."
-
-	para "My feet hurt and"
-	line "I'm sleepy…"
-
-	para "If I were a wild"
-	line "#MON, I'd be"
-	cont "easy to catch…"
-
-	para "…Zzzz…"
+	para "I'm sunbathing"
+	line "…Zzzz…"
 	done
 
 Text_Route31SleepyManGotMail:
@@ -344,19 +334,13 @@ Text_Route31ReadingMail:
 	done
 
 Text_Route31DescribeNightmare:
-	text "TM50 is NIGHTMARE."
+	text "TM22 is SOLARBEAM."
 
-	para "It's a wicked move"
-	line "that steadily cuts"
+	para "If the sunlight is"
+	line "harsh, SOLARBEAM"
 
-	para "the HP of a sleep-"
-	line "ing enemy."
-
-	para "Ooooh…"
-	line "That's scary…"
-
-	para "I don't want to"
-	line "have bad dreams."
+	para "doesn't need to be"
+	line "charged up."
 	done
 
 Text_Route31WrongMail:
