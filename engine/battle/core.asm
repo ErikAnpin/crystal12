@@ -391,6 +391,9 @@ HandleBerserkGene:
 	jr .go
 
 .enemy
+	ld a, [wBattleMode]
+	cp TRAINER_BATTLE
+	ret nz
 	call SetEnemyTurn
 	ld de, wOTPartyMon1Item
 	ld a, [wCurOTMon]
@@ -414,8 +417,6 @@ HandleBerserkGene:
 	ld l, e
 	ld a, b
 	call GetPartyLocation
-	xor a
-	;ld [hl], a
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
@@ -4521,7 +4522,6 @@ UseConfusionHealingItem:
 	ret
 
 HandleStatBoostingHeldItems:
-; The effects handled here are not used in-game.
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
@@ -4538,6 +4538,9 @@ HandleStatBoostingHeldItems:
 	jp .HandleItem
 
 .DoEnemy:
+    ld a, [wBattleMode]
+    cp TRAINER_BATTLE
+    ret nz
 	call GetOTPartymonItem
 	ld a, $1
 .HandleItem:
@@ -4576,11 +4579,9 @@ HandleStatBoostingHeldItems:
 	ret nz
 	xor a
 	ld [bc], a
-	;ld [de], a
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
-	;callfar BattleCommand_StatUpMessage
 	ret
 
 .finish
