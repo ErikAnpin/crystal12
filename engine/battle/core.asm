@@ -5707,6 +5707,8 @@ MoveInfoBox:
 	ld a, [hl]
 	ld [wCurPlayerMove], a
 
+	callfar UpdateMoveData
+
 	ld a, [wCurBattleMon]
 	ld [wCurPartyMon], a
 	ld a, WILDMON
@@ -5725,9 +5727,23 @@ MoveInfoBox:
 	call .PrintPP
 
 	hlcoord 1, 9
-	ld de, .Type
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jr z, .no_power
+	
+	ld de, .Power
+	call PlaceString
+	hlcoord 7, 9
+	ld de, wPlayerMoveStruct + MOVE_POWER
+	lb bc, 1, 3
+	call PrintNum
+	jr .continue_display
+
+.no_power
+	ld de, .NoPower
 	call PlaceString
 
+.continue_display
 	hlcoord 7, 11
 	ld [hl], "/"
 
@@ -5742,8 +5758,10 @@ MoveInfoBox:
 
 .Disabled:
 	db "Disabled!@"
-.Type:
-	db "TYPE/@"
+.Power:
+	db "POWER:@"
+.NoPower:
+	db "POWER:---@"
 
 .PrintPP:
 	hlcoord 5, 11
