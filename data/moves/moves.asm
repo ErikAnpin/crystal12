@@ -17,7 +17,7 @@ Moves:
 	move POUND,        EFFECT_NORMAL_HIT,         40, NORMAL,       100, 20,   0
 	move KARATE_CHOP,  EFFECT_CRIT_HIT,           40, FIGHTING,     100, 20,   0
 	move DOUBLESLAP,   EFFECT_DOUBLE_HIT,         40, NORMAL,       100, 10,   0
-	move COMET_PUNCH,  EFFECT_DOUBLE_HIT,         40, FIGHTING,     100, 10,   0
+	move COMET_PUNCH,  EFFECT_NORMAL_HIT,         80, FIGHTING,     100, 10,   0
 	move MEGA_PUNCH,   EFFECT_ATTACK_UP_HIT,      60, FIGHTING,     100, 15,   0
 	move PAY_DAY,      EFFECT_PAY_DAY,            60, NORMAL,       100, 15,   0
 	move FIRE_PUNCH,   EFFECT_NORMAL_HIT,         60, FIRE,         100, 15,   0
@@ -42,7 +42,7 @@ Moves:
 	move JUMP_KICK,    EFFECT_JUMP_KICK,          80, FIGHTING,     100, 10,   0
 	move ROLLING_KICK, EFFECT_NORMAL_HIT,         60, FIGHTING,     100, 15,   0
 	move SAND_ATTACK,  EFFECT_DEFENSE_DOWN_HIT,   40, GROUND,       100, 20, 100
-	move HEADBUTT,     EFFECT_NORMAL_HIT,         60, NORMAL,       100, 15,   0
+	move HEADBUTT,     EFFECT_RECOIL_HIT,         60, NORMAL,       100, 15,   0
 	move HORN_ATTACK,  EFFECT_NORMAL_HIT,         60, NORMAL,       100, 15,   0
 	move FURY_ATTACK,  EFFECT_TRIPLE_KICK,        20, NORMAL,       100, 15,   0
 	move HORN_DRILL,   EFFECT_NORMAL_HIT,        100, NORMAL,       100,  5,   0

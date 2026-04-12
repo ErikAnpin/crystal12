@@ -1636,6 +1636,7 @@ FutureSight:
     moveanimnosub
     failuretext
     applydamage
+    supereffectivetext
     checkfaint
     buildopponentrage
     endmove

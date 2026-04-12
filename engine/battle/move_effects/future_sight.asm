@@ -20,6 +20,81 @@ BattleCommand_CheckFutureSight:
 	ld [wCurDamage], a
 	ld a, [de]
 	ld [wCurDamage + 1], a
+
+; --- NEW TYPE EFFECTIVENESS LOGIC ---
+	push bc
+	push de
+	push hl
+
+	; 1. Temporarily set the move type to PSYCHIC
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	ld a, [hl]
+	push af ; Save the original move type
+	ld a, PSYCHIC_TYPE
+	ld [hl], a
+
+	; 2. Calculate matchup against the current defender
+	call BattleCheckTypeMatchup
+
+	; 3. Restore the original move type
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	pop af
+	ld [hl], a
+
+	; 4. Apply the wTypeMatchup multiplier to wCurDamage
+	ld a, [wTypeMatchup]
+	and a
+	jr z, .Immune
+
+	cp 10 ; 10 = 1.0x (Normal effectiveness)
+	jr z, .DoneMatchup
+
+	; Multiply wCurDamage by wTypeMatchup
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld [hMultiplicand + 1], a
+	ld a, [hl]
+	ld [hMultiplicand + 2], a
+	xor a
+	ld [hMultiplicand], a
+
+	ld a, [wTypeMatchup]
+	ld [hMultiplier], a
+	call Multiply
+
+	; Divide the hProduct by 10
+	ld a, 10
+	ld [hDivisor], a
+	ld b, 4
+	call Divide
+
+	; Store the quotient back into wCurDamage
+	ld a, [hQuotient + 2]
+	ld [wCurDamage], a
+	ld b, a
+	ld a, [hQuotient + 3]
+	ld [wCurDamage + 1], a
+	or b
+	jr nz, .DoneMatchup
+
+	; Ensure a minimum of 1 damage for resisted hits
+	inc a
+	ld [wCurDamage + 1], a
+	jr .DoneMatchup
+
+.Immune:
+	xor a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
+
+.DoneMatchup:
+	pop hl
+	pop de
+	pop bc
+	; --- END TYPE EFFECTIVENESS LOGIC ---
+
 	ld b, futuresight_command
 	jp SkipToBattleCommand
 

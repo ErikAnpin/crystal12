@@ -18,7 +18,6 @@ AI_Redundant:
 	dbw EFFECT_HEAL,         .Heal
 	dbw EFFECT_LIGHT_SCREEN, .LightScreen
 	dbw EFFECT_MIST,         .Mist
-	dbw EFFECT_FOCUS_ENERGY, .FocusEnergy
 	dbw EFFECT_CONFUSE,      .Confuse
 	dbw EFFECT_TRANSFORM,    .Transform
 	dbw EFFECT_REFLECT,      .Reflect
@@ -55,11 +54,6 @@ AI_Redundant:
 .Mist:
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_MIST, a
-	ret
-
-.FocusEnergy:
-	ld a, [wEnemySubStatus4]
-	bit SUBSTATUS_FOCUS_ENERGY, a
 	ret
 
 .Confuse:
