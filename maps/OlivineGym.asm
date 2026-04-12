@@ -1,5 +1,6 @@
 	object_const_def
 	const OLIVINEGYM_JASMINE
+	const OLIVINEGYM_SUPER_NERD
 	const OLIVINEGYM_GYM_GUIDE
 
 OlivineGym_MapScripts:
@@ -64,6 +65,17 @@ OlivineGymActivateRockets:
 
 .RadioTowerRockets:
 	jumpstd RadioTowerRocketsScript
+
+TrainerSuperNerdStan:
+	trainer SUPER_NERD, STAN, EVENT_BEAT_SUPER_NERD_STAN, SuperNerdStanSeenText, SuperNerdStanBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext SuperNerdStanAfterBattleText
+	waitbutton
+	closetext
+	end
 
 OlivineGymGuideScript:
 	faceplayer
@@ -176,6 +188,40 @@ Jasmine_RematchDefeat:
 	line "good enough…"
 	done
 
+SuperNerdStanSeenText:
+	text "JASMINE has been"
+	line "spending all her"
+
+	para "time over at the"
+	line "LIGHTHOUSE."
+
+	para "But don't worry!"
+	line "My flawlessly"
+
+	para "calculated team"
+	line "will crush you!"
+	done
+
+SuperNerdStanBeatenText:
+	text "My calculations"
+	line "were correct."
+
+	para "You may be able"
+	line "to stand a chance"
+	cont "against JASMINE."
+	done
+
+SuperNerdStanAfterBattleText:
+	text "I'm training these"
+	line "POKéMON to evolve"
+
+	para "into STEEL-types."
+
+	para "If only I could"
+	line "get my hands on a"
+	cont "METAL COAT..."
+	done
+
 OlivineGymGuideText:
 	text "JASMINE uses the"
 	line "newly discovered"
@@ -224,4 +270,5 @@ OlivineGym_MapEvents:
 
 	def_object_events
 	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
+	object_event  3,  8, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSuperNerdStan, -1
 	object_event  7, 13, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuideScript, -1
