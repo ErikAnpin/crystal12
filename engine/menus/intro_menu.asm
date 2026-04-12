@@ -159,7 +159,7 @@ _ResetWRAM:
 
 	ld hl, wNumPCItems
 	call .InitList
-	call .PCExpShare
+	call .PCPotion
 
 	xor a
 	ld [wRoamMon1Species], a
@@ -233,8 +233,8 @@ endc
 	ld [hl], a
 	ret
 
-.PCExpShare:
-	ld a, EXP_SHARE
+.PCPotion:
+	ld a, POTION
 	ld [wCurItem], a
 	ld a, 1
 	ld [wItemQuantityChange], a

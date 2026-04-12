@@ -36,7 +36,21 @@ AcademyEarl:
 	iffalse .Done
 	writetext AcademyEarlTeachHowToRaiseWellText
 	waitbutton
+	checkevent EVENT_GOT_EXP_SHARE_FROM_EARL
+	iftrue .GotExpShare
+	verbosegiveitem EXP_SHARE
+	iffalse .NoRoom
+	setevent EVENT_GOT_EXP_SHARE_FROM_EARL
+
+.GotExpShare:
 	closetext
+	end
+
+.NoRoom:
+	sjump .PackFull
+
+.PackFull:
+	jumpstd PackFullFScript
 	end
 
 .Done:
@@ -222,9 +236,9 @@ AcademyEarlTeachHowToRaiseWellText:
 	para "Switch in battle"
 	line "quick!"
 
-	para "This way, weak"
-	line "#MON strong"
-	cont "become!"
+	para "Or you can make"
+	line "your #MON"
+	cont "hold an EXP.SHARE."
 	done
 
 AcademyEarlNoMoreToTeachText:
