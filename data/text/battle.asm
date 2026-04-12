@@ -919,8 +919,8 @@ DraggedOutText:
 
 ParalyzedText:
 	text "<TARGET>'s"
-	line "paralyzed! Maybe"
-	cont "it can't attack!"
+	line "paralyzed! It's"
+	cont "SPEED is down!"
 	prompt
 
 FullyParalyzedText:

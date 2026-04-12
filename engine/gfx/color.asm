@@ -13,9 +13,9 @@ CheckShininess:
 	ld h, b
 
 ; Attack
-	ld a, [hl]
-	and SHINY_ATK_MASK << 4
-	jr z, .not_shiny
+;	ld a, [hl]
+;	and SHINY_ATK_MASK << 4
+;	jr z, .not_shiny
 
 ; Defense
 	ld a, [hli]
