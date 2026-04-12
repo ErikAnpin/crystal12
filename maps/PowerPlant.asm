@@ -187,6 +187,8 @@ PowerPlantManager:
 	end
 
 Forest:
+	faceplayer
+	opentext
 	writetext PowerPlantForestText
 	waitbutton
 	closetext
@@ -379,7 +381,7 @@ PowerPlantManagerTM07IsZapCannonText:
 	para "It's not what any-"
 	line "one would consider"
 
-	para "accurate, but it"
+	para "powerful, but it"
 	line "packs a wallop!"
 	done
 
