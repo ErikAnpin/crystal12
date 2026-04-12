@@ -4565,6 +4565,24 @@ HandleStatBoostingHeldItems:
 	ld a, [bc]
 	ld [wNamedObjectIndex], a
 	push bc
+	
+	; Save the HeldStatUpItems table pointer
+	push hl 
+	
+	; Clear the battle variables so leftover turn data doesn't fail the stat-up
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVarAddr
+	ld a, [hl]
+	ld [wTempByteValue], a
+	xor a
+	ld [hl], a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld [wFailedMessage], a
+	
+	; Restore the HeldStatUpItems table pointer
+	pop hl 
+
 	dec hl
 	dec hl
 	ld a, [hli]
@@ -4574,11 +4592,26 @@ HandleStatBoostingHeldItems:
 	rst FarCall
 	pop bc
 	pop de
+	
+	; Restore the move animation safely
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVarAddr
+	ld a, [wTempByteValue]
+	ld [hl], a
+	pop bc
+	pop de
+
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+
+	;Re-load the item ID before it gets wiped
+	ld a, [bc]
+	ld [wNamedObjectIndex], a
 	xor a
-	ld [bc], a
+	ld [bc], a                  ; Consume the item
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
@@ -6670,7 +6703,7 @@ ApplySlpEffectOnDefense:
 
 .enemy
 	ld a, [wEnemyMonStatus]
-	and 1 << SLP_MASK
+	and SLP_MASK
 	ret z
 	ld hl, wEnemyMonDefense+ 1
 
@@ -6701,7 +6734,7 @@ ApplySlpEffectOnSpclDef:
 
 .enemy
 	ld a, [wEnemyMonStatus]
-	and 1 << SLP_MASK
+	and SLP_MASK
 	ret z
 	ld hl, wEnemyMonSpclDef+ 1
 
