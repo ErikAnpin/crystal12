@@ -1291,14 +1291,14 @@ HitmonchanEvosAttacks:
 LickitungEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LICK
-	db 7, SUPERSONIC
-	db 13, STOMP
-	db 19, WRAP
-	db 25, DISABLE
-	db 31, BODY_SLAM
-	db 37, SCREECH
-	db 43, HEAL_BELL
-	db 47, BELLY_DRUM
+	db 1, SUPERSONIC
+	db 7, STOMP
+	db 13, WRAP
+	db 18, COUNTER
+	db 24, BODY_SLAM
+	db 29, SCREECH
+	db 34, HEAL_BELL
+	db 39, BELLY_DRUM
 	db 0 ; no more level-up moves
 
 KoffingEvosAttacks:
@@ -1604,6 +1604,9 @@ LaprasEvosAttacks:
 DittoEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TRANSFORM
+	db 20, METRONOME
+	db 30, SKETCH
+	db 40, MIMIC
 	db 0 ; no more level-up moves
 
 EeveeEvosAttacks:
@@ -1754,10 +1757,10 @@ AerodactylEvosAttacks:
 SnorlaxEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SNORE
-	db 1, AMNESIA
-	db 1, BODY_SLAM
 	db 1, REST
-	db 55, BELLY_DRUM
+	db 21, AMNESIA
+	db 31, BODY_SLAM
+	db 51, BELLY_DRUM
 	db 0 ; no more level-up moves
 
 ArticunoEvosAttacks:
@@ -2781,17 +2784,15 @@ PiloswineEvosAttacks:
 CorsolaEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
-	db 1, HARDEN
 	db 1, HAZE
-	db 7, BUBBLE
-	db 13, SAFEGUARD
-	db 19, BUBBLEBEAM
-	db 25, RECOVER
-	db 28, SPIKES
+	db 1, BUBBLE
+	db 7, SAFEGUARD
+	db 16, BUBBLEBEAM
+	db 23, RECOVER
+	db 27, SPIKES
 	db 31, SPIKE_CANNON
-	db 34, PIN_MISSILE
-	db 37, CURSE
-	db 40, MIRROR_COAT
+	db 35, PIN_MISSILE
+	db 39, MIRROR_COAT
 	db 43, ANCIENTPOWER
 	db 0 ; no more level-up moves
 
@@ -2966,7 +2967,6 @@ SmeargleEvosAttacks:
 	db 11, SKETCH
 	db 21, SKETCH
 	db 31, SKETCH
-	db 41, SKETCH
 	db 0 ; no more level-up moves
 
 TyrogueEvosAttacks:

@@ -248,10 +248,6 @@ BattleCommand_CheckTurn:
 	ld de, ANIM_CONFUSED
 	call FarPlayBattleAnimation
 
-	; 50% chance of hitting itself
-	call BattleRandom
-	cp 50 percent + 1
-	jr nc, .not_confused
 
 	; clear confusion-dependent substatus
 	ld hl, wPlayerSubStatus3
@@ -2398,7 +2394,7 @@ DittoMetalPowder:
 
 .cap
 	ld bc, MAX_STAT_VALUE
-	ret
+ 	ret
 
 BattleCommand_DamageStats:
 	ldh a, [hBattleTurn]
@@ -2479,11 +2475,13 @@ PlayerAttackDamage:
 	call ThickClubBoost
 
 .done
+	push hl
+	call DittoMetalPowder
+	pop hl
 	call TruncateHL_BC
 
 	ld a, [wBattleMonLevel]
 	ld e, a
-	call DittoMetalPowder
 
 	ld a, 1
 	and a
@@ -2725,11 +2723,13 @@ EnemyAttackDamage:
 	call ThickClubBoost
 
 .done
+	push hl
+	call DittoMetalPowder
+	pop hl
 	call TruncateHL_BC
 
 	ld a, [wEnemyMonLevel]
 	ld e, a
-	call DittoMetalPowder
 
 	ld a, 1
 	and a
@@ -5808,10 +5808,7 @@ BattleCommand_Heal:
 	ld a, b
 	cp REST
 	jr nz, .not_rest
-    ld a, BATTLE_VARS_STATUS
-    call GetBattleVar
-    and SLP_MASK
-    jr nz, .already_asleep
+
 	push hl
 	push de
 	push af
@@ -5866,11 +5863,6 @@ BattleCommand_Heal:
 	call AnimateFailedMove
 	ld hl, HPIsFullText
 	jp StdBattleTextbox
-
-.already_asleep
-    call AnimateFailedMove
-    ld hl, RestFailedText
-    jp StdBattleTextbox
 
 INCLUDE "engine/battle/move_effects/transform.asm"
 

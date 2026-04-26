@@ -840,7 +840,7 @@ SkyAttackDescription:
 	next "2nd turn: Attack@"
 
 TransformDescription:
-	db   "The user assumes"
+	db   "Quickly assumes"
 	next "the foe's guise.@"
 
 BubbleDescription:

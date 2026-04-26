@@ -1,6 +1,4 @@
 BattleCommand_SleepTalk:
-; sleeptalk
-
 	call ClearLastMove
 	ld a, [wAttackMissed]
 	and a
@@ -34,8 +32,6 @@ BattleCommand_SleepTalk:
 	add hl, bc
 	ld a, [hl]
 	pop hl
-	cp REST
-	jr z, .fail_rest
 	and a
 	jr z, .sample_move
 	ld e, a
@@ -64,10 +60,6 @@ BattleCommand_SleepTalk:
 	call UpdateMoveData
 	jp ResetTurn
 
-.fail_rest
-	call AnimateFailedMove
-	ld hl, RestFailedText
-	jp StdBattleTextbox
 .fail
 	call AnimateFailedMove
 	jp TryPrintButItFailed
