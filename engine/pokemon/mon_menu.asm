@@ -140,6 +140,34 @@ PokemonActionSubmenu:
 	dbw MONMENUITEM_CANCEL,     CancelPokemonAction
 	dbw MONMENUITEM_MOVE,       ManagePokemonMoves
 	dbw MONMENUITEM_MAIL,       MonMailAction
+	dbw MONMENUITEM_POKEDEX,    MonMenu_Pokedex
+
+MonMenu_Pokedex:
+    ld a, [wCurPartyMon]
+    push af
+    
+    ld hl, wPartySpecies
+    ld e, a
+    ld d, 0
+    add hl, de
+    ld a, [hl]
+    
+    ld [wCurPartySpecies], a
+    ld [wTempSpecies], a 
+    
+    call FadeToMenu
+    ld a, DEXSTATE_DEX_ENTRY_SCR
+    ld [wJumptableIndex], a
+    farcall Pokedex_DirectEntry
+
+    pop af
+    ld [wCurPartyMon], a
+    
+    call CloseSubmenu
+    farcall InitPartyMenuLayout 
+    call SetDefaultBGPAndOBP
+    ld a, 1
+    ret
 
 SwitchPartyMons:
 ; Don't try if there's nothing to switch!

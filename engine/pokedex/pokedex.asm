@@ -80,6 +80,50 @@ Pokedex:
 	ldh [hWY], a
 	ret
 
+Pokedex_DirectEntry::
+	ldh a, [hWX]
+	ld l, a
+	ldh a, [hWY]
+	ld h, a
+	push hl
+	ldh a, [hSCX]
+	push af
+	ld hl, wOptions
+	ld a, [hl]
+	push af
+	set NO_TEXT_SCROLL, [hl]
+	ld a, [wStateFlags]
+	push af
+	xor a
+	ld [wStateFlags], a
+	ldh a, [hInMenu]
+	push af
+	ld a, $1
+	ldh [hInMenu], a
+
+	xor a
+	ldh [hMapAnims], a
+	call InitPokedex
+
+	ld a, POKEDEX_SCX
+    ldh [hSCX], a
+
+	ld a, DEXSTATE_DEX_ENTRY_SCR
+	ld [wJumptableIndex], a
+	ld a, DEXSTATE_EXIT
+	ld [wPrevDexEntryJumptableIndex], a
+
+	xor a
+	ld [wDexListingScrollOffset], a
+	ld [wDexListingCursor], a
+
+	ld a, [wCurPartySpecies]
+	ld [wPrevDexEntry], a
+	call Pokedex_InitCursorPosition
+
+	call DelayFrame
+	jp Pokedex.main
+
 InitPokedex:
 	call ClearBGPalettes
 	call ClearSprites
@@ -294,6 +338,7 @@ Pokedex_UpdateMainScreen:
 
 .a
 	call Pokedex_GetSelectedMon
+	ld [wCurPartySpecies], a
 	call Pokedex_CheckSeen
 	ret z
 	ld a, DEXSTATE_DEX_ENTRY_SCR
@@ -339,15 +384,18 @@ Pokedex_InitDexEntryScreen:
 	ld [wPokedexEvoStage3], a
 	ldh [hBGMapMode], a
 	call ClearSprites
-	call Pokedex_GetSelectedMon
-	ld [wCurPartySpecies], a
-	ld a, SCGB_POKEDEX
+
+    ld a, [wCurPartySpecies]
+    ld [wPrevDexEntry], a
+
+    call Pokedex_LoadSelectedMonTiles
+    
+    ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	call Pokedex_LoadCurrentFootprint
 	call Pokedex_DrawDexEntryScreenBG
 	call Pokedex_InitArrowCursor
-	call Pokedex_GetSelectedMon
-	ld [wPrevDexEntry], a
+
 	call Pokedex_DrawFootprint
 	farcall DisplayDexEntry
 	call WaitBGMap
