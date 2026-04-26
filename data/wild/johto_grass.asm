@@ -568,14 +568,14 @@ JohtoGrassWildMons:
 	db 9,  VENONAT
 	db 8,  PSYDUCK
 	db 10, HOOTHOOT
-	db 9,  FARFETCH_D
+	db 9,  ODDISH
 	db 11, FARFETCH_D
 	; day
 	db 8,  WEEDLE
 	db 9,  CATERPIE
 	db 10, VENONAT
-	db 9,  FARFETCH_D
 	db 9,  HOOTHOOT
+	db 9,  FARFETCH_D
 	db 8,  SPINARAK
 	db 11, SPINARAK
 	; nite
@@ -584,7 +584,7 @@ JohtoGrassWildMons:
 	db 8,  HOOTHOOT
 	db 10, PSYDUCK
 	db 10, VENONAT
-	db 9,  FARFETCH_D
+	db 9,  ODDISH
 	db 11, FARFETCH_D
 	end_grass_wildmons
 

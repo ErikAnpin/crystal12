@@ -186,10 +186,10 @@ BeedrillEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, RAGE
 	db 10, RAGE
-	db 15, FURY_ATTACK
-	db 20, FOCUS_ENERGY
-	db 25, TWINEEDLE
-	db 30, AGILITY
+	db 15, METAL_CLAW
+	db 20, FURY_ATTACK
+	db 25, AGILITY
+	db 30, TWINEEDLE
 	db 35, SWORDS_DANCE
 	db 40, DRILL_PECK
 	db 45, PURSUIT
@@ -1099,10 +1099,10 @@ GastlyEvosAttacks:
 HaunterEvosAttacks:
 	db EVOLVE_LEVEL, 38, GENGAR
 	db 0 ; no more evolutions
-	db 1, HYPNOSIS
+	db 1, HAZE
 	db 1, LICK
 	db 1, CURSE
-	db 1, HAZE
+	db 1, HYPNOSIS
 	db 31, CONFUSE_RAY
 	db 36, DREAM_EATER
 	db 40, DESTINY_BOND
@@ -1593,7 +1593,7 @@ LaprasEvosAttacks:
 	db 1, SING
 	db 10, MIST
 	db 16, BODY_SLAM
-	db 20, TAKE_DOWN
+	db 20, GROWL
 	db 24, PERISH_SONG
 	db 28, HAZE
 	db 32, SAFEGUARD
@@ -1984,6 +1984,7 @@ SentretEvosAttacks:
 	db 24, REST
 	db 28, AMNESIA
 	db 32, BELLY_DRUM
+	db 36, PRESENT
 	db 0 ; no more level-up moves
 
 FurretEvosAttacks:
@@ -1997,6 +1998,7 @@ FurretEvosAttacks:
 	db 26, REST
 	db 30, AMNESIA
 	db 34, BELLY_DRUM
+	db 38, PRESENT
 	db 0 ; no more level-up moves
 
 HoothootEvosAttacks:
@@ -2674,8 +2676,8 @@ HeracrossEvosAttacks:
 	db 12, COUNTER
 	db 18, FURY_ATTACK
 	db 26, SUBMISSION
-	db 34, REVERSAL
-	db 39, MEGAHORN
+	db 34, MEGAHORN
+	db 39, REVERSAL
 	db 44, ROCK_SLIDE
 	db 0 ; no more level-up moves
 

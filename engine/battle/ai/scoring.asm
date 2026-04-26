@@ -175,14 +175,19 @@ AI_Types:
 	ld a, [wTypeMatchup]
 	and a
 	jr z, .immune
+
+	; NEW: Ignore type effectiveness for 0-damage status moves
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .checkmove
+
+	; Reload wTypeMatchup since the accumulator (a) was just overwritten
+	ld a, [wTypeMatchup]
 	cp EFFECTIVE
 	jr z, .checkmove
 	jr c, .noteffective
 
 ; effective
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
-	and a
-	jr z, .checkmove
 	dec [hl]
 	jr .checkmove
 
@@ -349,6 +354,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_REVERSAL,         AI_Smart_Reversal
 	dbw EFFECT_SPITE,            AI_Smart_Spite
 	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell
+	dbw EFFECT_FOCUS_ENERGY,	 AI_Smart_FocusEnergy
 	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit
 	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook
@@ -1661,6 +1667,15 @@ AI_Smart_PriorityHit:
 	ld a, [wBattleMonHP]
 	sbc b
 	ret nc
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_FocusEnergy:
+	ld a, [wEnemyMonStatus]
+	and a
+	jp z, AIDiscourageMove
 	dec [hl]
 	dec [hl]
 	dec [hl]

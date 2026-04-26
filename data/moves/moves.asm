@@ -109,7 +109,7 @@ Moves:
 	move CONFUSION,    EFFECT_CONFUSE_HIT,        40, PSYCHIC_TYPE, 100, 20, 100
 	move PSYCHIC_M,    EFFECT_NORMAL_HIT,         80, PSYCHIC_TYPE, 100, 10,   0
 	move HYPNOSIS,     EFFECT_SLEEP,               0, PSYCHIC_TYPE, 100,  5,   0
-	move MEDITATE,     EFFECT_HEAL_BELL,           0, PSYCHIC_TYPE, 100, 10,   0
+	move MEDITATE,     EFFECT_FOCUS_ENERGY,        0, PSYCHIC_TYPE, 100, 10,   0
 	move AGILITY,      EFFECT_SPEED_UP_2,          0, PSYCHIC_TYPE, 100,  5,   0
 	move QUICK_ATTACK, EFFECT_PRIORITY_HIT,       40, NORMAL,       100, 20,   0
 	move RAGE,         EFFECT_RAGE,               25, NORMAL,       100, 15,   0
