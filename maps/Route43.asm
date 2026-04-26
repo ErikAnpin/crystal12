@@ -3,8 +3,10 @@
 	const ROUTE43_SUPER_NERD2
 	const ROUTE43_SUPER_NERD3
 	const ROUTE43_FISHER
-	const ROUTE43_LASS
+	const ROUTE43_LASS1
+	const ROUTE43_LASS2
 	const ROUTE43_YOUNGSTER
+	const ROUTE43_COOLTRAINER_M
 	const ROUTE43_FRUIT_TREE
 	const ROUTE43_POKE_BALL
 
@@ -297,6 +299,28 @@ TrainerPicnickerTiffany:
 	jumpstd PackFullFScript
 	end
 
+TrainerLassLauren:
+	trainer LASS, CONNIE3, EVENT_BEAT_LASS_CONNIE3, LassLaurenSeenText, LassLaurenBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext LassLaurenAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerCooltrainermErick:
+	trainer COOLTRAINERM, ERICK, EVENT_BEAT_COOLTRAINERM_ERICK, CooltrainermErickSeenText, CooltrainermErickBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext CooltrainermErickAfterBattleText
+	waitbutton
+	closetext
+	end
+
 Route43Sign1:
 	jumptext Route43Sign1Text
 
@@ -488,6 +512,44 @@ Route43TrainerTipsText:
 	line "#MON's type."
 	done
 
+LassLaurenSeenText:
+	text "Training in the"
+	line "dark sharpens"
+	cont "the senses!"
+	done
+
+LassLaurenBeatenText:
+	text "I didn't see"
+	line "that coming..."
+	done
+
+LassLaurenAfterBattleText:
+	text "There's a guy who"
+	line "stands here during"
+	cont "the day."
+	para "He's missing out"
+	line "on the best hours!"
+	done
+
+CooltrainermErickSeenText:
+	text "The sunlight is"
+	line "perfect for a"
+	cont "battle, right?"
+	done
+
+CooltrainermErickBeatenText:
+	text "My tan! Oh, and"
+	line "I lost too..."
+	done
+
+CooltrainermErickAfterBattleText:
+	text "I only come out"
+	line "when it's bright."
+	para "The route feels"
+	line "too spooky at"
+	cont "night."
+	done
+
 Route43_MapEvents:
 	db 0, 0 ; filler
 
@@ -512,5 +574,7 @@ Route43_MapEvents:
 	object_event  4, 16, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerFisherMarvin, -1
 	object_event  9, 25, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTiffany, -1
 	object_event 13, 40, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperSpencer, -1
+	object_event 19, 21, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, EVE | NITE, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassLauren, -1
+	object_event 19, 21, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, MORN | DAY, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermErick, -1
 	object_event  1, 26, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route43FruitTree, -1
 	object_event 12, 32, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route43MaxEther, EVENT_ROUTE_43_MAX_ETHER

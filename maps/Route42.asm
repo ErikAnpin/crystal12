@@ -2,6 +2,7 @@
 	const ROUTE42_FISHER
 	const ROUTE42_POKEFAN_M
 	const ROUTE42_SUPER_NERD
+	const ROUTE42_LASS
 	const ROUTE42_FRUIT_TREE1
 	const ROUTE42_FRUIT_TREE2
 	const ROUTE42_FRUIT_TREE3
@@ -177,6 +178,17 @@ TrainerHikerBenjamin:
 	closetext
 	end
 
+TrainerLassEmily:
+	trainer LASS, CONNIE2, EVENT_BEAT_LASS_CONNIE2, LassEmilySeenText, LassEmilyBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext LassEmilyAfterBattleText
+	waitbutton
+	closetext
+	end
+
 Route42Sign1:
 	jumptext Route42Sign1Text
 
@@ -283,6 +295,25 @@ PokemaniacShaneAfterBattleText:
 	line "it. Please?"
 	done
 
+LassEmilySeenText:
+	text "My Pokémon are"
+	line "more than just"
+	cont "cute. They're"
+	cont "tough, too!"
+	done
+
+LassEmilyBeatenText:
+	text "Oh! You were"
+	line "much tougher!"
+	done
+
+LassEmilyAfterBattleText:
+	text "I'm training hard"
+	line "so we can explore"
+	cont "MT.MORTAR with"
+	cont "confidence."
+	done
+
 Route42Sign1Text:
 	text "ROUTE 42"
 
@@ -335,6 +366,7 @@ Route42_MapEvents:
 	object_event 40, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherTully, -1
 	object_event 51,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
 	object_event 47,  8, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
+	object_event  8,  7, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerLassEmily, -1
 	object_event 27, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42FruitTree1, -1
 	object_event 28, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42FruitTree2, -1
 	object_event 29, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42FruitTree3, -1
