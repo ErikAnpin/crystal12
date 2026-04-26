@@ -39,11 +39,6 @@ FuchsiaGymJanineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_SOULBADGE
-	sjump .AfterBattle
-.FightDone:
-	faceplayer
-	opentext
-.AfterBattle:
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue .AfterTM
 	writetext JanineText_ToxicSpeech
@@ -52,9 +47,24 @@ FuchsiaGymJanineScript:
 	iffalse .AfterTM
 	setevent EVENT_GOT_TM06_TOXIC
 .AfterTM:
+	closetext
+	end
+
+.FightDone:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_TM06_TOXIC
+	iftrue .RematchPrompt
+	writetext JanineText_ToxicSpeech
+	promptbutton
+	verbosegiveitem TM_TOXIC
+	iffalse .NoRoom
+	setevent EVENT_GOT_TM06_TOXIC
+.RematchPrompt:
 	writetext JanineText_ApplyMyself
 	yesorno
 	iftrue JanineRematch
+.NoRoom:
 	closetext
 	end
 	

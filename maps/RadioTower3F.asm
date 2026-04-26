@@ -209,27 +209,27 @@ RadioTower3FCooltrainerFIsDirectorSafeText:
 	done
 
 RadioTower3FCooltrainerFYoureMyHeroText:
-	text "WROOOOAR!"
-	line "PEOPLE RUN WHEN I"
+	text "WROOOOAR! THE"
+	line "ROCKETS RAN"
 
-	para "ROAR! BUT YOU"
-	line "CAME LOOKING!"
+	para "WHEN I ROARED!"
+	line "You should try!"
 
-	para "THAT PLEASES ME!"
+	para "doing it too!"
 	line "NOW TAKE THIS!"
 	done
 
 RadioTower3FCooltrainerFItsSunnyDayText:
 	text "WROOOAR!"
-	line "IT'S ROAR!"
+	line "It'S ROAR!"
 
-	para "EVEN #MON RUN"
-	line "FROM A GOOD ROAR!"
+	para "Even #MON run"
+	line "From a good ROAR!"
 	done
 
 RadioTower3FCooltrainerFYouWereMarvelousText:
 	text "ROAR WITH ME!"
-	line "IT'S FUN!"
+	line "It'S FUN!"
 	done
 
 GruntM7SeenText:

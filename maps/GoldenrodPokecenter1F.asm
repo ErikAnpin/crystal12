@@ -16,7 +16,7 @@ GoldenrodPokecenter1FNurseScript:
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
 	checkcode VAR_BADGES
-	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	checkevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	iftrue .gsball
 	end
 
@@ -47,7 +47,7 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 	end
 
 GoldenrodPokecenter1F_GSBallSceneRight:
-	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	checkevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	iftrue .gsball
 	end
 
