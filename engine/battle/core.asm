@@ -2192,28 +2192,107 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	and BATTLERESULT_BITMASK
 	ld [wBattleResult], a ; WIN
 	; fallthrough
+
 ApplyExperienceAfterEnemyCaught:
-	; Preserve bits of non-fainted participants
-	ld a, [wBattleParticipantsNotFainted]
-	ld d, a
-	push de
-	call GiveExperiencePoints
-	pop de
-	; If Exp. Share is ON, give 50% EXP to non-participants
-	ld a, [wExpShareToggle]
-	and a
-	ret z
-	ld hl, wEnemyMonBaseExp
-	srl [hl]
-	ld a, [wBattleParticipantsNotFainted]
-	push af
-	ld a, d
-	xor %00111111
-	ld [wBattleParticipantsNotFainted], a
-	call GiveExperiencePoints
-	pop af
-	ld [wBattleParticipantsNotFainted], a
-	ret
+    ld a, [wExpShareToggle]
+    and a
+    jr z, .ExpShareOff
+
+    ; --- 1. PREP ACTIVE EXP (50%) ---
+    ld hl, wEnemyMonBaseExp
+    srl [hl]            ; Halve the base EXP pool
+
+    ld a, [wBattleParticipantsNotFainted]
+    ld d, a             ; D = Original participants mask
+    push de             ; Save it for later
+    
+    ; Give 50% to the active Pokémon
+    call GiveExperiencePoints
+    pop de
+
+    ; --- 2. BUILD THE INACTIVE MASK ---
+    xor a
+    ld [wBattleParticipantsNotFainted], a ; Reset mask
+    
+    ld hl, wPartyMon1HP
+    ld b, %00000001     ; B = Bit for the current Pokémon (Mon 1)
+    ld c, 0             ; C = Count of eligible inactive Pokémon
+    ld e, 0             ; E = The new mask we are building
+    ld a, [wPartyCount]
+    ld [wBuffer1], a    ; Loop counter based on party size
+
+.maskLoop:
+    ; Check if this Pokémon was a participant
+    ld a, d
+    and b
+    jr nz, .skipMon     ; If it participated, it's not "inactive"
+
+    ; Check if this Pokémon is fainted
+    ld a, [hli]         ; Load HP High, move to HP Low
+    or [hl]             ; Check both
+    dec hl              ; Move back to HP High so the "add hl, bc" later is consistent
+    jr z, .skipMon      ; If HP is 0, skip it
+
+    ; It's alive and inactive! Add it to the list.
+    ld a, e
+    or b
+    ld e, a             ; Add bit to our building mask
+    inc c               ; Increment the division counter
+
+.skipMon:
+    ; ALWAYS advance the pointer to the next Pokémon struct
+    push bc
+    ld bc, PARTYMON_STRUCT_LENGTH
+    add hl, bc
+    pop bc
+    
+    sla b               ; Shift bit (1 -> 2 -> 4...) to check next mon
+    
+    ld a, [wBuffer1]
+    dec a
+    ld [wBuffer1], a
+    jr nz, .maskLoop
+
+    ; --- 3. DIVIDE AND DISTRIBUTE ---
+    ld a, c
+    and a
+    ret z               ; If no inactive Pokémon are eligible, stop here
+
+    ; Divide the 50% Base EXP by the number of inactives (C)
+    ld b, c
+    ld a, [wEnemyMonBaseExp]
+    call .SimpleDivide
+    ld [wEnemyMonBaseExp], a
+
+    ; Apply the new mask and give the divided EXP
+    ld a, e
+    ld [wBattleParticipantsNotFainted], a
+    call GiveExperiencePoints
+    
+    ; Optional: Restore the original mask for engine safety
+    ld a, d
+    ld [wBattleParticipantsNotFainted], a
+    ret
+
+.ExpShareOff:
+    call GiveExperiencePoints
+    ret
+
+.SimpleDivide:
+    ; Divides A by B, result in A
+    push bc
+    ld c, 0
+    and a
+    jr z, .div_done
+.div_loop:
+    sub b
+    jr c, .div_done
+    inc c
+    jr .div_loop
+.div_done:
+    ld a, c
+    pop bc
+    ret
 
 StopDangerSound:
 	xor a
@@ -6580,166 +6659,80 @@ ApplyStatusEffectOnStats:
 	jp ApplyBrnEffectOnAttack
 
 ApplyPrzEffectOnSpeed:
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .enemy
-	ld a, [wBattleMonStatus]
-	and 1 << PAR
-	ret z
-	ld hl, wBattleMonSpeed + 1
-	jr .proceed
+    ld b, 1 << PAR
+    ld hl, wBattleMonSpeed + 1
+    ld de, wEnemyMonSpeed + 1
+    jr ApplyStatusEffectReduction
+
+ApplySlpEffectOnDefense:
+    ld b, SLP_MASK
+    ld hl, wBattleMonDefense + 1
+    ld de, wEnemyMonDefense + 1
+    jr ApplyStatusEffectReduction
+
+ApplySlpEffectOnSpclDef:
+    ld b, SLP_MASK
+    ld hl, wBattleMonSpclDef + 1
+    ld de, wEnemyMonSpclDef + 1
+    jr ApplyStatusEffectReduction
+
+ApplyFrzEffectOnSpclAttack:
+    ld b, 1 << FRZ
+    ld hl, wBattleMonSpclAtk + 1
+    ld de, wEnemyMonSpclAtk + 1
+    jr ApplyStatusEffectReduction
+
+ApplyBrnEffectOnAttack:
+    ld b, 1 << BRN
+    ld hl, wBattleMonAttack + 1
+    ld de, wEnemyMonAttack + 1
+    ; Fallthrough to the shared routine below
+
+ApplyStatusEffectReduction:
+    ldh a, [hBattleTurn]
+    and a
+    jr z, .enemy
+    ld a, [wBattleMonStatus]
+    and b
+    ret z
+    jr .proceed
 
 .enemy
-	ld a, [wEnemyMonStatus]
-	and 1 << PAR
-	ret z
-	ld hl, wEnemyMonSpeed + 1
+    ld a, [wEnemyMonStatus]
+    and b
+    ret z
+    ld h, d
+    ld l, e
+
 .proceed
     ld a, [hld]
+    ld c, a
     ld b, a
     ld a, [hl]
+    ld d, a
+    
+    ; divide by 4
     srl a
     rr b
+    srl a
+    rr b
+    
+    ld e, a
+    
+    ld a, c
+    sub b
+    ld b, a
+    
+    ld a, d
+    sbc e
+
     ld [hli], a
     or b
     jr nz, .ok
-    ld b, 1 ; min speed
+    ld b, $1 ; min 1
 .ok
     ld [hl], b
     ret
-
-ApplySlpEffectOnDefense:
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .enemy
-	ld a, [wBattleMonStatus]
-	and SLP_MASK
-	ret z
-	ld hl, wBattleMonDefense + 1
-	jr .proceed
-
-.enemy
-	ld a, [wEnemyMonStatus]
-	and SLP_MASK
-	ret z
-	ld hl, wEnemyMonDefense+ 1
-
-.proceed
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .ok
-	ld b, $1 ; min def
-
-.ok
-	ld [hl], b
-	ret
-
-ApplySlpEffectOnSpclDef:
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .enemy
-	ld a, [wBattleMonStatus]
-	and SLP_MASK
-	ret z
-	ld hl, wBattleMonSpclDef + 1
-	jr .proceed
-
-.enemy
-	ld a, [wEnemyMonStatus]
-	and SLP_MASK
-	ret z
-	ld hl, wEnemyMonSpclDef+ 1
-
-.proceed
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .ok
-	ld b, $1 ; min spcldef
-
-.ok
-	ld [hl], b
-	ret
-
-ApplyFrzEffectOnSpclAttack:
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .enemy
-	ld a, [wBattleMonStatus]
-	and 1 << FRZ
-	ret z
-	ld hl, wBattleMonSpclAtk + 1
-	jr .proceed
-
-.enemy
-	ld a, [wEnemyMonStatus]
-	and 1 << FRZ
-	ret z
-	ld hl, wEnemyMonSpclAtk + 1
-.proceed
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .ok
-	ld b, $1 ; min special attack
-
-.ok
-	ld [hl], b
-	ret
-
-ApplyBrnEffectOnAttack:
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .enemy
-	ld a, [wBattleMonStatus]
-	and 1 << BRN
-	ret z
-	ld hl, wBattleMonAttack + 1
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .player_ok
-	ld b, $1 ; min attack
-
-.player_ok
-	ld [hl], b
-	ret
-
-.enemy
-	ld a, [wEnemyMonStatus]
-	and 1 << BRN
-	ret z
-	ld hl, wEnemyMonAttack + 1
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .enemy_ok
-	ld b, $1 ; min attack
-
-.enemy_ok
-	ld [hl], b
-	ret
 
 ApplyStatLevelMultiplierOnAllStats:
 ; Apply StatLevelMultipliers on all 5 Stats
