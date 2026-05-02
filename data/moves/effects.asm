@@ -611,7 +611,7 @@ DefenseUpHit:
     statupmessage
     checkfaint
     buildopponentrage
-    defenseup    
+    defenseup
     endmove
 
 AttackUpHit:
@@ -1603,7 +1603,7 @@ Twister:
     supereffectivetext
     checkfaint
     buildopponentrage
-    kingsrock    
+    kingsrock
     flinchtarget
     endmove
 

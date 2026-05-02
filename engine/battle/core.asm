@@ -431,8 +431,8 @@ HandleBerserkGene:
 	and %11
 	add 2
 	ld [hl], a
- 	ld a, BATTLE_VARS_MOVE_ANIM
- 	call GetBattleVarAddr
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVarAddr
 	push hl
 	push af
 	xor a
@@ -446,7 +446,6 @@ HandleBerserkGene:
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
-	callfar BattleCommand_StatUpMessage
 	pop af
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
@@ -454,9 +453,7 @@ HandleBerserkGene:
 	ld [wBattleAfterAnim], a
 	ld de, ANIM_CONFUSED
 	call Call_PlayBattleAnim_OnlyIfVisible
-	call SwitchTurnCore
-	ld hl, BecameConfusedText
-	jp StdBattleTextbox
+	ret
 
 EnemyTriesToFlee:
 	ld a, [wLinkMode]
@@ -2194,105 +2191,97 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	; fallthrough
 
 ApplyExperienceAfterEnemyCaught:
-    ld a, [wExpShareToggle]
-    and a
-    jr z, .ExpShareOff
+	ld a, [wExpShareToggle]
+	and a
+	jr z, .ExpShareOff
 
-    ; --- 1. PREP ACTIVE EXP (50%) ---
-    ld hl, wEnemyMonBaseExp
-    srl [hl]            ; Halve the base EXP pool
+	ld hl, wEnemyMonBaseExp
+	srl [hl]
 
-    ld a, [wBattleParticipantsNotFainted]
-    ld d, a             ; D = Original participants mask
-    push de             ; Save it for later
-    
-    ; Give 50% to the active Pokémon
-    call GiveExperiencePoints
-    pop de
+	ld a, [wBattleParticipantsNotFainted]
+	ld d, a
+	push de
 
-    ; --- 2. BUILD THE INACTIVE MASK ---
-    xor a
-    ld [wBattleParticipantsNotFainted], a ; Reset mask
-    
-    ld hl, wPartyMon1HP
-    ld b, %00000001     ; B = Bit for the current Pokémon (Mon 1)
-    ld c, 0             ; C = Count of eligible inactive Pokémon
-    ld e, 0             ; E = The new mask we are building
-    ld a, [wPartyCount]
-    ld [wBuffer1], a    ; Loop counter based on party size
+	call GiveExperiencePoints
+	pop de
+
+	xor a
+	ld [wBattleParticipantsNotFainted], a
+	
+	ld hl, wPartyMon1HP
+	ld b, %00000001
+	ld c, 0
+	ld e, 0
+	ld a, [wPartyCount]
+	ld [wBuffer1], a
 
 .maskLoop:
-    ; Check if this Pokémon was a participant
-    ld a, d
-    and b
-    jr nz, .skipMon     ; If it participated, it's not "inactive"
+	; Check if this Pokémon was a participant
+	ld a, d
+	and b
+	jr nz, .skipMon
 
-    ; Check if this Pokémon is fainted
-    ld a, [hli]         ; Load HP High, move to HP Low
-    or [hl]             ; Check both
-    dec hl              ; Move back to HP High so the "add hl, bc" later is consistent
-    jr z, .skipMon      ; If HP is 0, skip it
+	; Check if this Pokémon is fainted
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr z, .skipMon
 
-    ; It's alive and inactive! Add it to the list.
-    ld a, e
-    or b
-    ld e, a             ; Add bit to our building mask
-    inc c               ; Increment the division counter
+	ld a, e
+	or b
+	ld e, a
+	inc c
 
 .skipMon:
-    ; ALWAYS advance the pointer to the next Pokémon struct
-    push bc
-    ld bc, PARTYMON_STRUCT_LENGTH
-    add hl, bc
-    pop bc
-    
-    sla b               ; Shift bit (1 -> 2 -> 4...) to check next mon
-    
-    ld a, [wBuffer1]
-    dec a
-    ld [wBuffer1], a
-    jr nz, .maskLoop
+	push bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	add hl, bc
+	pop bc
 
-    ; --- 3. DIVIDE AND DISTRIBUTE ---
-    ld a, c
-    and a
-    ret z               ; If no inactive Pokémon are eligible, stop here
+	sla b
+	
+	ld a, [wBuffer1]
+	dec a
+	ld [wBuffer1], a
+	jr nz, .maskLoop
 
-    ; Divide the 50% Base EXP by the number of inactives (C)
-    ld b, c
-    ld a, [wEnemyMonBaseExp]
-    call .SimpleDivide
-    ld [wEnemyMonBaseExp], a
+	ld a, c
+	and a
+	ret z
 
-    ; Apply the new mask and give the divided EXP
-    ld a, e
-    ld [wBattleParticipantsNotFainted], a
-    call GiveExperiencePoints
-    
-    ; Optional: Restore the original mask for engine safety
-    ld a, d
-    ld [wBattleParticipantsNotFainted], a
-    ret
+	; Divide the 50% Base EXP by the number of inactives (C)
+	ld b, c
+	ld a, [wEnemyMonBaseExp]
+	call .SimpleDivide
+	ld [wEnemyMonBaseExp], a
+
+	ld a, e
+	ld [wBattleParticipantsNotFainted], a
+	call GiveExperiencePoints
+
+
+	ld a, d
+	ld [wBattleParticipantsNotFainted], a
+	ret
 
 .ExpShareOff:
-    call GiveExperiencePoints
-    ret
+	call GiveExperiencePoints
+	ret
 
 .SimpleDivide:
-    ; Divides A by B, result in A
-    push bc
-    ld c, 0
-    and a
-    jr z, .div_done
+	push bc
+	ld c, 0
+	and a
+	jr z, .div_done
 .div_loop:
-    sub b
-    jr c, .div_done
-    inc c
-    jr .div_loop
+	sub b
+	jr c, .div_done
+	inc c
+	jr .div_loop
 .div_done:
-    ld a, c
-    pop bc
-    ret
+	ld a, c
+	pop bc
+	ret
 
 StopDangerSound:
 	xor a
@@ -4534,9 +4523,9 @@ HandleStatBoostingHeldItems:
 	jp .HandleItem
 
 .DoEnemy:
-    ld a, [wBattleMode]
-    cp TRAINER_BATTLE
-    ret nz
+	ld a, [wBattleMode]
+	cp TRAINER_BATTLE
+	ret nz
 	call GetOTPartymonItem
 	ld a, $1
 .HandleItem:
@@ -5787,7 +5776,7 @@ MoveInfoBox:
 .NoPower:
 	db "POWER:---@"
 .PPdisplay:
-    db "PP:@"
+	db "PP:@"
 
 .PrintPP:
 	hlcoord 10, 11
@@ -5797,8 +5786,8 @@ MoveInfoBox:
 	hlcoord 10, 11
 .ok
 	ld de, .PPdisplay
-    call PlaceString
-    hlcoord 13, 11
+	call PlaceString
+	hlcoord 13, 11
 	push hl
 	ld de, wStringBuffer1
 	lb bc, 1, 2
@@ -6091,9 +6080,9 @@ LoadEnemyMon:
 
 ; Failing that, it's all up to chance
 ;  Effective chances:
-;    50% None
-;    30% Item1
-;    20% Item2
+;	50% None
+;	30% Item1
+;	20% Item2
 
 ; 50% chance of getting an item
 	call BattleRandom
@@ -6659,80 +6648,80 @@ ApplyStatusEffectOnStats:
 	jp ApplyBrnEffectOnAttack
 
 ApplyPrzEffectOnSpeed:
-    ld b, 1 << PAR
-    ld hl, wBattleMonSpeed + 1
-    ld de, wEnemyMonSpeed + 1
-    jr ApplyStatusEffectReduction
+	ld b, 1 << PAR
+	ld hl, wBattleMonSpeed + 1
+	ld de, wEnemyMonSpeed + 1
+	jr ApplyStatusEffectReduction
 
 ApplySlpEffectOnDefense:
-    ld b, SLP_MASK
-    ld hl, wBattleMonDefense + 1
-    ld de, wEnemyMonDefense + 1
-    jr ApplyStatusEffectReduction
+	ld b, SLP_MASK
+	ld hl, wBattleMonDefense + 1
+	ld de, wEnemyMonDefense + 1
+	jr ApplyStatusEffectReduction
 
 ApplySlpEffectOnSpclDef:
-    ld b, SLP_MASK
-    ld hl, wBattleMonSpclDef + 1
-    ld de, wEnemyMonSpclDef + 1
-    jr ApplyStatusEffectReduction
+	ld b, SLP_MASK
+	ld hl, wBattleMonSpclDef + 1
+	ld de, wEnemyMonSpclDef + 1
+	jr ApplyStatusEffectReduction
 
 ApplyFrzEffectOnSpclAttack:
-    ld b, 1 << FRZ
-    ld hl, wBattleMonSpclAtk + 1
-    ld de, wEnemyMonSpclAtk + 1
-    jr ApplyStatusEffectReduction
+	ld b, 1 << FRZ
+	ld hl, wBattleMonSpclAtk + 1
+	ld de, wEnemyMonSpclAtk + 1
+	jr ApplyStatusEffectReduction
 
 ApplyBrnEffectOnAttack:
-    ld b, 1 << BRN
-    ld hl, wBattleMonAttack + 1
-    ld de, wEnemyMonAttack + 1
-    ; Fallthrough to the shared routine below
+	ld b, 1 << BRN
+	ld hl, wBattleMonAttack + 1
+	ld de, wEnemyMonAttack + 1
+	; Fallthrough to the shared routine below
 
 ApplyStatusEffectReduction:
-    ldh a, [hBattleTurn]
-    and a
-    jr z, .enemy
-    ld a, [wBattleMonStatus]
-    and b
-    ret z
-    jr .proceed
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy
+	ld a, [wBattleMonStatus]
+	and b
+	ret z
+	jr .proceed
 
 .enemy
-    ld a, [wEnemyMonStatus]
-    and b
-    ret z
-    ld h, d
-    ld l, e
+	ld a, [wEnemyMonStatus]
+	and b
+	ret z
+	ld h, d
+	ld l, e
 
 .proceed
-    ld a, [hld]
-    ld c, a
-    ld b, a
-    ld a, [hl]
-    ld d, a
-    
-    ; divide by 4
-    srl a
-    rr b
-    srl a
-    rr b
-    
-    ld e, a
-    
-    ld a, c
-    sub b
-    ld b, a
-    
-    ld a, d
-    sbc e
+	ld a, [hld]
+	ld c, a
+	ld b, a
+	ld a, [hl]
+	ld d, a
+	
+	; divide by 4
+	srl a
+	rr b
+	srl a
+	rr b
+	
+	ld e, a
+	
+	ld a, c
+	sub b
+	ld b, a
+	
+	ld a, d
+	sbc e
 
-    ld [hli], a
-    or b
-    jr nz, .ok
-    ld b, $1 ; min 1
+	ld [hli], a
+	or b
+	jr nz, .ok
+	ld b, $1 ; min 1
 .ok
-    ld [hl], b
-    ret
+	ld [hl], b
+	ret
 
 ApplyStatLevelMultiplierOnAllStats:
 ; Apply StatLevelMultipliers on all 5 Stats
@@ -7009,6 +6998,18 @@ GiveExperiencePoints:
 	inc de
 
 .no_carry_stat_exp
+	ld a, [de]
+	add [hl]
+	ld [de], a
+	jr nc, .no_carry_stat_exp_pokerus
+	dec de
+	ld a, [de]
+	inc a
+	jr z, .stat_exp_maxed_out
+	ld [de], a
+	inc de
+
+.no_carry_stat_exp_pokerus
 	push hl
 	push bc
 	ld a, MON_POKERUS
