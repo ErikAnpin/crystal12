@@ -228,7 +228,7 @@ ApplyRunningEffectOnEncounterRate::
 	ld a, [wPlayerState]
 	cp PLAYER_RUN
 	ret nz
-    ld b, 0
+	ld b, 0
 	ret
 
 ApplyMusicEffectOnEncounterRate::

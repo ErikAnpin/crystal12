@@ -221,19 +221,19 @@ StartMenu::
 	ret
 
 .MenuClockText:
-    push bc
-    push de
-    push hl
-    ldh a, [hHours]
-    ld b, a
-    ldh a, [hMinutes]
-    ld c, a
-    decoord 1, 16
-    farcall PrintHoursMins
-    pop hl
-    pop de
-    pop bc
-    ret
+	push bc
+	push de
+	push hl
+	ldh a, [hHours]
+	ld b, a
+	ldh a, [hMinutes]
+	ld c, a
+	decoord 1, 16
+	farcall PrintHoursMins
+	pop hl
+	pop de
+	pop bc
+	ret
 
 .GetMenuEmptyTextPointer:
 	ld e, a

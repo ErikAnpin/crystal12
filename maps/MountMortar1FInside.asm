@@ -110,8 +110,8 @@ SupernerdMarkusAfterBattleText:
 	para "Did you run into a"
 	line "trainer who uses a"
 
-	para "KABUTOPS that knows"
-	line "WATERFALL?"
+	para "KABUTOPS that can"
+	line "use WATERFALL?"
 	done
 
 MountMortar1FInside_MapEvents:

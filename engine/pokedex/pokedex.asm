@@ -106,7 +106,7 @@ Pokedex_DirectEntry::
 	call InitPokedex
 
 	ld a, POKEDEX_SCX
-    ldh [hSCX], a
+	ldh [hSCX], a
 
 	ld a, DEXSTATE_DEX_ENTRY_SCR
 	ld [wJumptableIndex], a
@@ -385,12 +385,12 @@ Pokedex_InitDexEntryScreen:
 	ldh [hBGMapMode], a
 	call ClearSprites
 
-    ld a, [wCurPartySpecies]
-    ld [wPrevDexEntry], a
+	ld a, [wCurPartySpecies]
+	ld [wPrevDexEntry], a
 
-    call Pokedex_LoadSelectedMonTiles
-    
-    ld a, SCGB_POKEDEX
+	call Pokedex_LoadSelectedMonTiles
+		
+	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	call Pokedex_LoadCurrentFootprint
 	call Pokedex_DrawDexEntryScreenBG

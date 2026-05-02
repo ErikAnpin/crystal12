@@ -741,28 +741,27 @@ BallMultiplierFunctionTable:
 	db -1 ; end
 
 UltraBallMultiplier:
-; multiply catch rate by 2.5
+; multiply catch rate by 3
 	ld a, b
-    srl a
-    add b
-    add b
-    ld b, a
-    ret nc
-    ld b, $ff
-    ret
+	add a   ; a = b * 2
+	add b   ; a = (b * 2) + b = b * 3
+	ld b, a
+	ret nc
+	ld b, $ff
+	ret
 
 SafariBallMultiplier:
 GreatBallMultiplier:
 ParkBallMultiplier:
 ; multiply catch rate by 2.5
 	ld a, b
-    srl a
-    add b
-    add b
-    ld b, a
-    ret nc
-    ld b, $ff
-    ret
+	srl a
+	add b
+	add b
+	ld b, a
+	ret nc
+	ld b, $ff
+	ret
 
 HeavyBall_GetDexEntryBank:
 	push hl
@@ -898,17 +897,17 @@ endr
 LureBallMultiplier:
 ; multiply catch rate by 4 if this is a fishing rod battle
 	ld a, [wBattleType]
-    cp BATTLETYPE_FISH
-    ret nz
+	cp BATTLETYPE_FISH
+	ret nz
 
-    sla b
-    jr c, .max
+	sla b
+	jr c, .max
 
-    sla b ; 4x
-    ret nc
+	sla b ; 4x
+	ret nc
 .max
-    ld b, $ff
-    ret
+	ld b, $ff
+	ret
 
 MoonBallMultiplier:
 	push bc
@@ -953,17 +952,12 @@ MoonBallMultiplier:
 
 LoveBallMultiplier:
 	push bc
-    farcall CheckBattleEggGroupCompatibility
-    pop bc
-    ; does species match? - Ultimate (from Idain): removed and instead checks
+	farcall CheckBattleEggGroupCompatibility
+	pop bc
+	; does species match? - Ultimate (from Idain): removed and instead checks
 	; for matching egg group
-;    ld a, [wTempEnemyMonSpecies]
-;    ld c, a
-;    ld a, [wTempBattleMonSpecies]
-;    cp c
-;    ret nz
 
-    ; check player mon species
+	; check player mon species
 	push bc
 	ld a, [wTempBattleMonSpecies]
 	ld [wCurPartySpecies], a
@@ -1021,46 +1015,46 @@ FastBallMultiplier:
 ; Reality: multiply catch rate by 4 if enemy mon is one of the first three in
 ;          the first FleeMons table.
 	ld a, [wTempEnemyMonSpecies]
-    ld c, a
-    ld hl, FleeMons
-    ld d, 3
+	ld c, a
+	ld hl, FleeMons
+	ld d, 3
 
 .loop
-    ld a, BANK(FleeMons)
-    call GetFarByte
+	ld a, BANK(FleeMons)
+	call GetFarByte
 
-    inc hl
-    cp -1
-    jr z, .next
-    cp c
-    jr nz, .loop
-    ld a, d
-    dec a
-    jr z, .Alwaysflee
-    sla b
-    jr c, .max
-
-    sla b
+	inc hl
+	cp -1
+	jr z, .next
+	cp c
+	jr nz, .loop
+	ld a, d
+	dec a
+	jr z, .Alwaysflee
+	sla b
 	jr c, .max
-    ret
+
+	sla b
+	jr c, .max
+	ret
 .Alwaysflee
-    sla b
-    jr c, .max
-    
-    sla b
+	sla b
 	jr c, .max
 	
-    sla b
-    ret nc
+	sla b
+	jr c, .max
+	
+	sla b
+	ret nc
 
 .max
-    ld b, $ff
-    ret
+	ld b, $ff
+	ret
 
 .next
-    dec d
-    jr nz, .loop
-    ret
+	dec d
+	jr nz, .loop
+	ret
 
 LevelBallMultiplier:
 ; multiply catch rate by 8 if player mon level / 4 > enemy mon level

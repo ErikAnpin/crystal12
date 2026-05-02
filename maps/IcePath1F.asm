@@ -30,7 +30,7 @@ TrainerBeautyJulie:
 	end
 
 BeautyJulieSeenText:
-	text "My Pokémon are"
+	text "My #MON are"
     line "ice-cold and"
     cont "perfectly elegant."
 
@@ -46,7 +46,7 @@ BeautyJulieBeatenText:
 BeautyJulieAfterBattleText:
 	text "I'm modeling my"
     line "style after a"
-    cont "legend from Kanto."
+    cont "legend from KANTO."
 
     para "I even started a"
     line "doll collection,"

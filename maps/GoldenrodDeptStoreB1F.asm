@@ -65,13 +65,13 @@ GoldenrodDeptStoreB1FEther:
 	itemball ETHER
 
 GoldenrodDeptStoreB1FAmuletCoin:
-	itemball UP_GRADE
+	itemball ULTRA_BALL
 
 GoldenrodDeptStoreB1FBurnHeal:
 	itemball BURN_HEAL
 
 GoldenrodDeptStoreB1FUltraBall:
-	itemball ULTRA_BALL
+	itemball UP_GRADE
 
 GoldenrodDeptStoreB1FBlackBelt1Text:
 	text "Hey, kid! You're"

@@ -1046,7 +1046,7 @@ GrimerEvosAttacks:
 	db 14, DISABLE
 	db 18, MINIMIZE
 	db 23, PURSUIT
-	db 27, SCREECH
+	db 28, SCREECH
 	db 34, SLUDGE_BOMB
 	db 38, EXPLOSION
 	db 42, ACID_ARMOR
@@ -2153,7 +2153,6 @@ TogepiEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, TOGETIC
 TogeticEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, GROWL
 	db 1, CHARM
 	db 1, METRONOME
 	db 7, SWEET_KISS
