@@ -37,8 +37,7 @@ ENDM
 
 RestartClock:
 ; If we're here, we had an RTC overflow.
-	ld hl, .ClockTimeMayBeWrongText
-	call PrintText
+	farcall BlankScreen ; screen needs to be blank first
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -54,10 +53,6 @@ RestartClock:
 	ld [hl], b
 	ld c, a
 	ret
-
-.ClockTimeMayBeWrongText:
-	text_far _ClockTimeMayBeWrongText
-	text_end
 
 .ClockSetWithControlPadText:
 	text_far _ClockSetWithControlPadText
@@ -214,11 +209,6 @@ RestartClock:
 	ld [wRestartClockPrevDivision], a
 	ret
 
-.UnusedPlaceCharsFragment: ; unreferenced
-	ld a, [wRestartClockUpArrowYCoord]
-	ld b, a
-	call Coord2Tile
-	ret
 
 .PlaceChars:
 	push de
@@ -234,8 +224,3 @@ RestartClock:
 	ld [hl], e
 	ret
 
-JPHourString: ; unreferenced
-	db "じ@" ; HR
-
-JPMinuteString: ; unreferenced
-	db "ふん@" ; MIN

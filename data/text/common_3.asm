@@ -25,20 +25,9 @@ _OakText7::
 	line "later!"
 	done
 
-_ClockTimeMayBeWrongText::
-	text "The clock's time"
-	line "may be wrong."
-
-	para "Please reset the"
-	line "time."
-	prompt
-
 _ClockSetWithControlPadText::
-	text "Set with the"
-	line "Control Pad."
-
-	para "Confirm: A Button"
-	line "Cancel:  B Button"
+	text "  Please set the"
+	line "   clock's time."
 	done
 
 _ClockIsThisOKText::
@@ -1054,8 +1043,8 @@ _PokegearAskWhoCallText::
 	done
 
 _PokegearPressButtonText::
-	text "Navigate to the"
-	line "sides."
+	text "SELECT: Set Time"
+	line "B: Exit #GEAR"
 	done
 
 _PokegearAskDeleteText::
