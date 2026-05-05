@@ -13,5 +13,5 @@ HealingHPAmounts:
 	dbw ENERGYPOWDER,  60
 	dbw ENERGY_ROOT,  120
 	dbw RAGECANDYBAR,  20
-	dbw BERRY_JUICE,   20
+	dbw BERRY_JUICE,   40
 	dbw -1, 0 ; end

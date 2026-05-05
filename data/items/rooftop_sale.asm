@@ -11,7 +11,7 @@ RooftopSaleMart2:
 	db 5
 	dbw ULTRA_BALL,    900
 	dbw FULL_RESTORE, 2250
-	dbw HYPER_POTION,  900
+	dbw HYPER_POTION, 1125
 	dbw FULL_HEAL,     300
 	dbw REVIVE,       1500
 	db -1

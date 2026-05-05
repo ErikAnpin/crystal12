@@ -796,7 +796,7 @@ CharcoalDesc:
 
 BerryJuiceDesc:
 	db   "Restores #MON"
-	next "HP by 20.@"
+	next "HP by 40.@"
 
 ScopeLensDesc:
 	db   "Boosts SP ATT"
