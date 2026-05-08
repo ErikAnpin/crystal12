@@ -3029,7 +3029,7 @@ wPlayerState:: db
 wHallOfFameCount:: db
 wExpShareToggle:: db
 wTradeFlags:: flag_array NUM_NPC_TRADES
-	ds 1
+wShowEnemyDVsToggle:: db
 wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db

@@ -1071,25 +1071,28 @@ Pokedex_UpdateOptionScreen:
 	ret
 
 .NoUnownModeArrowCursorData:
-	db PAD_UP | PAD_DOWN, 4
-	dwcoord 2,  3 ; NEW
-	dwcoord 2,  4 ; OLD
-	dwcoord 2,  5 ; ABC
-	dwcoord 2,  6 ; COLOR
-
-.ArrowCursorData:
 	db PAD_UP | PAD_DOWN, 5
 	dwcoord 2,  3 ; NEW
 	dwcoord 2,  4 ; OLD
 	dwcoord 2,  5 ; ABC
 	dwcoord 2,  6 ; COLOR
-	dwcoord 2,  7 ; UNOWN
+	dwcoord 2,  7 ; DV VIEWER
+
+.ArrowCursorData:
+	db PAD_UP | PAD_DOWN, 6
+	dwcoord 2,  3 ; NEW
+	dwcoord 2,  4 ; OLD
+	dwcoord 2,  5 ; ABC
+	dwcoord 2,  6 ; COLOR
+	dwcoord 2,  7 ; DV VIEWER
+	dwcoord 2,  8 ; UNOWN
 
 .MenuActionJumptable:
 	dw .MenuAction_NewMode
 	dw .MenuAction_OldMode
 	dw .MenuAction_ABCMode
 	dw .MenuAction_ColorOption
+	dw .MenuAction_DVViewer
 	dw .MenuAction_UnownMode
 
 .MenuAction_NewMode:
@@ -1133,6 +1136,20 @@ Pokedex_UpdateOptionScreen:
 	call Pokedex_BlackOutBG
 	ld a, DEXSTATE_UNOWN_MODE
 	ld [wJumptableIndex], a
+	ret
+
+.MenuAction_DVViewer:
+	call DVViewerEffect
+	call Pokedex_DisplayDVToggleMessage
+	call Pokedex_BlackOutBG
+	ld a, DEXSTATE_EXIT
+	ld [wJumptableIndex], a
+	ret
+
+DVViewerEffect:
+	ld a, [wShowEnemyDVsToggle]
+	xor 1
+	ld [wShowEnemyDVsToggle], a
 	ret
 
 Pokedex_InitSearchScreen:
@@ -1778,12 +1795,16 @@ Pokedex_DrawOptionScreenBG:
 	hlcoord 3, 6
 	ld de, .Color
 	call PlaceString
+	hlcoord 3, 7
+	ld de, .DVViewer
+	call PlaceString
 	ld a, [wUnlockedUnownMode]
 	and a
-	ret z
-	hlcoord 3, 7
+	jr z, .noUnown
+	hlcoord 3, 8
 	ld de, .UnownMode
 	call PlaceString
+.noUnown
 	ret
 
 .Title:
@@ -1800,6 +1821,9 @@ Pokedex_DrawOptionScreenBG:
 	
 .Color:
 	db "#DEX COLOR@"
+
+.DVViewer:
+	db "DV VIEWER@"
 
 .UnownMode:
 	db "UNOWN MODE@"
@@ -2497,6 +2521,7 @@ Pokedex_DisplayModeDescription:
 	dw .OldMode
 	dw .ABCMode
 	dw .Color
+	dw .DVViewer
 	dw .UnownMode
 
 .NewMode:
@@ -2514,6 +2539,10 @@ Pokedex_DisplayModeDescription:
 .Color
 	db   "Change the color"
 	next "of the border.@"
+
+.DVViewer:
+	db   "Toggle DV Viewer"
+	next "on enemy <PKMN>.@"
 
 .UnownMode:
 	db   "UNOWN are listed"
@@ -2541,6 +2570,40 @@ Pokedex_DisplayChangingModesMessage:
 String_ChangingModesPleaseWait:
 	db   "Changing modes."
 	next "Please wait.@"
+
+Pokedex_DisplayDVToggleMessage:
+	xor a
+	ldh [hBGMapMode], a
+	hlcoord 0, 12
+	lb bc, 4, 18
+	call Pokedex_PlaceBorder
+
+	ld a, [wShowEnemyDVsToggle]
+	and a
+	ld de, String_DVToggleOn
+	jr nz, .place
+	ld de, String_DVToggleOff
+
+.place
+	hlcoord 1, 14
+	call PlaceString
+	ld a, $1
+	ldh [hBGMapMode], a
+	ld c, 8
+	call DelayFrames
+	ld de, SFX_CHANGE_DEX_MODE
+	call PlaySFX
+	ld c, 8
+	call DelayFrames
+	ret
+
+String_DVToggleOn:
+	db   "The DV Viewer has"
+	next "been enabled.@"
+
+String_DVToggleOff:
+	db   "The DV Viewer has"
+	next "been disabled.@"
 
 Pokedex_UpdateSearchMonType:
 	ld a, [wDexArrowCursorPosIndex]

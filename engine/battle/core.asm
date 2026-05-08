@@ -4773,6 +4773,60 @@ PrintPlayerHUD:
 	ld [wTempMonLevel], a
 	jp PrintLevel
 
+DisplayEnemyDVs:
+	ld a, [wShowEnemyDVsToggle]
+	and a
+	ret z
+
+	hlcoord 0, 3
+
+	ld a, [wEnemyMonDVs]
+	ld d, a
+	ld a, [wEnemyMonDVs + 1]
+	ld e, a
+
+	; Attack
+	ld a, d
+	swap a
+	and $f
+	call .PrintTwoDigits
+	ld [hl], "/"
+	inc hl
+
+	; Defense
+	ld a, d
+	and $f
+	call .PrintTwoDigits
+	ld [hl], "/"
+	inc hl
+
+	; Special
+	ld a, e
+	and $f
+	call .PrintTwoDigits
+	ld [hl], "/"
+	inc hl
+
+	; Speed
+	ld a, e
+	swap a
+	and $f
+
+.PrintTwoDigits:
+	ld b, a
+	ld [hl], "0"
+	cp 10
+	jr c, .skip_ten
+	ld [hl], "1"
+	sub 10
+	ld b, a
+.skip_ten:
+	inc hl
+	ld a, b
+	add "0"
+	ld [hli], a
+	ret
+
 UpdateEnemyHUD::
 	push hl
 	push de
@@ -4788,11 +4842,21 @@ DrawEnemyHUD:
 	xor a
 	ldh [hBGMapMode], a
 
-	hlcoord 1, 0
+	hlcoord 0, 0
 	lb bc, 4, 11
 	call ClearBox
 
+	ld a, [wBattleMode]
+	cp WILD_BATTLE
+	jr nz, .draw_border
+
+	ld a, [wShowEnemyDVsToggle]
+	and a
+	jr nz, .skip_border
+	
+.draw_border
 	farcall DrawEnemyHUDBorder
+.skip_border
 
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurSpecies], a
@@ -4852,6 +4916,7 @@ DrawEnemyHUD:
 	or [hl]
 	jr nz, .not_fainted
 
+	xor a ; safety
 	ld c, a
 	ld e, a
 	ld d, HP_BAR_LENGTH
@@ -4902,12 +4967,23 @@ DrawEnemyHUD:
 	ld d, a
 	ld c, a
 
+	push de ; safety
+	ld a, [wBattleMode]
+	cp WILD_BATTLE
+	jr nz, .skip_dvs
+	call DisplayEnemyDVs
+.skip_dvs
+	pop de ; safety
+
 .draw_bar
 	xor a
 	ld [wWhichHPBar], a
 	hlcoord 2, 2
 	ld b, 0
 	call DrawBattleHPBar
+
+	ld a, 1
+	ldh [hBGMapMode], a
 	ret
 
 UpdateEnemyHPPal:
