@@ -2198,6 +2198,14 @@ ApplyExperienceAfterEnemyCaught:
 	ld hl, wEnemyMonBaseExp
 	srl [hl]
 
+	ld hl, wEnemyMonBaseStats
+	ld b, wEnemyMonEnd - wEnemyMonBaseStats
+.halve_stats_loop:
+	srl [hl]
+	inc hl
+	dec b
+	jr nz, .halve_stats_loop
+
 	ld a, [wBattleParticipantsNotFainted]
 	ld d, a
 	push de
