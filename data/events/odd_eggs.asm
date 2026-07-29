@@ -10,26 +10,26 @@ OddEggProbabilities:
 	table_width 2
 DEF prob_total = 0
 ; Pichu
-	prob 8
-	prob 1
+	prob 5
+	prob 5
 ; Cleffa
-	prob 16
-	prob 3
+	prob 5
+	prob 5
 ; Igglybuff
-	prob 16
-	prob 3
+	prob 5
+	prob 5
 ; Smoochum
-	prob 14
-	prob 2
+	prob 10
+	prob 10
 ; Magby
-	prob 10
-	prob 2
+	prob 7
+	prob 7
 ; Elekid
-	prob 12
-	prob 2
-; Tyrogue
 	prob 10
-	prob 1
+	prob 10
+; Tyrogue
+	prob 8
+	prob 8
 	assert_table_length NUM_ODD_EGGS
 	assert prob_total == 100, "OddEggProbabilities do not sum to 100%!"
 
@@ -38,7 +38,7 @@ OddEggs:
 
 	db PICHU
 	db NO_ITEM
-	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
+	db THUNDERSHOCK, CHARM, HIDDEN_POWER, 0
 	dw 02048 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -47,24 +47,24 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 30, 20, 10, 0 ; PP
+	dn 10, 10, 13, 12 ; HP Grass
+	db 20, 5, 15, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
-	bigdw 9 ; Atk
-	bigdw 6 ; Def
-	bigdw 11 ; Spd
-	bigdw 8 ; SAtk
-	bigdw 8 ; SDef
+	bigdw 10 ; Atk
+	bigdw 7 ; Def
+	bigdw 12 ; Spd
+	bigdw 9 ; SAtk
+	bigdw 9 ; SDef
 	dname "EGG", MON_NAME_LENGTH
 
 	db PICHU
 	db NO_ITEM
-	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
+	db THUNDERSHOCK, CHARM, PROTECT, 0
 	dw 00256 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -73,15 +73,15 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 30, 20, 10, 0 ; PP
+	dn 15, 10, 10, 10 ; DVs
+	db 20, 5, 5, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
-	bigdw 9 ; Atk
+	bigdw 10 ; Atk
 	bigdw 7 ; Def
 	bigdw 12 ; Spd
 	bigdw 9 ; SAtk
@@ -90,7 +90,7 @@ OddEggs:
 
 	db CLEFFA
 	db NO_ITEM
-	db POUND, CHARM, DIZZY_PUNCH, 0
+	db POUND, CHARM, HIDDEN_POWER, 0
 	dw 04096 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -99,24 +99,24 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 35, 20, 10, 0 ; PP
+	dn 10, 14, 10, 11 ; HP Grass
+	db 20, 5, 15, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
-	bigdw 7 ; Atk
-	bigdw 7 ; Def
-	bigdw 6 ; Spd
-	bigdw 9 ; SAtk
-	bigdw 10 ; SDef
+	bigdw 8 ; Atk
+	bigdw 9 ; Def
+	bigdw 7 ; Spd
+	bigdw 10 ; SAtk
+	bigdw 11 ; SDef
 	dname "EGG", MON_NAME_LENGTH
 
 	db CLEFFA
 	db NO_ITEM
-	db POUND, CHARM, DIZZY_PUNCH, 0
+	db POUND, CHARM, PROTECT, 0
 	dw 00768 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -125,15 +125,15 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 35, 20, 10, 0 ; PP
+	dn 15, 10, 10, 10 ; DVs
+	db 20, 5, 5, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
-	bigdw 7 ; Atk
+	bigdw 9 ; Atk
 	bigdw 8 ; Def
 	bigdw 7 ; Spd
 	bigdw 10 ; SAtk
@@ -142,7 +142,7 @@ OddEggs:
 
 	db IGGLYBUFF
 	db NO_ITEM
-	db SING, CHARM, DIZZY_PUNCH, 0
+	db POUND, SING, HIDDEN_POWER, 0
 	dw 04096 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -151,24 +151,24 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 15, 20, 10, 0 ; PP
+	dn 10, 10, 10, 15 ; HP Grass
+	db 20, 5, 15, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
-	bigdw 8 ; Atk
-	bigdw 6 ; Def
-	bigdw 6 ; Spd
-	bigdw 9 ; SAtk
-	bigdw 7 ; SDef
+	bigdw 9 ; Atk
+	bigdw 7 ; Def
+	bigdw 7 ; Spd
+	bigdw 10 ; SAtk
+	bigdw 8 ; SDef
 	dname "EGG", MON_NAME_LENGTH
 
 	db IGGLYBUFF
 	db NO_ITEM
-	db SING, CHARM, DIZZY_PUNCH, 0
+	db POUND, SING, PROTECT, 0
 	dw 00768 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -177,15 +177,15 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 15, 20, 10, 0 ; PP
+	dn 15, 10, 10, 10 ; DVs
+	db 20, 5, 5, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
-	bigdw 8 ; Atk
+	bigdw 9 ; Atk
 	bigdw 7 ; Def
 	bigdw 7 ; Spd
 	bigdw 10 ; SAtk
@@ -194,7 +194,7 @@ OddEggs:
 
 	db SMOOCHUM
 	db NO_ITEM
-	db POUND, LICK, DIZZY_PUNCH, 0
+	db POWDER_SNOW, LICK, HIDDEN_POWER, 0
 	dw 03584 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -203,34 +203,8 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 35, 30, 10, 0 ; PP
-	db 10 ; Step cycles to hatch
-	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
-	db 0, 0 ; Status
-	bigdw 0 ; HP
-	bigdw 19 ; Max HP
-	bigdw 8 ; Atk
-	bigdw 6 ; Def
-	bigdw 11 ; Spd
-	bigdw 13 ; SAtk
-	bigdw 11 ; SDef
-	dname "EGG", MON_NAME_LENGTH
-
-	db SMOOCHUM
-	db NO_ITEM
-	db POUND, LICK, DIZZY_PUNCH, 0
-	dw 00512 ; OT ID
-	bigdt 125 ; Exp
-	; Stat exp
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 35, 30, 10, 0 ; PP
+	dn 6, 12, 13, 14 ; HP Fire
+	db 20, 20, 15, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
@@ -244,35 +218,9 @@ OddEggs:
 	bigdw 12 ; SDef
 	dname "EGG", MON_NAME_LENGTH
 
-	db MAGBY
+	db SMOOCHUM
 	db NO_ITEM
-	db EMBER, DIZZY_PUNCH, 0, 0
-	dw 02560 ; OT ID
-	bigdt 125 ; Exp
-	; Stat exp
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 25, 10, 0, 0 ; PP
-	db 10 ; Step cycles to hatch
-	db 0, 0, 0 ; Pokerus, Caught data
-	db 5 ; Level
-	db 0, 0 ; Status
-	bigdw 0 ; HP
-	bigdw 19 ; Max HP
-	bigdw 12 ; Atk
-	bigdw 8 ; Def
-	bigdw 13 ; Spd
-	bigdw 12 ; SAtk
-	bigdw 10 ; SDef
-	dname "EGG", MON_NAME_LENGTH
-
-	db MAGBY
-	db NO_ITEM
-	db EMBER, DIZZY_PUNCH, 0, 0
+	db POWDER_SNOW, LICK, PROTECT, 0
 	dw 00512 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -281,15 +229,67 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 25, 10, 0, 0 ; PP
+	dn 15, 10, 10, 10 ; DVs
+	db 20, 20, 5, 0 ; PP
+	db 10 ; Step cycles to hatch
+	db 0, 0, 0 ; Pokerus, Caught data
+	db 5 ; Level
+	db 0, 0 ; Status
+	bigdw 0 ; HP
+	bigdw 20 ; Max HP
+	bigdw 9 ; Atk
+	bigdw 7 ; Def
+	bigdw 12 ; Spd
+	bigdw 14 ; SAtk
+	bigdw 12 ; SDef
+	dname "EGG", MON_NAME_LENGTH
+
+	db MAGBY
+	db NO_ITEM
+	db EMBER, HIDDEN_POWER, 0, 0
+	dw 02560 ; OT ID
+	bigdt 125 ; Exp
+	; Stat exp
+	bigdw 0
+	bigdw 0
+	bigdw 0
+	bigdw 0
+	bigdw 0
+	dn 12, 11, 10, 12 ; HP Ground
+	db 20, 15, 0, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
-	bigdw 12 ; Atk
+	bigdw 13 ; Atk
+	bigdw 9 ; Def
+	bigdw 14 ; Spd
+	bigdw 13 ; SAtk
+	bigdw 11 ; SDef
+	dname "EGG", MON_NAME_LENGTH
+
+	db MAGBY
+	db NO_ITEM
+	db EMBER, PROTECT, 0, 0
+	dw 00512 ; OT ID
+	bigdt 125 ; Exp
+	; Stat exp
+	bigdw 0
+	bigdw 0
+	bigdw 0
+	bigdw 0
+	bigdw 0
+	dn 15, 10, 10, 10 ; DVs
+	db 20, 5, 0, 0 ; PP
+	db 10 ; Step cycles to hatch
+	db 0, 0, 0 ; Pokerus, Caught data
+	db 5 ; Level
+	db 0, 0 ; Status
+	bigdw 0 ; HP
+	bigdw 20 ; Max HP
+	bigdw 14 ; Atk
 	bigdw 9 ; Def
 	bigdw 14 ; Spd
 	bigdw 13 ; SAtk
@@ -298,7 +298,7 @@ OddEggs:
 
 	db ELEKID
 	db NO_ITEM
-	db QUICK_ATTACK, LEER, DIZZY_PUNCH, 0
+	db THUNDERSHOCK, HIDDEN_POWER, 0, 0
 	dw 03072 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -307,24 +307,24 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 30, 30, 10, 0 ; PP
+	dn 14, 10, 10, 11 ; HP Grass
+	db 20, 15, 0, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
-	bigdw 11 ; Atk
-	bigdw 8 ; Def
-	bigdw 14 ; Spd
-	bigdw 11 ; SAtk
-	bigdw 10 ; SDef
+	bigdw 12 ; Atk
+	bigdw 9 ; Def
+	bigdw 15 ; Spd
+	bigdw 12 ; SAtk
+	bigdw 11 ; SDef
 	dname "EGG", MON_NAME_LENGTH
 
 	db ELEKID
 	db NO_ITEM
-	db QUICK_ATTACK, LEER, DIZZY_PUNCH, 0
+	db THUNDERSHOCK, PROTECT, 0, 0
 	dw 00512 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -333,15 +333,15 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 30, 30, 10, 0 ; PP
+	dn 15, 10, 10, 10 ; DVs
+	db 20, 5, 0, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
-	bigdw 19 ; Max HP
-	bigdw 11 ; Atk
+	bigdw 20 ; Max HP
+	bigdw 12 ; Atk
 	bigdw 9 ; Def
 	bigdw 15 ; Spd
 	bigdw 12 ; SAtk
@@ -350,7 +350,7 @@ OddEggs:
 
 	db TYROGUE
 	db NO_ITEM
-	db TACKLE, DIZZY_PUNCH, 0, 0
+	db REVERSAL, HIDDEN_POWER, 0, 0
 	dw 02560 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -359,24 +359,24 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 4, 4, 4, 4 ; DVs
-	db 35, 10, 0, 0 ; PP
+	dn 13, 12, 12, 8 ; HP Rock
+	db 10, 15, 0, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
-	bigdw 18 ; Max HP
-	bigdw 8 ; Atk
-	bigdw 8 ; Def
-	bigdw 8 ; Spd
-	bigdw 8 ; SAtk
-	bigdw 8 ; SDef
+	bigdw 19 ; Max HP
+	bigdw 9 ; Atk
+	bigdw 9 ; Def
+	bigdw 9 ; Spd
+	bigdw 9 ; SAtk
+	bigdw 9 ; SDef
 	dname "EGG", MON_NAME_LENGTH
 
 	db TYROGUE
 	db NO_ITEM
-	db TACKLE, DIZZY_PUNCH, 0, 0
+	db REVERSAL, PROTECT, 0, 0
 	dw 00256 ; OT ID
 	bigdt 125 ; Exp
 	; Stat exp
@@ -385,15 +385,15 @@ OddEggs:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	dn 10, 10, 10, 10 ; DVs
-	db 35, 10, 0, 0 ; PP
+	dn 15, 10, 10, 10 ; DVs
+	db 10, 5, 0, 0 ; PP
 	db 10 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0, 0 ; Status
 	bigdw 0 ; HP
-	bigdw 18 ; Max HP
-	bigdw 8 ; Atk
+	bigdw 19 ; Max HP
+	bigdw 10 ; Atk
 	bigdw 9 ; Def
 	bigdw 9 ; Spd
 	bigdw 9 ; SAtk
