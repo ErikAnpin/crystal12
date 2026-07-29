@@ -140,6 +140,7 @@ GetRemindableMoves:
 	ld b, 0
 	ld de, wd002 + 1
 
+.loop
 	; Retrieves the currently selected Pokémon's evolution
 	; and attack address from the "EvosAttacksPointers"
 	; table that is located in another bank. This is the
@@ -147,6 +148,7 @@ GetRemindableMoves:
 	ld a, [wCurPartySpecies]
 	dec a
 	push bc
+	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
 	add hl, bc
@@ -210,7 +212,10 @@ GetRemindableMoves:
 ; selected Pokémon can learn into "wd002".
 ; Which is the move list.
 .done
+	farcall GetPreEvolution
 	pop bc
+	jr c, .loop
+
 	pop af
 	ld [wCurPartySpecies], a
 	ld a, b
