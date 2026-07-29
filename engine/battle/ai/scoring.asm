@@ -878,8 +878,33 @@ AI_Smart_AccuracyDown:
 	ret
 
 AI_Smart_ResetStats:
-; 85% chance to encourage this move if any of enemy's stat levels is lower than -2.
+; First, check if ANY stats have changed at all.
 	push hl
+	ld hl, wEnemyAtkLevel
+	ld c, NUM_LEVEL_STATS
+.check_enemy_loop
+	ld a, [hli]
+	cp BASE_STAT_LEVEL
+	jr nz, .has_stat_changes
+	dec c
+	jr nz, .check_enemy_loop
+
+	ld hl, wPlayerAtkLevel
+	ld c, NUM_LEVEL_STATS
+.check_player_loop
+	ld a, [hli]
+	cp BASE_STAT_LEVEL
+	jr nz, .has_stat_changes
+	dec c
+	jr nz, .check_player_loop
+
+; If we get here, no stats have changed on either side.
+; Dismiss the move completely.
+	pop hl
+	jp AIDiscourageMove
+
+.has_stat_changes
+; 85% chance to encourage this move if any of enemy's stat levels is lower than -2.
 	ld hl, wEnemyAtkLevel
 	ld c, NUM_LEVEL_STATS
 .enemystatsloop
