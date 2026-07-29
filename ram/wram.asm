@@ -1802,6 +1802,7 @@ wGBPrinterBrightness::
 	db
 wOptions2::
 ; bit 1: menu account off/on
+; bit 2: level caps off/on
 	db
 	ds 2
 wOptionsEnd::

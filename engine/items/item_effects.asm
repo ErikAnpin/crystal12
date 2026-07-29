@@ -1312,10 +1312,23 @@ RareCandyEffect:
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
 
-	ld a, [hl]
-	cp MAX_LEVEL
-	jp nc, NoEffectMessage
+	push hl
+	ld a, [wOptions2]
+	bit 2, a
+	jr z, .NoLevelCap
 
+	farcall GetMaxLevel
+	pop hl
+	ld a, [hl]
+	cp b
+	jp nc, NoEffectMessage
+	jr .DoLevelUp
+
+.NoLevelCap
+	pop hl
+	ld a, [hl]
+
+.DoLevelUp
 	inc a
 	ld [hl], a
 	ld [wCurPartyLevel], a

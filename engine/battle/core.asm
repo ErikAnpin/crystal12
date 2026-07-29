@@ -4592,7 +4592,7 @@ HandleStatBoostingHeldItems:
 	and a
 	ret nz
 
-	;Re-load the item ID before it gets wiped
+; Reload the item ID before it gets wiped
 	ld a, [bc]
 	ld [wNamedObjectIndex], a
 	xor a
@@ -4600,6 +4600,29 @@ HandleStatBoostingHeldItems:
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
+
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	push af
+	set SUBSTATUS_CONFUSED, [hl]
+
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerConfuseCount
+	jr z, .set_confuse_2
+	ld hl, wEnemyConfuseCount
+.set_confuse_2
+	ld a, 2
+	ld [hl], a
+
+	pop af
+	bit SUBSTATUS_CONFUSED, a
+	ret nz
+
+	xor a
+	ld [wBattleAfterAnim], a
+	ld de, ANIM_CONFUSED
+	call Call_PlayBattleAnim_OnlyIfVisible
 	ret
 
 .finish
@@ -7121,8 +7144,22 @@ GiveExperiencePoints:
 	pop bc
 	ld hl, MON_LEVEL
 	add hl, bc
+
+; level cap
+	push bc
+	push hl
+	ld a, [wOptions2]
+	bit 2, a
+	jr z, .caps_off_1
+	callfar GetMaxLevel
+	jr .got_cap_1
+.caps_off_1
+	ld b, MAX_LEVEL
+.got_cap_1
+	pop hl
 	ld a, [hl]
-	cp MAX_LEVEL
+	cp b
+	pop bc
 	jp nc, .next_mon
 	push bc
 	xor a
@@ -7214,7 +7251,18 @@ GiveExperiencePoints:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
+
+; level cap
+	ld a, [wOptions2]
+	bit 2, a
+	jr z, .caps_off_2
+	callfar GetMaxLevel
+	ld d, b
+	jr .got_cap_2
+.caps_off_2
 	ld d, MAX_LEVEL
+.got_cap_2
+
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, MON_EXP + 2
@@ -7242,6 +7290,16 @@ GiveExperiencePoints:
 
 .not_max_exp
 ; Check if the mon leveled up
+	ld a, [wOptions2]
+	bit 2, a
+	jr z, .caps_off_3
+	callfar GetMaxLevel
+	ld e, b
+	jr .got_cap_3
+.caps_off_3
+	ld e, MAX_LEVEL
+.got_cap_3
+
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -7250,7 +7308,7 @@ GiveExperiencePoints:
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
-	cp MAX_LEVEL
+	cp e ;
 	jp nc, .next_mon
 	cp d
 	jp z, .next_mon
