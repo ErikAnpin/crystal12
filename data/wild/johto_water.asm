@@ -27,7 +27,7 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 15, TENTACOOL
 	db 20, QUAGSIRE
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons SLOWPOKE_WELL_B1F
@@ -76,20 +76,20 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 20, TENTACOOL
 	db 15, HORSEA
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons WHIRL_ISLAND_B2F
 	db 2 percent ; encounter rate
 	db 15, HORSEA
 	db 20, HORSEA
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons WHIRL_ISLAND_LUGIA_CHAMBER
 	db 2 percent ; encounter rate
 	db 20, HORSEA
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	db 20, SEADRA
 	end_water_wildmons
 
@@ -125,7 +125,7 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 20, CHINCHOU
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_30
@@ -153,7 +153,7 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 20, CORSOLA
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_35
@@ -209,14 +209,14 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 20, TENTACOOL
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons CHERRYGROVE_CITY
 	db 2 percent ; encounter rate
 	db 20, TENTACOOL
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons VIOLET_CITY
@@ -230,14 +230,14 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 20, TENTACOOL
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons OLIVINE_CITY
 	db 2 percent ; encounter rate
 	db 20, TENTACOOL
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons ECRUTEAK_CITY

@@ -11,11 +11,6 @@ SilverCaveOutside_MapScripts:
 SilverCaveMewtwoCallback:
 	checkevent EVENT_FOUGHT_MEWTWO
 	iftrue .NoAppear
-	checkevent EVENT_BEAT_RED
-	iftrue .Appear
-	sjump .NoAppear
-	
-.Appear:
 	appear SILVERCAVE_MEWTWO
 	endcallback	
 	

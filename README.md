@@ -1,66 +1,79 @@
 # Crystal12
 
+
 This is a mod of the [**Pokémon Crystal**](https://github.com/pret/pokecrystal) disassembly.
 
+
 ### TODO
-- Adjust levels between Morty and Clair
-- Diversify Pokemon in Pryce Gym and Mahogany Rocket
-- Playtest Weather balance changes
-- Swap Nightmare TM with something more useful early
+
+- Lower level curve for Jasmine, Lighthouse probably can be higher though
+- Make Sweet Scent target harder encounters
+- Add a way to see current route encounters
+- Revert double stat exp
+- Add early Voltorb mimic encounter
+- Move upgrade somewhere
+- Make stat held items more scarce
+- Change TMs
+- Revert changed variable names
 - Add more birds to water routes, adjust encounter rate per size
-- Fix Aerodactyl Room not needing to actually use Flash
-- Check if hardcoded quick claw and kings rock effects need to be removed
-- Change Sleep to ATK drop
-- Fix Item/Move Descriptions and NPC explanations
-- Fix some night NPC sprites still being bright
-- Add way to Toggle Run
 - Use Lv50 for calculations, would still be used for new moves and evolutions and adjust Healing Items for Lv50
-- Adjust AI for all changes
+- Adjust NPC explanations for moves and items
+- Add a way to Toggle Run
+- Adjust AI for all changes (atm spams haze and uses focus energy for no reason)
+- Add Bike Shop back to Cerulean City
+- https://github.com/fellowship-of-the-roms/pokecrystal/commits/Doublespeed-60fps-Running-Shoes/
+- Adjust Marts
 - Battle Tower lol
+
 
 ## Plus branch
 
-- Removed RNG (Accuracy, Confusion, Damage Rolls, etc)
-- Fixed weird TYPES (such as Psyduck not being PSYCHIC)
-- Removed Leftovers Text
-- Confusion always hits self but doesn't stop action
+
+- Removed battle RNG (Accuracy, Confusion, Full Para, Crit Chance, Damage Rolls, etc)
+- Freeze lowers SPA
+- Paralysis still lowers SPE
+- Sleep lasts 3 turns and lowers DEF and SPD. Rest fails if already asleep.
 - Attract sharply lowers ATT and SPA
+- Confusion always hits self but doesn't stop action
 - Rampage always lasts 2 turns
-- Freeze halves SPA
-- Paralysis doesn't have random chance
-- Sleep lasts 3 turns and halves defenses. Rest fails if already asleep.
-- Rapid Spin and Bone Rush give Speed UP
-- Removed Flinch and OHKO
-- Focus Band(ATT), King's Rock(DEF), Scope Lens(SAT), Brightpowder(SDE) and Quick Claw(SPE) give +1 boost in battle
-- Stat Multipliers now match Acurracy Multipliers (x3 at +6 instead of x4)
-- Removed Kanto trades for new ones in Cherrygrove, Cianwood and Mahogany
 - Protect always fails on 2nd consecutive use
-- Baton pass doesn't pass Status changes and Substitute. Teleport works the same but with reduced priority
+- Removed Flinch and OHKO moves
+- Guaranteed Crit moves still bypass stat changes
+- Held items repurposed to give +1 boost in battle
+    Focus Band(ATT): Buena, Omanyte Item Room, Fighting Dojo, Tyrogue family
+    King's Rock(DEF): Buena, Slowpoke Well, Slowpoke and Poliwag family
+    Scope Lens(SAT): Buena, Omanyte Item Room, Hoothoot family
+    Brightpowder(SDE): Buena, Dragonair Trade, Kanto Birds
+    Quick Claw(SPE) : Buena, National Park, Sandshrew family and Sneasel
+    Berserk Gene: Omanyte Item Room, Cerulean City, Mewtwo, Wobbuffet
+- Stat Multipliers now match old Acurracy Multipliers (x3 at +6 instead of x4)
+- Baton pass doesn't pass Status changes and Substitute. 
 - Focus Energy cures status
+- Silver Wing obtainable earlier, from Old Man in the Lake of Rage
+- Removed Kanto trades for new ones in Cherrygrove, Cianwood and Mahogany
+- Shiny check ignores ATK DV and also accepts 15 Speed (1/2048) from (1/8192)
+- Optional badge based level cap for nuzlockes
+
 
 ### Type Changes
-Ampharos/Flaaffy/Mareep: Electric/Normal
+
+
 Arbok/Ekans: Poison/Dark
-Azumarill/Marill: Water/Normal
-Bellossom: Grass/Normal
-Bellsprout: Grass/Grass
+Bellsprout/Weepinbell: Grass/Grass
 Blastoise: Water/Steel
+Bulbasaur/Ivysaur: Grass/Grass
 Charizard: Fire/Dragon
-Clefable/Cleffa/Clefairy: Normal/Psychic
+Cleffa/Clefairy/Clefable: Normal/Psychic
 Cloyster: Water/Dark
-Dodrio/Doduo: Normal/Fighting
+Doduo/Dodrio: Fighting/Fighting
 Dragonair: Dragon/Flying
 Dunsparce: Ground/Dragon
 Electabuzz: Electric/Fighting
 Farfetch'd: Flying/Fighting
-Fearow/Spearow: Flying/Flying
+Geodude/Graveler/Golem: Rock/Rock
 Girafarig: Dark/Psychic
-Golduck/Psyduck: Water/Psychic
-Golem/Geodude/Graveler: Rock/Rock
-Granbull/Snubbull: Normal/Dark
 Gyarados: Dragon/Dragon
-Ivysaur/Bulbasaur: Grass/Grass
-Pupitar/Larvitar: Rock/Dark
+Larvitar/Pupitar: Rock/Dark
 Lapras: Ice/Dragon
 Lugia: Water/Flying
 Magmar: Fire/Fighting
@@ -69,16 +82,20 @@ Noctowl: Psychic/Flying
 Octillery/Remoraid: Water/Steel
 Parasect: Ghost/Grass
 Porygon2/Porygon: Normal/Ghost
+Psyduck/Golduck: Water/Psychic
 Seel: Water/Ice
-Slowpoke: Water/Water
 Slowbro: Water/Ghost
+Slowpoke: Water/Water
+Snubbull/Granbull: Normal/Dark
+Spearow/Fearow: Flying/Flying
 Stantler: Normal/Ice
 Sunflora: Grass/Fire
 Victreebel: Grass/Dark
-Bellsprout/Weepinbell: Grass/Grass
 Yanma: Bug/Dragon
 
+
 ## Main branch
+
 
 - No PHYSICAL/SPECIAL split
 - No TYPE changes
@@ -94,6 +111,7 @@ Yanma: Bug/Dragon
 - Many Bug fixes, QoL & balance changes(credits Idain, landesherr, Rangi42)
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
+
 
 ## Screenshots
 

@@ -139,7 +139,7 @@ GetTreeMon:
 	; 10% chance of an encounter
 	ld a, 10
 	call RandomRange
-	and a
+	cp 5
 	jr nz, NoTreeMon
 	jr SelectTreeMon
 

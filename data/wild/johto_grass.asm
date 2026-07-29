@@ -575,9 +575,9 @@ JohtoGrassWildMons:
 	db 9,  CATERPIE
 	db 10, VENONAT
 	db 9,  HOOTHOOT
-	db 9,  FARFETCH_D
 	db 8,  SPINARAK
-	db 11, SPINARAK
+	db 9,  SPINARAK
+	db 11, FARFETCH_D
 	; nite
 	db 10, SPINARAK
 	db 9,  ODDISH
@@ -652,7 +652,7 @@ JohtoGrassWildMons:
 	db 30, RATICATE
 	db 28, MACHOKE
 	db 30, RHYHORN
-	db 31, CHANSEY
+	db 31, GOLBAT
 	db 30, GOLBAT
 	; day
 	db 31, GRAVELER
@@ -660,7 +660,7 @@ JohtoGrassWildMons:
 	db 30, RATICATE
 	db 28, MACHOKE
 	db 30, RHYHORN
-	db 31, CHANSEY
+	db 31, GOLBAT
 	db 30, GOLBAT
 	; nite
 	db 31, GRAVELER
@@ -680,8 +680,8 @@ JohtoGrassWildMons:
 	db 19, ZUBAT
 	db 17, SANDSHREW
 	db 17, ZUBAT
-	db 17, CHANSEY
-	db 19, CHANSEY
+	db 18, ZUBAT
+	db 19, MISDREAVUS
 	; day
 	db 18, ZUBAT
 	db 18, GEODUDE
@@ -689,7 +689,7 @@ JohtoGrassWildMons:
 	db 17, SANDSHREW
 	db 17, ZUBAT
 	db 18, SANDSHREW
-	db 19, CHANSEY
+	db 19, MISDREAVUS
 	; nite
 	db 18, ZUBAT
 	db 18, GEODUDE
@@ -697,7 +697,7 @@ JohtoGrassWildMons:
 	db 17, SANDSHREW
 	db 17, ZUBAT
 	db 17, SNEASEL
-	db 19, CHANSEY
+	db 19, MISDREAVUS
 	end_grass_wildmons
 
 	def_grass_wildmons ICE_PATH_1F
@@ -1572,19 +1572,19 @@ JohtoGrassWildMons:
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	db 20, FURRET
-	db 21, FARFETCH_D
+	db 22, FEAROW
 	db 21, PIDGEOTTO
 	db 20, PIDGEOTTO
 	db 22, GIRAFARIG
-	db 22, FEAROW
+	db 21, CHANSEY
 	db 22, BAYLEEF
 	; day
 	db 20, FURRET
-	db 21, FARFETCH_D
+	db 22, FEAROW
 	db 21, PIDGEOTTO
 	db 20, PIDGEOTTO
 	db 22, GIRAFARIG
-	db 22, FEAROW
+	db 21, CHANSEY
 	db 22, BAYLEEF
 	; nite
 	db 20, RATICATE
@@ -1604,24 +1604,24 @@ JohtoGrassWildMons:
 	db 27, WEEPINBELL
 	db 27, LICKITUNG
 	db 29, MR__MIME
-	db 30, VOLTORB
-	db 31, VOLTORB
+	db 30, WEEPINBELL
+	db 31, TANGELA
 	; day
 	db 28, TANGELA
 	db 27, WEEPINBELL
 	db 29, WEEPINBELL
 	db 27, LICKITUNG
 	db 29, MR__MIME
-	db 30, VOLTORB
-	db 31, VOLTORB
+	db 30, WEEPINBELL
+	db 31, TANGELA
 	; nite
 	db 28, TANGELA
 	db 27, ARIADOS
 	db 29, WEEPINBELL
 	db 27, LICKITUNG
 	db 30, MR__MIME
-	db 29, VOLTORB
-	db 31, VOLTORB
+	db 29, WEEPINBELL
+	db 31, TANGELA
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_45

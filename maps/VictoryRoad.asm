@@ -18,11 +18,6 @@ VictoryRoad_MapScripts:
 VictoryRoadMoltresCallback:
 	checkevent EVENT_FOUGHT_MOLTRES
 	iftrue .NoAppear
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .Appear
-	sjump .NoAppear
-	
-.Appear:
 	appear VICTORYROAD_MOLTRES
 	endcallback	
 	
