@@ -249,12 +249,6 @@ BattleCommand_CheckTurn:
 	call FarPlayBattleAnimation
 
 
-	; clear confusion-dependent substatus
-	ld hl, wPlayerSubStatus3
-	ld a, [hl]
-	and 1 << SUBSTATUS_CONFUSED
-	ld [hl], a
-
 	call HitConfusion
 
 .not_confused
@@ -421,6 +415,15 @@ CheckEnemyTurn:
 	add a ; bit SUBSTATUS_CONFUSED
 	jr nc, .not_confused
 
+	ld hl, wEnemyConfuseCount
+	dec [hl]
+	jr nz, .confused
+
+	ld hl, wEnemySubStatus3
+	res SUBSTATUS_CONFUSED, [hl]
+	ld hl, ConfusedNoMoreText
+	call StdBattleTextbox
+	jr .not_confused
 
 .confused
 	ld hl, IsConfusedText

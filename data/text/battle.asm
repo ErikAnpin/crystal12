@@ -370,7 +370,7 @@ WokeUpText:
 
 FrozenSolidText:
 	text "<USER>"
-	line "is frozen solid!"
+	line "is freezing!"
 	prompt
 
 FlinchedText:
@@ -564,7 +564,7 @@ WentToSleepText:
 
 RestedText:
 	text "<USER>"
-	line "fell asleep and"
+	line "is resting and"
 	cont "became healthy!"
 	done
 
@@ -674,12 +674,12 @@ BellChimedText:
 
 FellAsleepText:
 	text "<TARGET>"
-	line "fell asleep!"
+	line "is sleepy!"
 	prompt
 
 AlreadyAsleepText:
 	text "<TARGET>'s"
-	line "already asleep!"
+	line "already sleepy!"
 	prompt
 	
 AlreadyBurnedText:
@@ -729,7 +729,7 @@ DefrostedOpponentText:
 
 WasFrozenText:
 	text "<TARGET>"
-	line "was frozen solid!"
+	line "got frostbite!"
 	prompt
 
 WontRiseAnymoreText:
