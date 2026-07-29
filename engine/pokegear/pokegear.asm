@@ -2261,20 +2261,23 @@ _FlyMap:
 .done
 	ret
 
-; TODO: transition between maps should be smoother
 .SwapToJohtoRegionMap
-  call ClearSprites
-  farcall ClearSpriteAnims
-  ld a, JOHTO_LANDMARK
-  jp LoadMapForRegion
-  jr .Finally
+	farcall FadeOutToWhite
+	call ClearSprites
+	farcall ClearSpriteAnims
+	ld a, JOHTO_LANDMARK
+	call LoadMapForRegion
+	farcall FadeInFromWhite
+	jr .Finally
 
 .SwapToKantoRegionMap
-  call ClearSprites
-  farcall ClearSpriteAnims
-  ld a, KANTO_LANDMARK
-  jp LoadMapForRegion
-  jr .Finally
+	farcall FadeOutToWhite
+	call ClearSprites
+	farcall ClearSpriteAnims
+	ld a, KANTO_LANDMARK
+	call LoadMapForRegion
+	farcall FadeInFromWhite
+	jr .Finally
 
 .ScrollNext:
 	ld hl, wTownMapPlayerIconLandmark
