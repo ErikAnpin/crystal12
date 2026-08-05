@@ -77,20 +77,6 @@ SaffronGroupSprites:
 	db SPRITE_ZAPDOS
 	db 0 ; end
 
-VermilionGroupSprites:
-; Route6, Route11, VermilionCity
-	db SPRITE_POKEFAN_M
-	db SPRITE_GRAMPS
-	db SPRITE_YOUNGSTER
-	db SPRITE_TEACHER
-	db SPRITE_SUPER_NERD
-	; 5 of max 9 walking sprites
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_MACHOP
-	db SPRITE_POKE_BALL
-	db SPRITE_FRUIT_TREE
-	db 0 ; end
-
 CeladonGroupSprites:
 ; Route7, Route16, Route17, CeladonCity
 	db SPRITE_FISHER
@@ -105,7 +91,9 @@ CeladonGroupSprites:
 	db SPRITE_FRUIT_TREE
 	db 0 ; end
 
-; Route12 and Route13 are connected
+; Route11, Route12 and Route13 are connected
+VermilionGroupSprites:
+; Route6, Route11, VermilionCity
 LavenderGroupSprites:
 ; Route8, Route12, Route10South, LavenderTown
 FuchsiaGroupSprites:
@@ -118,8 +106,11 @@ FuchsiaGroupSprites:
 	db SPRITE_SUPER_NERD
 	db SPRITE_BIKER
 	; 7 of max 9 walking sprites
+	db SPRITE_BIG_SNORLAX
+	db SPRITE_MACHOP
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
+	db SPRITE_SLOWPOKE
 	db 0 ; end
 
 IndigoGroupSprites:
@@ -301,7 +292,7 @@ FastShipGroupSprites:
 	; 6 of max 9 walking sprites
 	db SPRITE_HO_OH
 	db SPRITE_ROCK
-	db SPRITE_BOULDER	
+	db SPRITE_BOULDER
 	db 0 ; end
 
 CableClubGroupSprites:
