@@ -2199,17 +2199,16 @@ ApplyExperienceAfterEnemyCaught:
 	srl [hl]
 
 	ld hl, wEnemyMonBaseStats
-	ld b, wEnemyMonEnd - wEnemyMonBaseStats
-.halve_stats_loop:
+	ld b, NUM_STATS - 1
+.halve_stats
 	srl [hl]
 	inc hl
 	dec b
-	jr nz, .halve_stats_loop
+	jr nz, .halve_stats
 
 	ld a, [wBattleParticipantsNotFainted]
 	ld d, a
 	push de
-
 	call GiveExperiencePoints
 	pop de
 
@@ -2255,40 +2254,20 @@ ApplyExperienceAfterEnemyCaught:
 
 	ld a, c
 	and a
-	ret z
 
-	; Divide the 50% Base EXP by the number of inactives (C)
-	ld b, c
-	ld a, [wEnemyMonBaseExp]
-	call .SimpleDivide
-	ld [wEnemyMonBaseExp], a
+	jr z, .done
 
 	ld a, e
 	ld [wBattleParticipantsNotFainted], a
 	call GiveExperiencePoints
 
-
+.done
 	ld a, d
 	ld [wBattleParticipantsNotFainted], a
 	ret
 
 .ExpShareOff:
 	call GiveExperiencePoints
-	ret
-
-.SimpleDivide:
-	push bc
-	ld c, 0
-	and a
-	jr z, .div_done
-.div_loop:
-	sub b
-	jr c, .div_done
-	inc c
-	jr .div_loop
-.div_done:
-	ld a, c
-	pop bc
 	ret
 
 StopDangerSound:
@@ -4600,7 +4579,7 @@ HandleStatBoostingHeldItems:
 	and a
 	ret nz
 
-; Reload the item ID before it gets wiped
+	; Reload the item ID before it gets wiped
 	ld a, [bc]
 	ld [wNamedObjectIndex], a
 	xor a
@@ -7060,6 +7039,7 @@ GiveExperiencePoints:
 	and a
 	ret nz
 
+	call .EvenlyDivideExpAmongParticipants
 	xor a
 	ld [wCurPartyMon], a
 	ld bc, wPartyMon1Species
@@ -7105,18 +7085,6 @@ GiveExperiencePoints:
 	inc de
 
 .no_carry_stat_exp
-	ld a, [de]
-	add [hl]
-	ld [de], a
-	jr nc, .no_carry_stat_exp_pokerus
-	dec de
-	ld a, [de]
-	inc a
-	jr z, .stat_exp_maxed_out
-	ld [de], a
-	inc de
-
-.no_carry_stat_exp_pokerus
 	push hl
 	push bc
 	ld a, MON_POKERUS
@@ -7152,22 +7120,8 @@ GiveExperiencePoints:
 	pop bc
 	ld hl, MON_LEVEL
 	add hl, bc
-
-; level cap
-	push bc
-	push hl
-	ld a, [wOptions2]
-	bit 2, a
-	jr z, .caps_off_1
-	callfar GetMaxLevel
-	jr .got_cap_1
-.caps_off_1
-	ld b, MAX_LEVEL
-.got_cap_1
-	pop hl
 	ld a, [hl]
-	cp b
-	pop bc
+	cp MAX_LEVEL
 	jp nc, .next_mon
 	push bc
 	xor a
@@ -7259,18 +7213,7 @@ GiveExperiencePoints:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
-
-; level cap
-	ld a, [wOptions2]
-	bit 2, a
-	jr z, .caps_off_2
-	callfar GetMaxLevel
-	ld d, b
-	jr .got_cap_2
-.caps_off_2
 	ld d, MAX_LEVEL
-.got_cap_2
-
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, MON_EXP + 2
@@ -7298,16 +7241,6 @@ GiveExperiencePoints:
 
 .not_max_exp
 ; Check if the mon leveled up
-	ld a, [wOptions2]
-	bit 2, a
-	jr z, .caps_off_3
-	callfar GetMaxLevel
-	ld e, b
-	jr .got_cap_3
-.caps_off_3
-	ld e, MAX_LEVEL
-.got_cap_3
-
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -7316,7 +7249,7 @@ GiveExperiencePoints:
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
-	cp e ;
+	cp MAX_LEVEL
 	jp nc, .next_mon
 	cp d
 	jp z, .next_mon
@@ -7478,6 +7411,56 @@ GiveExperiencePoints:
 
 .done
 	jp ResetBattleParticipants
+
+.EvenlyDivideExpAmongParticipants:
+; count number of battle participants
+	ld a, [wBattleParticipantsNotFainted]
+	ld b, a
+	ld c, PARTY_LENGTH
+	ld de, 0
+.count_loop
+	push bc
+	push de
+	ld a, e
+	ld hl, wPartyMon1Level
+	call GetPartyLocation
+	ld a, [hl]
+	cp MAX_LEVEL
+	pop de
+	pop bc
+	jr c, .gains_exp
+	srl b
+	ld a, d
+	jr .no_exp
+.gains_exp
+	xor a
+	srl b
+	adc d
+	ld d, a
+.no_exp
+	inc e	
+	dec c
+	jr nz, .count_loop
+	cp 2
+	ret c
+
+	ld [wTempByteValue], a
+	ld hl, wEnemyMonBaseStats
+	ld c, wEnemyMonEnd - wEnemyMonBaseStats
+.base_stat_division_loop
+	xor a
+	ldh [hDividend + 0], a
+	ld a, [hl]
+	ldh [hDividend + 1], a
+	ld a, [wTempByteValue]
+	ldh [hDivisor], a
+	ld b, 2
+	call Divide
+	ldh a, [hQuotient + 3]
+	ld [hli], a
+	dec c
+	jr nz, .base_stat_division_loop
+	ret
 
 BoostExp:
 ; Multiply experience by 1.5x
